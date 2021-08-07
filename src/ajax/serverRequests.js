@@ -6,7 +6,9 @@ const instance = axios.create({
 
 const apiKey = `ZWGiTATMzPHjpsUJSj289aerwaSsLpikIiYBhaek`
 
-
+let year = `2020`
+let month = `08`
+let day = `07`
 
 export const nasaRequest = {
     getAPOD () {
@@ -19,6 +21,6 @@ export const nasaRequest = {
         return instance.get(`planetary/earth/assets?lon=34.537324&lat=28.572325&date=2018-01-01&&dim=0.10&api_key=${apiKey}`)
     },
     getEarthImage () {
-        return instance.get(`https://api.nasa.gov/EPIC/api/natural/date/2019-05-30?api_key=${apiKey}`)
+        return instance.get(`EPIC/api/natural/date/${year}-${month}-${day}?api_key=${apiKey}`)
     }
 }
