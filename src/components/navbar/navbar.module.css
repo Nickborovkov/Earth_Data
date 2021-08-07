@@ -1,0 +1,19 @@
+.navbar{
+    width: 400px;
+    background-color: #444444;
+    padding: 50px 0;
+}
+.link{
+    display: block;
+    font-size: 20px;
+    color: gold;
+    text-decoration: none;
+    width: 300px;
+    margin: 20px auto;
+}
+.link:hover{
+    color: cornflowerblue;
+}
+.linkActive{
+    color: cornflowerblue;
+}
