@@ -1,62 +1,12 @@
-body{
-    background-color: #000000;
-}
-.mainTitle{
-    color: cornflowerblue;
-    font-size: 80px;
-    padding: 40px 0;
-    text-align: center;
-}
-.apodImage{
-    display: block;
-    margin: auto;
-    width: 400px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-}
-.cardTitle{
-    font-size: 30px;
-    text-align: center;
-    color: cornflowerblue;
-    padding: 30px 0;
-}
-.subtitle{
-    font-size: 20px;
-    color: cornflowerblue;
-    text-align: center;
-    padding: 20px 0;
-}
-.inner{
-    width: 90%;
-    display: block;
+.appWrapper{
+    max-width: 1400px;
     margin: 0 auto;
-    text-align: center;
-    color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.infoBox{
-    background-color: #333333;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+.appInner{
+    display: flex;
+    justify-content: center;
 }
-.preloader{
-    text-align: center;
-    color: cornflowerblue;
-    font-size: 80px;
-    animation: preloaderAnimation .5s linear infinite;
-}
-
-@keyframes preloaderAnimation {
-    0% {opacity: 0}
-    10% {opacity: 0.1}
-    20% {opacity: 0.2}
-    30% {opacity: 0.3}
-    40% {opacity: 0.4}
-    50% {opacity: 0.5}
-    60% {opacity: 0.6}
-    70% {opacity: 0.7}
-    80% {opacity: 0.8}
-    90% {opacity: 0.9}
-    100% {opacity: 1}
+.appContent{
+    width: 1000px;
 }
