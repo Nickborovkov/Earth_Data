@@ -1,69 +1,35 @@
 import './App.css';
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setPictureOfTheDay} from "./reducers/reducer";
-import Preloader from "./preloader";
+import React from "react";
+import Header from "./components/header/header";
+import Navbar from "./components/navbar/navbar";
+import {Route, Switch} from "react-router-dom";
+import Apod from "./components/apod/apod";
+import Neows from "./components/neosw/neows";
+import Earth from "./components/earth/earth";
+import EarthImage from "./components/earthImage/earthImage";
 
 let App = () => {
+    return (
+        <div className='appWrapper'>
+            <Header />
+            <div className='appInner'>
+                <Navbar />
+                <div className='appContent'>
+                    <Switch>
+                        <Route path='/apod'
+                               render={ () => <Apod /> }/>
+                        <Route path='/neows'
+                               render={ () => <Neows /> }/>
+                        <Route path='/earth'
+                               render={ () => <Earth /> }/>
+                        <Route path='/earthImage'
+                               render={ () => <EarthImage /> }/>
+                    </Switch>
+                </div>
+            </div>
 
-    const dispatch = useDispatch()
-    let apod = useSelector(state => state.main.pictureOFTheDay)
-    let date = useSelector(state => state.main.date)
-
-    useEffect(()=>{
-        dispatch(setPictureOfTheDay(date))
-    },[])
-
-    const [explanation, setExplatation] = useState(false)
-
-    const toggleExplanation = () => {
-        explanation
-            ? setExplatation(false)
-            :setExplatation(true)
-    }
-
-
-    if(!apod) return <Preloader />
-
-
-  return (
-      <div className='container p-5'>
-          <h1 className='mainTitle'>NASA API pictures of the day</h1>
-          <div className='row'>
-              {
-                  apod.map(a => <div key={a.date} className='col-lg m-3 p-3 shadow infoBox'>
-                      <h2 className='cardTitle'>{a.title}</h2>
-                      <img className='apodImage'
-                           src={a.url ? a.url : `https://via.placeholder.com/300`}
-                           alt="apod"/>
-                      <div>
-                          <p className='subtitle'>Date</p>
-                          <p className='inner'>{a.date}</p>
-                      </div>
-                      <button onClick={toggleExplanation}>See info</button>
-                      {explanation &&
-                      <div>
-                          <p className='subtitle'>Explanation</p>
-                          <p className='inner'>{a.explanation}</p>
-                      </div>
-                      }
-
-                      {a.copyright &&
-                      <div>
-                          <p className='subtitle'>Copyright</p>
-                          <p className='inner'>{a.copyright}</p>
-                      </div>
-                      }
-
-                  </div>)
-              }
-          </div>
-
-
-
-          
-      </div>
-  )
+        </div>
+    )
 }
 
 export default App
