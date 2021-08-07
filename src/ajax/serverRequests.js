@@ -22,5 +22,8 @@ export const nasaRequest = {
     },
     getEarthImage () {
         return instance.get(`EPIC/api/natural/date/${year}-${month}-${day}?api_key=${apiKey}`)
+    },
+    getMarsRoverPhotos () {
+        return instance.get(`mars-photos/api/v1/rovers/curiosity/photos?earth_date=2020-12-30&api_key=${apiKey}`)
     }
 }

@@ -7,6 +7,8 @@ import Apod from "./components/apod/apod";
 import Neows from "./components/neosw/neows";
 import Earth from "./components/earth/earth";
 import EarthImage from "./components/earthImage/earthImage";
+import Footer from "./components/footer/footer";
+import MarsRover from "./components/marsRover/marsRover";
 
 let App = () => {
     return (
@@ -24,10 +26,12 @@ let App = () => {
                                render={ () => <Earth /> }/>
                         <Route path='/earthImage'
                                render={ () => <EarthImage /> }/>
+                        <Route path='/marsRover'
+                               render={ () => <MarsRover /> }/>
                     </Switch>
                 </div>
             </div>
-
+            <Footer />
         </div>
     )
 }

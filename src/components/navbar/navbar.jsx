@@ -17,6 +17,9 @@ const Navbar = () => {
             <NavLink className={s.link}
                      activeClassName={s.linkActive}
                      to='/earthImage'>See Earth Image</NavLink>
+            <NavLink className={s.link}
+                     activeClassName={s.linkActive}
+                     to='/marsRover'>Mars Rover Photos</NavLink>
         </div>
     )
 }
