@@ -20,8 +20,8 @@ export const nasaRequest = {
     getNeows (startDate, endDate) {
         return instance.get(`neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`)
     },
-    getEarthObservation () {
-        return instance.get(`planetary/earth/assets?lon=34.537324&lat=28.572325&date=2018-01-01&&dim=0.10&api_key=${apiKey}`)
+    getEarthObservation (lon, lat, date, dim) {
+        return instance.get(`planetary/earth/assets?lon=${lon}&lat=${lat}&date=${date}&&dim=${dim}&api_key=${apiKey}`)
     },
     getEarthImage () {
         return instance.get(`EPIC/api/natural/date/${year}-${month}-${day}?api_key=${apiKey}`)
