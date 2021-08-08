@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import {setCurrentDate} from "../../../reducers/apod";
 import {dateToday} from "../../../helpers/dateToday";
 
-const ChooseExactDate = () => {
+const SetDateAPOD = () => {
 
     const dispatch = useDispatch()
 
@@ -48,4 +48,4 @@ const ChooseExactDate = () => {
     )
 }
 
-export default ChooseExactDate
+export default SetDateAPOD

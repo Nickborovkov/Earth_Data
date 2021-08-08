@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import {useDispatch} from "react-redux";
 import {setIntervalDates} from "../../../reducers/apod";
 
-const ChooseDateInterval = () => {
+const SetIntervalAPOD = () => {
 
     const dispatch = useDispatch()
 
@@ -60,4 +60,4 @@ const ChooseDateInterval = () => {
     )
 }
 
-export default ChooseDateInterval
+export default SetIntervalAPOD
