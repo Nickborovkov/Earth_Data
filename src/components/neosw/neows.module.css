@@ -1,3 +1,19 @@
 .asteroid{
     border: 1px solid grey;
 }
+.date{
+    color: cornflowerblue;
+    font-size: 30px;
+}
+.name{
+    color: tomato;
+    font-size: 20px;
+}
+.diameter{
+    font-size: 20px;
+    color: darkgoldenrod;
+}
+.danger{
+    font-size: 20px;
+    color: green;
+}
