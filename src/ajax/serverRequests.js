@@ -11,8 +11,11 @@ let month = `08`
 let day = `07`
 
 export const nasaRequest = {
-    getAPOD () {
-        return instance.get(`planetary/apod?api_key=${apiKey}`)
+    getAPOD (date) {
+        return instance.get(`planetary/apod?date=${date}&api_key=${apiKey}`)
+    },
+    getAPODwithInterval (startDate, endDate) {
+        return instance.get(`planetary/apod?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`)
     },
     getNeows (date) {
         return instance.get(`neo/rest/v1/feed?start_date=${date}&end_date=${date}&api_key=${apiKey}`)
