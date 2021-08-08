@@ -2,9 +2,10 @@ import React from "react";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
-import {setIntervalDates} from "../../reducers/apod";
+import {setIntervalDate} from "../../../reducers/neows";
 
-const ChooseDateInterval = () => {
+
+const SetIntervalNEOWS = () => {
 
     const dispatch = useDispatch()
 
@@ -22,7 +23,7 @@ const ChooseDateInterval = () => {
                 }}
                 validateOnBlur
                 onSubmit={ (values, {resetForm}) => {
-                    dispatch(setIntervalDates(values.startDate, values.endDate))
+                    dispatch(setIntervalDate(values.startDate, values.endDate))
                     resetForm({values: ``})
                 }}
                 validationSchema={validationSchema}
@@ -60,4 +61,4 @@ const ChooseDateInterval = () => {
     )
 }
 
-export default ChooseDateInterval
+export default SetIntervalNEOWS

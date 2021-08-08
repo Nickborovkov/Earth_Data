@@ -2,8 +2,8 @@ import React from "react";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
-import {setCurrentDate} from "../../reducers/apod";
-import {dateToday} from "../../helpers/dateToday";
+import {setCurrentDate} from "../../../reducers/apod";
+import {dateToday} from "../../../helpers/dateToday";
 
 const ChooseExactDate = () => {
 
