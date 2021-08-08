@@ -1,10 +1,14 @@
 import {nasaRequest} from "../ajax/serverRequests";
+import {dateToday} from "../helpers/dateToday";
 
-const SET_NEOWS = `SET_NEOWS`
+const SET_NEOWS = `NASA/neows/SET_NEOWS`
+const SET_INTERVAL_DATE = `NASA/neows/SET_INTERVAL_DATE`
 
 
 const initialState = {
-    neowsArray: []
+    neowsArray: ``,
+    intervalDateStart: dateToday,
+    intervalDateEnd: dateToday,
 }
 
 
@@ -13,8 +17,15 @@ const neowsReducer = (state = initialState, action) => {
         case SET_NEOWS:
             return {
                 ...state,
-                neowsArray: Object.values(action.neowsArray)[0]
+                neowsArray: action.neowsArray
             }
+        case SET_INTERVAL_DATE:
+            return {
+                ...state,
+                intervalDateStart: action.start,
+                intervalDateEnd: action.end,
+            }
+
         default:
             return state
     }
@@ -27,13 +38,13 @@ export default neowsReducer
 //AC
 const setNeows = (neowsArray) =>
     ( { type: SET_NEOWS, neowsArray } )
+export const setIntervalDate = (start, end) =>
+    ( { type: SET_INTERVAL_DATE, start, end } )
+
 
 
 //THINK
-
-const neowsDate = `2021-08-07`
-
-export const getNeows = async dispatch => {
-    const response = await nasaRequest.getNeows(neowsDate)
+export const getNeows = (startDate, endDate) => async dispatch => {
+    const response = await nasaRequest.getNeows(startDate, endDate)
     dispatch(setNeows(response.data.near_earth_objects))
 }
