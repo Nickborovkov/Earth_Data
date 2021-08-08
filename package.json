@@ -1,5 +1,5 @@
 {
-  "name": "NASA_Info_app",
+  "name": "NASA API app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
