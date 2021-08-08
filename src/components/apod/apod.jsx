@@ -3,8 +3,8 @@ import s from './apod.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {getApod, getApodWithInterval} from "../../reducers/apod";
 import Preloader from "../../helpers/preloader";
-import ChooseExactDate from "./chooseExactDate";
-import ChooseDateInterval from "./chooseDateInterval";
+import SetDateAPOD from "./datePickers/setDateAPOD";
+import SetIntervalAPOD from "./datePickers/setIntervalAPOD";
 
 const Apod = () => {
 
@@ -14,20 +14,21 @@ const Apod = () => {
     const intervalDateStart = useSelector(state => state.apod.intervalDateStart)
     const intervalDateEnd = useSelector(state => state.apod.intervalDateEnd)
 
+    const [datePickerType, setDatePickerType] = useState(0)
 
     useEffect(()=>{
         if(datePickerType === 0){
             dispatch(getApod(currentDate))
         }
-    },[dispatch, currentDate])
+    },[dispatch, datePickerType, currentDate])
 
     useEffect(()=>{
         if(datePickerType === 1){
             dispatch(getApodWithInterval(intervalDateStart,intervalDateEnd))
         }
-    },[dispatch, intervalDateStart, intervalDateEnd])
+    },[dispatch, datePickerType, intervalDateStart, intervalDateEnd])
 
-    const [datePickerType, setDatePickerType] = useState(0)
+
 
     if(apodArray.length === 0) return <Preloader />
 
@@ -36,13 +37,13 @@ const Apod = () => {
            <h2>A picture of the day</h2>
             {datePickerType === 0 &&
             <div>
-                <ChooseExactDate />
+                <SetDateAPOD />
                 <button onClick={ () => {setDatePickerType(1)} }>Choose interval</button>
             </div>}
 
             {datePickerType === 1 &&
             <div>
-                <ChooseDateInterval />
+                <SetIntervalAPOD />
                 <button onClick={ () => {setDatePickerType(0)} }>Choose exact date</button>
             </div>}
 
