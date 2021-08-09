@@ -1,14 +1,22 @@
 import './App.css';
-import React from "react";
+import React, {Suspense, lazy} from "react";
 import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
 import {Route, Switch} from "react-router-dom";
-import Apod from "./components/apod/apod";
-import Neows from "./components/neosw/neows";
-import Earth from "./components/earth/earth";
-import EarthImage from "./components/earthImage/earthImage";
-import Footer from "./components/footer/footer";
-import MarsRover from "./components/marsRover/marsRover";
+import StartedPage from "./helpers/jsxHelpersPages/startedPage";
+import Page404 from "./helpers/jsxHelpersPages/page404";
+import Preloader from "./helpers/preloader";
+
+
+const Apod = lazy( () => import("./components/apod/apod"))
+const Neows = lazy( () => import("./components/neosw/neows" ))
+const Earth = lazy( () =>  import("./components/earth/earth"))
+const EarthImage = lazy( () => import("./components/earthImage/earthImage"))
+const MarsRover = lazy( () =>  import("./components/marsRover/marsRover"))
+const NasaLibrary = lazy( () => import("./components/NASAlibrary/nasaLibrary") )
+
+
 
 let App = () => {
     return (
@@ -17,18 +25,27 @@ let App = () => {
             <div className='appInner'>
                 <Navbar />
                 <div className='appContent'>
-                    <Switch>
-                        <Route path='/apod'
-                               render={ () => <Apod /> }/>
-                        <Route path='/neows'
-                               render={ () => <Neows /> }/>
-                        <Route path='/earth'
-                               render={ () => <Earth /> }/>
-                        <Route path='/earthImage'
-                               render={ () => <EarthImage /> }/>
-                        <Route path='/marsRover'
-                               render={ () => <MarsRover /> }/>
-                    </Switch>
+                    <Suspense fallback={<Preloader />}>
+                        <Switch>
+                            <Route path='/apod'
+                                   render={ () => <Apod /> }/>
+                            <Route path='/neows'
+                                   render={ () => <Neows /> }/>
+                            <Route path='/earth'
+                                   render={ () => <Earth /> }/>
+                            <Route path='/earthImage'
+                                   render={ () => <EarthImage /> }/>
+                            <Route path='/marsRover'
+                                   render={ () => <MarsRover /> }/>
+                            <Route path='/nasaLibrary'
+                                   render={ () => <NasaLibrary /> }/>
+                            <Route exact path='/'
+                                   render={ () => <StartedPage /> }/>
+                            <Route path='*'
+                                   render={ () => <Page404 /> }/>
+                        </Switch>
+                    </Suspense>
+
                 </div>
             </div>
             <Footer />
