@@ -17,7 +17,6 @@ const Neows = () => {
         dispatch(getNeows(intervalDateStart, intervalDateEnd))
     }, [dispatch, intervalDateStart, intervalDateEnd])
 
-//TODO `1 week max`
 
     if (neowsArray.length === 0) return <Preloader/>
 

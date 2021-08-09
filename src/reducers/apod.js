@@ -1,4 +1,4 @@
-import {nasaRequest} from "../ajax/serverRequests";
+import {nasaRequest} from "../serverRequests/serverRequests";
 import {dateToday} from "../helpers/dateToday";
 
 const SET_APOD = `NASA/apod/SET_APOD`

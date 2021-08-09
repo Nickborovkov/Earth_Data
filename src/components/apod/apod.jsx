@@ -51,7 +51,7 @@ const Apod = () => {
                 {
                     apodArray.map(a => <div key={a.date}>
                         <h3>{a.title}</h3>
-                        <img className={s.image} src={a.url} alt="Sorry, image is not available"/>
+                        <img className={s.image} src={a.url} alt="Not available"/>
                         <p>{a.date}</p>
                         <p>{a.explanation}</p>
 
