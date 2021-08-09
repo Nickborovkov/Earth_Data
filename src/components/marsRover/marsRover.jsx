@@ -3,21 +3,25 @@ import s from './marsRover.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {getMarsRoverPhotos} from "../../reducers/marsRover";
 import Preloader from "../../helpers/preloader";
+import MarsRoverParams from "./parametersPicker/parametersPicker";
 
 const MarsRover = () => {
 
     const dispatch = useDispatch()
     const marsRoverPhotos = useSelector(state => state.marsRover.marsRoverPhotos)
+    const rover = useSelector(state => state.marsRover.rover)
+    const date = useSelector(state => state.marsRover.date)
 
     useEffect(()=>{
-        dispatch(getMarsRoverPhotos)
-    },[])
+        dispatch(getMarsRoverPhotos(rover, date))
+    },[dispatch, rover, date])
 
     if(marsRoverPhotos.length === 0) return <Preloader />
 
     return (
         <div>
            <h1>Photos collection gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars</h1>
+            <MarsRoverParams />
             <div>
                 {
                     marsRoverPhotos.map(r => <div key={r.id}>
