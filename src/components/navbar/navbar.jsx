@@ -20,6 +20,9 @@ const Navbar = () => {
             <NavLink className={s.link}
                      activeClassName={s.linkActive}
                      to='/marsRover'>Mars Rover Photos</NavLink>
+            <NavLink className={s.link}
+                     activeClassName={s.linkActive}
+                     to='/nasaLibrary'>NASA Photo and video library</NavLink>
         </div>
     )
 }
