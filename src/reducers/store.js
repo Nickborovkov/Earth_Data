@@ -5,6 +5,7 @@ import neowsReducer from "./neows";
 import earthReducer from "./earth";
 import earthImageReducer from "./earthImage";
 import marsRoverReducer from "./marsRover";
+import nasaLibraryReducer from "./nasaLibrary";
 
 const reducers = combineReducers({
     apod: apodReducer,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
     earth: earthReducer,
     earthImage: earthImageReducer,
     marsRover: marsRoverReducer,
+    library: nasaLibraryReducer,
 })
 
 const store = createStore(reducers, applyMiddleware(thunk))
