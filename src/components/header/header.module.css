@@ -1,8 +1,43 @@
 .header{
-    background-color: #333;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     padding: 20px 0;
+    background-color: #333333;
+}
+.logo{
+    display: block;
+    width: 70px;
+    margin-right: 2%;
 }
 .title{
-    text-align: center;
-    color: #fff;
+    color: #ffffff;
+    margin-right: 40%;
+}
+.searchForm{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.searchInput{
+    width: 230px;
+    height: 20px;
+    padding: 10px 50px 10px 10px;
+    font-size: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #444444;
+    border: none;
+    color: white;
+}
+.searchButton{
+    font-size: 30px;
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    top: 5px;
+    right: 10px;
+    color: #ffffff;
 }
