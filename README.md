@@ -1,6 +1,7 @@
 # Project that shows Earth and space date built with [NASA public API](https://api.nasa.gov/)
 
 ## What it can do:
+- Search images in NASA Image and Video library
 - Show NASA pictures of the day with selected date or date interval
 - Show asteroids near Earth with selected date and show if it's hazardous
 - Show Earth surface photos made with satellites with a selected longitude, latitude and date
@@ -16,3 +17,4 @@
 - formik
 - yup
 - react-icons
+ - classnames
