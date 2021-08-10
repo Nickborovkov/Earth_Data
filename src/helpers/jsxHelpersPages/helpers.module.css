@@ -1,0 +1,28 @@
+.starterPage{
+    padding: 150px 0;
+}
+.starterTitle{
+    text-align: center;
+    font-size: 40px;
+    padding-bottom: 50px;
+    color: cornflowerblue;
+}
+.starterSubtitle{
+    text-align: center;
+    font-size: 20px;
+    color: #444444;
+}
+.page404{
+    padding: 100px 0;
+}
+.page404Title{
+    font-size: 40px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #444444;
+}
+.page404Subtitle{
+    font-size: 20px;
+    text-align: center;
+    color: #444444;
+}
