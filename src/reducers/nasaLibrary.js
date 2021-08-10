@@ -1,10 +1,12 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
 
 const SET_SEARCH_RESULT = `nasa/nasaLibrary/SET_SEARCH_RESULT`
+const SET_CURRENT_SEARCH = `nasa/nasaLibrary/SET_CURRENT_SEARCH`
 
 
 const initialState = {
-    result: {}
+    result: {},
+    currentSearch: ``
 }
 
 
@@ -13,7 +15,12 @@ const nasaLibraryReducer = (state = initialState, action) => {
         case SET_SEARCH_RESULT:
             return {
                 ...state,
-                ...action.result
+                result: {...action.result}
+            }
+        case SET_CURRENT_SEARCH:
+            return {
+                ...state,
+                currentSearch: action.currentSearch
             }
         default:
             return state
@@ -28,9 +35,12 @@ export default nasaLibraryReducer
 const setSearchResult = (result) =>
     ( { type:  SET_SEARCH_RESULT, result} )
 
+export const setCurrentSearch = (currentSearch) =>
+    ( { type:  SET_CURRENT_SEARCH, currentSearch} )
+
 
 //THUNK
-export const getSearchResult = () => async dispatch => {
-    const response = await nasaRequest.searchNasaLibrary()
+export const getSearchResult = (search) => async dispatch => {
+    const response = await nasaRequest.searchNasaLibrary(search)
     dispatch(setSearchResult(response.data.collection))
 }
