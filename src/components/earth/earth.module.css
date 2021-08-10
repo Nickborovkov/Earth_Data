@@ -1,3 +1,22 @@
+.earth{
+    padding: 50px 0 100px 0;
+}
+.title{
+    text-align: center;
+    font-size: 50px;
+    padding: 20px 0;
+    color: cornflowerblue;
+}
+.imageHolder{
+    width: 1000px;
+    margin: 0 auto;
+}
 .image{
-    width: 600px;
+    width: 100%
+}
+.earthParams{
+    text-align: center;
+    color: #444444;
+    font-size: 20px;
+    padding: 20px 0;
 }
