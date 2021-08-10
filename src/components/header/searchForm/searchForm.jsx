@@ -1,19 +1,16 @@
 import React from "react";
+import s from '../header.module.css'
 import {useDispatch} from "react-redux";
 import {Formik} from "formik";
-import * as yup from 'yup'
-import {setCurrentSearch} from "../../../reducers/nasaLibrary";
+import {setCurrentSearch, setSearchStart} from "../../../reducers/nasaLibrary";
+import { BsSearch } from 'react-icons/bs';
 
 const SearchForm = () => {
 
     const dispatch = useDispatch()
 
-    const validationSchema = yup.object().shape({
-        search: yup.string().required(`This field is required`)
-    })
-
     return (
-        <div>
+        <div className={s.searchForm}>
             <Formik
                 initialValues={{
                     search: ``
@@ -21,23 +18,23 @@ const SearchForm = () => {
                 validateOnBlur
                 onSubmit={ (values, {resetForm}) => {
                     dispatch(setCurrentSearch(values.search))
+                    dispatch(setSearchStart(true))
                     resetForm({values: ``})
                 } }
-                validationSchema={validationSchema}
             >
-                { ({values, errors, touched, handleBlur, handleChange, handleSubmit, isValid, dirty}) => (
+                { ({values, handleBlur, handleChange, handleSubmit, isValid, dirty}) => (
                     <div>
-                        <input className="form-control-lg"
+                        <input className={s.searchInput}
                                type="text"
                                name='search'
                                value={values.search}
                                onChange={handleChange}
                                onBlur={handleBlur}
-                               placeholder='Search in NASA image and videos library'/>
-                        <button className='btn btn-light'
+                               placeholder='Search in NASA archive'/>
+                        <button className={s.searchButton}
                                 disabled={!isValid && !dirty}
                                 onClick={handleSubmit}
-                                type='submit'>Find</button>
+                                type='submit'><BsSearch/></button>
                     </div>
                 ) }
             </Formik>
