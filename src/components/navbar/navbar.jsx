@@ -5,24 +5,23 @@ import {NavLink} from "react-router-dom";
 const Navbar = () => {
     return (
         <div className={s.navbar}>
-            <NavLink className={s.link}
-                     activeClassName={s.linkActive}
-                     to='/apod'>A picture of the day</NavLink>
-            <NavLink className={s.link}
-                     activeClassName={s.linkActive}
-                     to='/neows'>Near Earth Asteroids</NavLink>
-            <NavLink className={s.link}
-                     activeClassName={s.linkActive}
-                     to='/earth'>Earth Observation Data</NavLink>
-            <NavLink className={s.link}
-                     activeClassName={s.linkActive}
-                     to='/earthImage'>See Earth Image</NavLink>
-            <NavLink className={s.link}
-                     activeClassName={s.linkActive}
-                     to='/marsRover'>Mars Rover Photos</NavLink>
-            <NavLink className={s.link}
-                     activeClassName={s.linkActive}
-                     to='/nasaLibrary'>NASA Photo and video library</NavLink>
+            <nav className={s.menu}>
+                <NavLink className={s.link}
+                         activeClassName={s.linkActive}
+                         to='/apod'>Picture of the day</NavLink>
+                <NavLink className={s.link}
+                         activeClassName={s.linkActive}
+                         to='/neows'>Near Earth Asteroids</NavLink>
+                <NavLink className={s.link}
+                         activeClassName={s.linkActive}
+                         to='/earth'>Earth Observation</NavLink>
+                <NavLink className={s.link}
+                         activeClassName={s.linkActive}
+                         to='/earthImage'>Satellite Earth Photos</NavLink>
+                <NavLink className={s.link}
+                         activeClassName={s.linkActive}
+                         to='/marsRover'>Mars Rover Photos</NavLink>
+            </nav>
         </div>
     )
 }
