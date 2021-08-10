@@ -1,7 +1,9 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
 
-const SET_MARS_ROVER_PHOTOS = `SET_MARS_ROVER_PHOTOS`
-const SET_MARS_ROVER_PARAMS = `SET_MARS_ROVER_PARAMS`
+const SET_MARS_ROVER_PHOTOS = `nasa/marsRover/SET_MARS_ROVER_PHOTOS`
+const SET_MARS_ROVER_PARAMS = `nasa/marsRover/SET_MARS_ROVER_PARAMS`
+const NEXT_PAGE = `nasa/marsRover/NEXT_PAGE`
+const PREV_PAGE = `nasa/marsRover/NEXT_PAGE`
 
 
 const initialState = {
@@ -10,6 +12,7 @@ const initialState = {
     rover: `curiosity`,
     //setting date of curiosity landing as a default date
     date: `2012-08-06`,
+    page: 1,
 }
 
 
@@ -26,6 +29,16 @@ const marsRoverReducer = (state = initialState, action) => {
                 rover: action.rover,
                 date: action.date,
             }
+        case NEXT_PAGE:
+            return {
+                ...state,
+                page: state.page + 1,
+            }
+        case PREV_PAGE:
+            return {
+                ...state,
+                page: state.page - 1,
+            }
         default:
             return state
     }
@@ -38,12 +51,19 @@ export default marsRoverReducer
 //AC
 const setMarsRoverPhotos = (marsRoverPhotos) =>
     ( { type: SET_MARS_ROVER_PHOTOS,  marsRoverPhotos} )
+
 export const setMarsRoverParams = (rover, date) =>
     ( { type: SET_MARS_ROVER_PARAMS,  rover, date} )
 
+export const roverNextPage = () =>
+    ( { type: NEXT_PAGE} )
+
+export const roverPrevPage = () =>
+    ( { type: PREV_PAGE} )
+
 
 //THUNK
-export const getMarsRoverPhotos = (rover, date) => async dispatch => {
-    const response = await nasaRequest.getMarsRoverPhotos(rover, date)
+export const getMarsRoverPhotos = (rover, date, page) => async dispatch => {
+    const response = await nasaRequest.getMarsRoverPhotos(rover, date, page)
     dispatch(setMarsRoverPhotos(response.data.photos))
 }
