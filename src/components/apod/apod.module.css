@@ -1,3 +1,51 @@
+.apod{
+    padding: 50px 0;
+}
+.apodItem{
+    padding: 50px 0;
+}
+.apodMany{
+    margin: 0 0 30px 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.title{
+    text-align: center;
+    font-size: 50px;
+    padding: 20px 0;
+    color: cornflowerblue;
+}
 .image{
     width: 600px;
+}
+.apodTitle{
+    text-align: center;
+    font-size: 40px;
+    padding-bottom: 50px;
+    color: cornflowerblue;
+}
+.apodImageHolder{
+    max-width: 1000px;
+    margin: auto;
+}
+.apodImage{
+    width: 100%;
+}
+.apodDate{
+    text-align: center;
+    font-size: 20px;
+    padding: 30px 0;
+    color: #444444;
+}
+.apodExpTitle{
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 30px;
+    color: #444444;
+}
+.apodExplanation{
+    display: block;
+    max-width: 1200px;
+    margin: auto;
+    font-size: 20px;
+    color: #444444;
 }
