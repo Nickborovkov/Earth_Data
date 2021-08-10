@@ -27,16 +27,15 @@ const SearchForm = () => {
             >
                 { ({values, errors, touched, handleBlur, handleChange, handleSubmit, isValid, dirty}) => (
                     <div>
-                        <h3>Type to find items in NASA library</h3>
-                        {touched.search && errors.search &&
-                        <div>{errors.search}</div>}
-                        <input type="text"
+                        <input className="form-control-lg"
+                               type="text"
                                name='search'
                                value={values.search}
                                onChange={handleChange}
                                onBlur={handleBlur}
-                               placeholder='Come on, man'/>
-                        <button disabled={!isValid && !dirty}
+                               placeholder='Search in NASA image and videos library'/>
+                        <button className='btn btn-light'
+                                disabled={!isValid && !dirty}
                                 onClick={handleSubmit}
                                 type='submit'>Find</button>
                     </div>

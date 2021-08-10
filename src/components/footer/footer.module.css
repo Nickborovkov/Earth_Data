@@ -1,0 +1,17 @@
+.footer{
+    background-color: #444444;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+.footerLink{
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 40%;
+    font-size: 18px;
+}
+.footerAuthor{
+    color: gold;
+    text-decoration: none;
+
+}
