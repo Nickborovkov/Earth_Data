@@ -5,12 +5,14 @@ import {getEarthImage} from "../../reducers/earthImage";
 import Preloader from "../../helpers/preloader";
 import SetDateEarthImage from "./datePicker/setDateEarthImage";
 import {earthImageUrlHelper} from "../../helpers/earthImageURLHelper";
+import {Redirect} from "react-router-dom";
 
 const EarthImage = () => {
 
     const dispatch = useDispatch()
     const earthImage = useSelector(state => state.earthImage.earthImage)
     const SelectedDate = useSelector(state => state.earthImage.date)
+    const searchStart = useSelector(state => state.library.searchStart)
 
     useEffect(() => {
         dispatch(getEarthImage(SelectedDate))
@@ -20,22 +22,26 @@ const EarthImage = () => {
 
     if(!earthImage) return <Preloader />
 
+    if(searchStart) return <Redirect to='/nasaLibrary'/>
+
     return (
-        <div>
-            <h2>See dated Earth Image</h2>
+        <div className={s.earthImage}>
+            <h2 className={s.title}>See Earth Photos from space</h2>
             <SetDateEarthImage />
-            <div>
-                {
-                    earthImage.map(e => <div key={e.identifier}>
-                        <div>
-                            <h3>Coordinates of {e.identifier}</h3>
-                            <p>Latitude {e.centroid_coordinates.lat}</p>
-                            <p>Longitude {e.centroid_coordinates.lon}</p>
-                        </div>
-                        <img className={s.image} src={earthImageUrlHelper(SelectedDate, e.image)}
-                             alt="Not available, please change date"/>
-                    </div>)
-                }
+            <div className={s.imagesArray}>
+                    {
+                        earthImage.map(e => <div key={e.identifier} className={s.imagesItem}>
+                            <div>
+                                <h3 className={s.imageDate}>Date: {e.date}</h3>
+                                <p className={s.params}>Latitude: {e.centroid_coordinates.lat}</p>
+                                <p className={s.params}>Longitude: {e.centroid_coordinates.lon}</p>
+                            </div>
+                            <div className={s.imageHolder}>
+                                <img className={s.image} src={earthImageUrlHelper(SelectedDate, e.image)}
+                                     alt="Not available, please change date"/>
+                            </div>
+                        </div>)
+                    }
             </div>
         </div>
     )

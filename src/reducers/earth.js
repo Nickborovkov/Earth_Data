@@ -7,10 +7,10 @@ const SET_PARAMETERS = `NASA/earth/SET_PARAMETERS`
 
 const initialState = {
     earthObservation: undefined,
-    longitude: 34.537324,
-    latitude: 28.572325,
+    longitude: 20,
+    latitude: 40,
     date: dateToday,
-    dimensions: 0.5
+    dimensions: 0.25
 }
 
 

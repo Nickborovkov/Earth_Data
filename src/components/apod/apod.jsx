@@ -5,6 +5,8 @@ import {getApod, getApodWithInterval} from "../../reducers/apod";
 import Preloader from "../../helpers/preloader";
 import SetDateAPOD from "./datePickers/setDateAPOD";
 import SetIntervalAPOD from "./datePickers/setIntervalAPOD";
+import {Redirect} from "react-router-dom";
+import cn from 'classnames'
 
 const Apod = () => {
 
@@ -13,6 +15,7 @@ const Apod = () => {
     const currentDate = useSelector(state => state.apod.currentDate)
     const intervalDateStart = useSelector(state => state.apod.intervalDateStart)
     const intervalDateEnd = useSelector(state => state.apod.intervalDateEnd)
+    const searchStart = useSelector(state => state.library.searchStart)
 
     const [datePickerType, setDatePickerType] = useState(0)
 
@@ -32,9 +35,11 @@ const Apod = () => {
 
     if(apodArray.length === 0) return <Preloader />
 
+    if(searchStart) return <Redirect to='/nasaLibrary'/>
+
     return (
-        <div>
-           <h2>A picture of the day</h2>
+        <div className={s.apod}>
+           <h2 className={s.title}>A picture of the day</h2>
             {datePickerType === 0 &&
             <div>
                 <SetDateAPOD />
@@ -49,11 +54,14 @@ const Apod = () => {
 
             <div>
                 {
-                    apodArray.map(a => <div key={a.date}>
-                        <h3>{a.title}</h3>
-                        <img className={s.image} src={a.url} alt="Not available"/>
-                        <p>{a.date}</p>
-                        <p>{a.explanation}</p>
+                    apodArray.map(a => <div className={cn(s.apodItem, apodArray.length >1 && s.apodMany)} key={a.date}>
+                        <h3 className={s.apodTitle}>{a.title}</h3>
+                        <div className={s.apodImageHolder}>
+                            <img className={s.apodImage} src={a.url} alt="Not available"/>
+                        </div>
+                        <p className={s.apodDate}>Date: {a.date}</p>
+                        <p className={s.apodExpTitle}>Explanation</p>
+                        <p className={s.apodExplanation}>{a.explanation}</p>
 
 
                     </div>)
