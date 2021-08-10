@@ -23,7 +23,7 @@ const SearchForm = () => {
                 } }
             >
                 { ({values, handleBlur, handleChange, handleSubmit, isValid, dirty}) => (
-                    <div>
+                    <form>
                         <input className={s.searchInput}
                                type="text"
                                name='search'
@@ -33,9 +33,8 @@ const SearchForm = () => {
                                placeholder='Search in NASA archive'/>
                         <button className={s.searchButton}
                                 disabled={!isValid && !dirty}
-                                onClick={handleSubmit}
-                                type='submit'><BsSearch/></button>
-                    </div>
+                                onClick={handleSubmit}><BsSearch/></button>
+                    </form>
                 ) }
             </Formik>
         </div>
