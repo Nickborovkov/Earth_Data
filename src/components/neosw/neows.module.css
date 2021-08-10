@@ -1,19 +1,53 @@
+.neows{
+    padding: 50px 0;
+}
+.title{
+    text-align: center;
+    font-size: 50px;
+    padding: 20px 0;
+    color: cornflowerblue;
+}
+.asteroidsArray{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 .asteroid{
-    border: 1px solid grey;
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .date{
     color: cornflowerblue;
     font-size: 30px;
+    text-align: center;
+    padding: 50px 0;
 }
 .name{
-    color: tomato;
-    font-size: 20px;
+    color: cornflowerblue;
+    font-size: 18px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.diam{
+    padding-bottom: 30px;
+    width: 60%;
+    margin: auto;
 }
 .diameter{
-    font-size: 20px;
-    color: darkgoldenrod;
+    font-size: 18px;
+    color: #444444;
+}
+.diameterEpx{
+    color: #444444;
+    padding: 10px 0;
 }
 .danger{
-    font-size: 20px;
-    color: green;
+    font-size: 18px;
+    color: #444444;
+    text-align: center;
+}
+.hazardExp{
+    color: tomato;
 }
