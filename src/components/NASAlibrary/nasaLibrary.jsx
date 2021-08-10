@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import s from './nasaLibrary.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {getSearchResult, nextPage, prevPage, setSearchStart} from "../../reducers/nasaLibrary";
-import Preloader from "../../helpers/preloader";
+import Preloader from "../../helpers/preloaders/preloader";
 import { MdNavigateBefore } from 'react-icons/md';
 import { MdNavigateNext } from 'react-icons/md';
 

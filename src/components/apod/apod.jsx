@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import s from './apod.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {getApod, getApodWithInterval} from "../../reducers/apod";
-import Preloader from "../../helpers/preloader";
+import Preloader from "../../helpers/preloaders/preloader";
 import SetDateAPOD from "./datePickers/setDateAPOD";
 import SetIntervalAPOD from "./datePickers/setIntervalAPOD";
 import {Redirect} from "react-router-dom";

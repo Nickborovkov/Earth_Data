@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import s from './marsRover.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {getMarsRoverPhotos, roverNextPage, roverPrevPage} from "../../reducers/marsRover";
-import Preloader from "../../helpers/preloader";
+import Preloader from "../../helpers/preloaders/preloader";
 import MarsRoverParams from "./parametersPicker/parametersPicker";
 import {Redirect} from "react-router-dom";
 import { MdNavigateBefore } from 'react-icons/md';

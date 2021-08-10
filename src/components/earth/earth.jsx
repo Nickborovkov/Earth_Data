@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import s from './earth.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {getEarthObservation} from "../../reducers/earth";
-import Preloader from "../../helpers/preloader";
+import Preloader from "../../helpers/preloaders/preloader";
 import ParametersPicker from "./parametersPicker/parametersPicker";
 import {Redirect} from "react-router-dom";
 

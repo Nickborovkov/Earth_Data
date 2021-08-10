@@ -6,7 +6,7 @@ import Navbar from "./components/navbar/navbar";
 import {Route, Switch} from "react-router-dom";
 import StartedPage from "./helpers/jsxHelpersPages/startedPage";
 import Page404 from "./helpers/jsxHelpersPages/page404";
-import Preloader from "./helpers/preloader";
+import Preloader from "./helpers/preloaders/preloader";
 const Apod = lazy( () => import("./components/apod/apod"))
 const Neows = lazy( () => import("./components/neosw/neows" ))
 const Earth = lazy( () =>  import("./components/earth/earth"))

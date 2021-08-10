@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import s from './neows.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {getNeows} from "../../reducers/neows";
-import Preloader from "../../helpers/preloader";
+import Preloader from "../../helpers/preloaders/preloader";
 import SetIntervalNEOWS from "./datePickers/SetIntervalNEOWS";
 import {Redirect} from "react-router-dom";
 
