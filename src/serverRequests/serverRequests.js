@@ -22,10 +22,10 @@ export const nasaRequest = {
     getEarthImage (date) {
         return instance.get(`EPIC/api/natural/date/${date}?api_key=${apiKey}`)
     },
-    getMarsRoverPhotos (rover, date) {
-        return instance.get(`mars-photos/api/v1/rovers/${rover}/photos?earth_date=${date}&page=1&api_key=${apiKey}`)
+    getMarsRoverPhotos (rover, date, page) {
+        return instance.get(`mars-photos/api/v1/rovers/${rover}/photos?earth_date=${date}&page=${page}&api_key=${apiKey}`)
     },
-    searchNasaLibrary (search) {
-        return axios.get(`https://images-api.nasa.gov/search?q=${search}&media_type=image`)
+    searchNasaLibrary (search, mediaType, yearStart, yearEnd, page) {
+        return axios.get(`https://images-api.nasa.gov/search?q=${search}&media_type=${mediaType}&page=${page}&year_start=${yearStart}&year_end=${yearEnd}`)
     }
 }
