@@ -1,0 +1,27 @@
+.preloader{
+    padding: 100px 0;
+}
+.title{
+    font-size: 50px;
+    color: #444444;
+    text-align: center;
+    color: cornflowerblue;
+}
+.icon{
+    font-size: 100px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 100px auto;
+    color: cornflowerblue;
+    font-weight: bold;
+    animation: preloaderAnimation infinite linear 1s;
+}
+
+@keyframes preloaderAnimation {
+    0% {transform: rotate(0deg)}
+    25% {transform: rotate(90deg)}
+    50% {transform: rotate(180deg)}
+    75% {transform: rotate(270deg)}
+    100% {transform: rotate(360deg)}
+}
