@@ -1,6 +1,6 @@
 {
-  "short_name": "NASA API app",
-  "name": "NASA API app",
+  "short_name": "Earth Data",
+  "name": "Earth Data",
   "icons": [
     {
       "src": "favicon.ico",
