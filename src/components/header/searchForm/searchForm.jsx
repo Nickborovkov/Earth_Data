@@ -1,5 +1,7 @@
 import React from "react";
 import s from '../header.module.css'
+import m from '../headerMedia.module.css'
+import cn from 'classnames'
 import {useDispatch} from "react-redux";
 import {Formik} from "formik";
 import {setCurrentSearch, setSearchStart} from "../../../reducers/nasaLibrary";
@@ -10,7 +12,7 @@ const SearchForm = () => {
     const dispatch = useDispatch()
 
     return (
-        <div className={s.searchForm}>
+        <div>
             <Formik
                 initialValues={{
                     search: ``
@@ -23,15 +25,15 @@ const SearchForm = () => {
                 } }
             >
                 { ({values, handleBlur, handleChange, handleSubmit, isValid, dirty}) => (
-                    <form>
-                        <input className={s.searchInput}
+                    <form className={cn(s.searchForm, m.searchForm)}>
+                        <input className={cn(s.searchInput, m.searchInput)}
                                type="text"
                                name='search'
                                value={values.search}
                                onChange={handleChange}
                                onBlur={handleBlur}
                                placeholder='Search in NASA archive'/>
-                        <button className={s.searchButton}
+                        <button className={cn(s.searchButton, m.searchButton)}
                                 disabled={!isValid && !dirty}
                                 onClick={handleSubmit}><BsSearch/></button>
                     </form>

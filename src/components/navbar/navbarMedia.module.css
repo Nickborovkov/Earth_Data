@@ -1,0 +1,51 @@
+/*menu*/
+/*link*/
+/*linkActive*/
+@media screen and (max-width: 950px){
+    .navbar{
+        background-color: #444;
+        width: 400px;
+        position: fixed;
+        top: 0px;
+        -webkit-border-radius: 0 0 10px 0;
+        -moz-border-radius: 0 0 10px 0;
+        border-radius: 0 0 10px 0;
+        left: -400px;
+        transition: .3s;
+        z-index: 1;
+    }
+    .navbarActive{
+        left: 0;
+    }
+    .menu{
+        width: 100%;
+        padding: 20px 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .link{
+        padding: 20px 0 20px 100px;
+        width: 100%;
+        text-align: left;
+    }
+    .linkActive{
+        color: cornflowerblue;
+        border-bottom: none;
+    }
+    .burger{
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-color: #666666;
+        position: absolute;
+        color: #ffffff;
+        font-size: 45px;
+        top: 0;
+        right: -50px;
+        -webkit-border-radius: 0 0 10px 0;
+        -moz-border-radius: 0 0 10px 0;
+        border-radius: 0 0 10px 0;
+    }
+}

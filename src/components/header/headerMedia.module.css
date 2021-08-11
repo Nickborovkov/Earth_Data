@@ -1,0 +1,24 @@
+@media screen and (max-width: 1000px){
+    .headerInner{
+        margin-right: 20%;
+    }
+}
+@media screen and (max-width: 700px){
+    .header{
+        flex-direction: column;
+    }
+    .headerInner{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .searchForm{
+        width: 300px;
+        margin: 20px auto 0 auto;
+        position: relative;
+    }
+    .searchButton{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+}
