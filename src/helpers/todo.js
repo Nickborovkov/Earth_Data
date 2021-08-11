@@ -9,3 +9,4 @@
 //TODO `add home icon`
 //TODO `add list of dates for rovers`
 //TODO `fix titles`
+//TODO `Preloader to photo while it's loading (Jesus...)`
