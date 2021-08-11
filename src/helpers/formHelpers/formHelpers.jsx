@@ -1,14 +1,16 @@
-import {dateToday} from "../dateToday";
 import React from "react";
 
-export const datePickerHelper = (titleClass, title, inputClass, name, handleChange, handleBlur, value) => {
+export const formInputHelper = (titleClass, title, touched, errors,
+                            inputClass, type, name, max, handleChange, handleBlur, value) => {
     return (
         <div>
             <p className={titleClass}>{title}</p>
+            {touched && errors &&
+            <div>{errors}</div>}
             <input className={inputClass}
-                   type="date"
+                   type={type}
                    name={name}
-                   max={dateToday}
+                   max={max}
                    onChange={handleChange}
                    onBlur={handleBlur}
                    value={value}/>
@@ -16,8 +18,7 @@ export const datePickerHelper = (titleClass, title, inputClass, name, handleChan
     )
 }
 
-
-export const dateButtonHelper = (buttonClass, isValid, dirty, handleSubmit, text) => {
+export const formButtonHelper = (buttonClass, isValid, dirty, handleSubmit, text) => {
     return (
         <button className={buttonClass} disabled={!isValid && !dirty}
                 onClick={handleSubmit}>{text}</button>

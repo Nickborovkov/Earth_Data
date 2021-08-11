@@ -1,15 +1,20 @@
 import React from "react";
+import s from '../apod.module.css'
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
 import {setCurrentDate} from "../../../reducers/apod";
+import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
+import {dateToday} from "../../../helpers/dateToday";
 
 const SetDateAPOD = () => {
 
     const dispatch = useDispatch()
 
     const validationSchema = yup.object().shape({
-        currentDate: yup.string().required(`Field is required`)
+        currentDate: yup
+            .string()
+            .required(`Date required`)
     })
 
     return (
@@ -26,21 +31,16 @@ const SetDateAPOD = () => {
                 validationSchema={validationSchema}
             >
                 {({values, errors, touched, handleChange, handleBlur, handleSubmit, isValid, dirty})=>(
-                    <div>
+                    <form>
                         <h3>Choose exact date</h3>
-                        {touched.currentDate && errors.currentDate &&
-                        <div>{errors.currentDate}</div>}
-                        <input type="date"
-                               name='currentDate'
-                               onChange={handleChange}
-                               onBlur={handleBlur}
-                               value={values.currentDate}
-                        />
-                        <button disabled={!isValid && !dirty}
-                                onClick={handleSubmit}
-                                type={`submit`}>
-                            Show</button>
-                    </div>
+
+                        {formInputHelper(s.formSubtitle, `Date`, touched.currentDate,
+                            errors.currentDate, s.input, `date`, `currentDate`, dateToday, handleChange,
+                            handleBlur, values.currentDate)}
+
+                        {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
+
+                    </form>
                 )}
             </Formik>
         </div>

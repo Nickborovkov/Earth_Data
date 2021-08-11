@@ -1,16 +1,24 @@
 import React from "react";
+import s from "../apod.module.css";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
 import {setIntervalDates} from "../../../reducers/apod";
+import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
+import {dateToday} from "../../../helpers/dateToday";
+
 
 const SetIntervalAPOD = () => {
 
     const dispatch = useDispatch()
 
     const validationSchema = yup.object().shape({
-        startDate: yup.string().required(`Field is required`),
-        endDate: yup.string().required(`Field is required`),
+        startDate: yup
+            .string()
+            .required(`Start date required`),
+        endDate: yup
+            .string()
+            .required(`End date required`),
     })
 
     return (
@@ -28,32 +36,22 @@ const SetIntervalAPOD = () => {
                 validationSchema={validationSchema}
             >
                 { ({values, errors, touched, handleSubmit, handleBlur, handleChange, isValid, dirty}) => (
-                    <div>
+                    <form>
                         <h3>Choose interval</h3>
                         <div>
-                            {touched.startDate && errors.startDate &&
-                            <div>{errors.startDate}</div>}
-                            <input type="date"
-                                   name='startDate'
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   value={values.startDate}/>
-                        </div>
-                        <div>
-                            {touched.endDate && errors.endDate &&
-                            <div>{errors.endDate}</div>}
-                            <input type="date"
-                                   name='endDate'
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   value={values.endDate}/>
-                        </div>
-                        <button disabled={!isValid && !dirty}
-                                onClick={handleSubmit}
-                                type={'submit'}>
-                            Show</button>
 
-                    </div>
+                            {formInputHelper(s.formSubtitle, `Start date`, touched.startDate,
+                                errors.startDate, s.input, `date`, `startDate`, dateToday, handleChange,
+                                handleBlur, values.startDate)}
+
+                            {formInputHelper(s.formSubtitle, `End date`, touched.endDate,
+                                errors.endDate, s.input, `date`, `endDate`, dateToday, handleChange,
+                                handleBlur, values.endDate)}
+
+                        </div>
+                        {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
+
+                    </form>
                 ) }
             </Formik>
         </div>
