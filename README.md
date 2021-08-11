@@ -4,8 +4,8 @@
 - The app is responsive and crossbrowser
 - Search images in NASA Image and Video library
 - Show NASA pictures of the day with selected date or date interval
-- Show asteroids near Earth with selected date and show if it's hazardous
-- Show Earth surface photos made with satellites with a selected longitude, latitude and date
+- Show near Earth space objects with selected date and show if it's hazardous
+- Show Earth surface photos made with  Earth Polychromatic Imaging Camera with selected parameters
 - Show Earth photos from space at all latitudes for a selected date
 - Show photos of Mars Rovers Curiosity, Opportunity and Spirit with selected date
 
