@@ -3,7 +3,7 @@ import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
 import cn from "classnames";
 import * as yup from 'yup'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Field, Formik} from "formik";
 import {setMarsRoverParams} from "../../../reducers/marsRover";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
@@ -13,6 +13,7 @@ import { RiErrorWarningFill } from 'react-icons/ri'
 const MarsRoverParams = () => {
 
     const dispatch= useDispatch()
+    const emptyPhotos = useSelector(state => state.marsRover.emptyPhotos)
     const validationSchema = yup.object().shape({
         date: yup
             .string()
@@ -63,6 +64,8 @@ const MarsRoverParams = () => {
                         </div>
 
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
+
+                        {emptyPhotos && <div className={s.errorResponse}>Not available, please change rover or date</div>}
                     </form>
                 ) }
             </Formik>

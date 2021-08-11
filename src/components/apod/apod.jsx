@@ -40,7 +40,7 @@ const Apod = () => {
 
     return (
         <div className={s.apod}>
-           <h2 className={cn(s.title, m.title)}>A picture of the day</h2>
+           <h2 className={cn(s.title, m.title)}>See NASA picture of the day</h2>
             {datePickerType === 0 &&
             <div className={s.apodForm}>
                 <SetDateAPOD />

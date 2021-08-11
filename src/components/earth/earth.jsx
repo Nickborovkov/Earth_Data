@@ -30,7 +30,7 @@ const Earth = () => {
 
     return (
         <div className={s.earth}>
-            <h2 className={cn(s.title, m.title)}>Earth Observation Data</h2>
+            <h2 className={cn(s.title, m.title)}>See a photo of Earth surface from Earth Polychromatic Imaging Camera</h2>
             <ParametersPicker />
             <div className={cn(s.result, m.result)}>
                 <p className={s.earthParams}>ID: {earthObs.id}</p>

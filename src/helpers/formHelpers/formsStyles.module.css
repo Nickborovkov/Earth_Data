@@ -24,7 +24,7 @@
     text-align: center;
 }
 .inputHolder{
-    margin: 10px 0;
+    margin: 20px 0 10px 0;
     padding-top: 5px;
     position: relative;
 }
@@ -79,11 +79,18 @@
 }
 .errors{
     display: block;
-    width: 200px;
+    width: 300px;
     text-align: center;
-    font-size: 18px;
+    font-size: 15px;
     color: tomato;
     position: absolute;
     bottom: -20px;
-    left: 20px;
+    left: -40px;
+}
+.errorResponse{
+    color: tomato;
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
 }

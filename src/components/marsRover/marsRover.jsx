@@ -29,11 +29,13 @@ const MarsRover = () => {
 
     return (
         <div className={s.marsRover}>
-           <h1 className={cn(s.title, m.title)}>Photos collection gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars</h1>
+           <h1 className={cn(s.title, m.title)}>Look for photos that Mars rovers Spirit, Curiosity and Opportunity make</h1>
             <MarsRoverParams />
             <div className={s.items}>
                 {
                     marsRoverPhotos.map(r => <div className={cn(s.item, m.item)} key={r.id}>
+                        <p className={s.params}>Rover: {r.rover.name}</p>
+                        <p className={s.params}>Status: {r.rover.status}</p>
                         <p className={s.params}>Camera name: {r.camera.full_name}</p>
                         <p className={s.params}>Earth date: {r.earth_date}</p>
                         <div className={s.imageHolder}>

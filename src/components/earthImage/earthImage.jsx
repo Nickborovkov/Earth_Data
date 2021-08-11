@@ -28,7 +28,7 @@ const EarthImage = () => {
 
     return (
         <div className={s.earthImage}>
-            <h2 className={cn(s.title, m.title)}>See Earth Photos from space</h2>
+            <h2 className={cn(s.title, m.title)}>See photos of Earth from space</h2>
             <SetDateEarthImage />
             <div className={s.imagesArray}>
                     {

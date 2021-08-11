@@ -28,7 +28,7 @@ const Neows = () => {
 
     return (
         <div className={s.neows}>
-            <h2 className={cn(s.title, m.title)}>Near Earth Object Web Service</h2>
+            <h2 className={cn(s.title, m.title)}>Look for near Earth space objects</h2>
             <SetIntervalNEOWS />
             {
                 <div>
