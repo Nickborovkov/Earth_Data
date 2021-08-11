@@ -2,9 +2,11 @@
     padding: 50px 0 100px 0;
 }
 .title{
+    display: block;
+    width: 90%;
+    margin: 20px auto;
     text-align: center;
     font-size: 50px;
-    padding: 20px 0;
     color: cornflowerblue;
 }
 .imageHolder{
@@ -19,17 +21,21 @@
     border-radius: 10px;
 }
 .earthParams{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
     text-align: center;
     color: #444444;
     font-size: 20px;
     padding: 20px 0;
+    word-wrap: break-word;
 }
 .result{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 10px 30px 10px;
     width: 70%;
     margin: 0 auto;
 }

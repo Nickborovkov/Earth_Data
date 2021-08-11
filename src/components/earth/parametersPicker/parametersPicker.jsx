@@ -1,5 +1,7 @@
 import React from "react";
 import s from '../../../helpers/formHelpers/formsStyles.module.css'
+import m from '../../../helpers/formHelpers/formsStylesMedia.module.css'
+import cn from 'classnames'
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
@@ -55,7 +57,7 @@ const ParametersPicker = () => {
                 validationSchema={validationSchema}
             >
                 { ({values, errors, touched, handleSubmit, handleChange, handleBlur, isValid, dirty}) => (
-                    <form className={s.form}>
+                    <form className={cn(s.form, m.form)}>
                         <h3 className={s.title}>Set new parameters</h3>
                         <div className={s.inputsHolder}>
                             {formInputHelper(s.formSubtitle, `Longitude`, touched.longitude,

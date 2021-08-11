@@ -9,8 +9,8 @@ const Header = () => {
     return (
         <header className ={cn(s.header, m.header)}>
             <div className={cn(s.headerInner, m.headerInner)}>
-                <img className={s.logo} src={mainIcon} alt="mainIcon"/>
-                <h1 className ={s.title}>Earth Data</h1>
+                <img className={cn(s.logo, m.logo)} src={mainIcon} alt="mainIcon"/>
+                <h1 className ={cn(s.title, m.title)}>Earth Data</h1>
             </div>
             <SearchForm />
         </header>

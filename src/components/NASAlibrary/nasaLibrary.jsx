@@ -1,5 +1,7 @@
 import React, {useEffect} from "react";
 import s from './nasaLibrary.module.css'
+import m from './nasaLibraryMedia.module.css'
+import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getSearchResult, nextPage, prevPage, setSearchStart} from "../../reducers/nasaLibrary";
 import Preloader from "../../helpers/preloaders/preloader";
@@ -30,9 +32,9 @@ const NasaLibrary = () => {
 
     return (
         <div className={s.nasaLibrary}>
-            <h2 className={s.title}>NASA photo and Video library</h2>
+            <h2 className={cn(s.title, m.title)}>NASA photo and Video library</h2>
 
-            {isFetching && <div>Please wait</div>}
+            {isFetching && <Preloader />}
             {!isFetching &&
             <div className={s.imagesArray}>
                     {

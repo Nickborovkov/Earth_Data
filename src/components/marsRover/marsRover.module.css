@@ -2,9 +2,11 @@
     padding: 50px 0 100px 0;
 }
 .title{
+    display: block;
+    width: 90%;
+    margin: 20px auto;
     text-align: center;
     font-size: 50px;
-    padding: 20px 0;
     color: cornflowerblue;
 }
 .items{
@@ -14,7 +16,7 @@
 }
 .item{
     width: 450px;
-    margin: 10px;
+    margin: 20px;
     padding: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -28,7 +30,7 @@
     padding: 20px 0;
 }
 .imageHolder{
-    width: 420px;
+    width: 90%;
     margin: 20px auto;
 }
 .image{

@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import s from './apod.module.css'
+import m from './apodMedia.module.css'
+import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getApod, getApodWithInterval} from "../../reducers/apod";
 import Preloader from "../../helpers/preloaders/preloader";
 import SetDateAPOD from "./datePickers/setDateAPOD";
 import SetIntervalAPOD from "./datePickers/setIntervalAPOD";
 import {Redirect} from "react-router-dom";
-import cn from 'classnames'
 
 const Apod = () => {
 
@@ -39,7 +40,7 @@ const Apod = () => {
 
     return (
         <div className={s.apod}>
-           <h2 className={s.title}>A picture of the day</h2>
+           <h2 className={cn(s.title, m.title)}>A picture of the day</h2>
             {datePickerType === 0 &&
             <div className={s.apodForm}>
                 <SetDateAPOD />
@@ -53,16 +54,16 @@ const Apod = () => {
                         onClick={ () => {setDatePickerType(0)} }>Choose exact date</button>
             </div>}
 
-            <div>
+                    <div className={s.apodList}>
                 {
-                    apodArray.map(a => <div className={s.apodItem} key={a.date}>
-                        <h3 className={s.apodTitle}>{a.title}</h3>
+                    apodArray.map(a => <div className={cn(s.apodItem, m.apodItem)} key={a.date}>
+                        <h3 className={cn(s.apodTitle, m.apodTitle)}>{a.title}</h3>
                         <div className={s.apodImageHolder}>
                             <img className={s.apodImage} src={a.url} alt="Not available"/>
                         </div>
-                        <p className={s.apodDate}>Date: {a.date}</p>
-                        <p className={s.apodExpTitle}>Explanation</p>
-                        <p className={s.apodExplanation}>{a.explanation}</p>
+                        <p className={cn(s.apodDate, m.apodDate)}>Date: {a.date}</p>
+                        <p className={cn(s.apodExpTitle, m.apodExpTitle)}>Explanation</p>
+                        <p className={cn(s.apodExplanation, m.apodExplanation)}>{a.explanation}</p>
                     </div>)
                 }
             </div>

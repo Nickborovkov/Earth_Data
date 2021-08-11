@@ -1,0 +1,15 @@
+@media screen and (max-width: 1020px) {
+    .item{
+        width: 100%;
+        margin: 30px 0;
+        padding: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+}
+@media screen and (max-width: 600px) {
+    .title {
+        font-size: 30px;
+    }
+}

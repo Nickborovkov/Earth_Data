@@ -1,5 +1,7 @@
 import React from "react";
 import s from '../../../helpers/formHelpers/formsStyles.module.css'
+import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
+import cn from "classnames";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
 import {Field, Formik} from "formik";
@@ -35,7 +37,7 @@ const MarsRoverParams = () => {
                 validationSchema={validationSchema}
             >
                 { ({values, touched, errors, handleChange, handleBlur, handleSubmit, isValid, dirty}) => (
-                    <form className={s.form}>
+                    <form className={cn(s.form, m.form)}>
                         <h3 className={s.title}>Set rover and date parameters</h3>
                         <div className={s.inputsHolder}>
                             <div className={s.inputHolder}>

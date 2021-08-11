@@ -1,5 +1,7 @@
 import React, {useEffect} from "react";
 import s from './earthImage.module.css'
+import m from './earthImageMedia.module.css'
+import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getEarthImage} from "../../reducers/earthImage";
 import Preloader from "../../helpers/preloaders/preloader";
@@ -26,11 +28,11 @@ const EarthImage = () => {
 
     return (
         <div className={s.earthImage}>
-            <h2 className={s.title}>See Earth Photos from space</h2>
+            <h2 className={cn(s.title, m.title)}>See Earth Photos from space</h2>
             <SetDateEarthImage />
             <div className={s.imagesArray}>
                     {
-                        earthImage.map(e => <div key={e.identifier} className={s.imagesItem}>
+                        earthImage.map(e => <div key={e.identifier} className={cn(s.imagesItem, m.imagesItem)}>
                             <div>
                                 <h3 className={s.imageDate}>Date: {e.date}</h3>
                                 <p className={s.params}>Latitude: {e.centroid_coordinates.lat}</p>

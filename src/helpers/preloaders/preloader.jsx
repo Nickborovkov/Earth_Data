@@ -5,7 +5,6 @@ import s from './preloader.module.css'
 const Preloader = () => {
     return (
         <div className={s.preloader}>
-           <h1 className={s.title}>Loading, please wait...</h1>
             <BiLoaderCircle className={s.icon}/>
         </div>
     )

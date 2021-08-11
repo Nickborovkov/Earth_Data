@@ -1,5 +1,7 @@
 import React, {useEffect} from "react";
 import s from './earth.module.css'
+import m from './earthMedia.module.css'
+import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getEarthObservation} from "../../reducers/earth";
 import Preloader from "../../helpers/preloaders/preloader";
@@ -28,9 +30,9 @@ const Earth = () => {
 
     return (
         <div className={s.earth}>
-            <h2 className={s.title}>Earth Observation Data</h2>
+            <h2 className={cn(s.title, m.title)}>Earth Observation Data</h2>
             <ParametersPicker />
-            <div className={s.result}>
+            <div className={cn(s.result, m.result)}>
                 <p className={s.earthParams}>ID: {earthObs.id}</p>
                 <p className={s.earthParams}>Date: {earthObs.date}</p>
                 <div className={s.imageHolder}>

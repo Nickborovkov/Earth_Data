@@ -1,6 +1,10 @@
 .starterPage{
     padding: 150px 0;
 }
+.starterPageHolder{
+    width: 80%;
+    margin: 0 auto;
+}
 .starterTitle{
     text-align: center;
     font-size: 40px;
@@ -14,7 +18,7 @@
     padding-bottom: 40px;
 }
 .page404{
-    padding: 100px 0;
+    padding: 200px 0;
 }
 .page404Title{
     font-size: 40px;

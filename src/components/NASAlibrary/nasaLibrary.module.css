@@ -1,7 +1,9 @@
 .title{
+    display: block;
+    width: 90%;
+    margin: 20px auto;
     text-align: center;
     font-size: 50px;
-    padding: 20px 0;
     color: cornflowerblue;
 }
 .nasaLibrary{

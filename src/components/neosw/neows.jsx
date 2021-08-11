@@ -1,5 +1,7 @@
 import React, {useEffect} from "react";
 import s from './neows.module.css'
+import m from './neowsMedia.module.css'
+import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getNeows} from "../../reducers/neows";
 import Preloader from "../../helpers/preloaders/preloader";
@@ -26,7 +28,7 @@ const Neows = () => {
 
     return (
         <div className={s.neows}>
-            <h2 className={s.title}>Near Earth Object Web Service</h2>
+            <h2 className={cn(s.title, m.title)}>Near Earth Object Web Service</h2>
             <SetIntervalNEOWS />
             {
                 <div>

@@ -22,3 +22,22 @@
         right: 10px;
     }
 }
+@media screen and (max-width: 500px){
+    .logo{
+        width: 60px;
+    }
+    .title{
+        font-size: 30px;
+        line-height: 60px;
+    }
+    .searchForm{
+        width: 260px;
+
+    }
+    .searchButton{
+        right: 5px;
+    }
+    .searchInput{
+        width: 215px;
+    }
+}

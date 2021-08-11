@@ -1,0 +1,15 @@
+@media screen and (max-width: 600px){
+    .starterPage{
+        padding: 80px 0;
+    }
+    .starterTitle{
+        font-size: 30px;
+        padding-bottom: 40px;
+    }
+    .starterSubtitle{
+        padding-bottom: 30px;
+    }
+    .page404{
+        padding: 170px 0;
+    }
+}
