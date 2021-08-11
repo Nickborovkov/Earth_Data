@@ -1,5 +1,5 @@
 import React from "react";
-import s from '../earth.module.css'
+import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
@@ -55,26 +55,28 @@ const ParametersPicker = () => {
                 validationSchema={validationSchema}
             >
                 { ({values, errors, touched, handleSubmit, handleChange, handleBlur, isValid, dirty}) => (
-                    <fomr>
-                        <h3>Choose new parameters</h3>
-                        {formInputHelper(s.formSubtitle, `Longitude`, touched.longitude,
-                            errors.longitude, s.input, `text`, `longitude`, null, handleChange,
-                            handleBlur, values.longitude)}
+                    <form className={s.form}>
+                        <h3 className={s.title}>Set new parameters</h3>
+                        <div className={s.inputsHolder}>
+                            {formInputHelper(s.formSubtitle, `Longitude`, touched.longitude,
+                                errors.longitude, s.input, `text`, `longitude`, null, handleChange,
+                                handleBlur, values.longitude)}
 
-                        {formInputHelper(s.formSubtitle, `Latitude`, touched.latitude,
-                            errors.latitude, s.input, `text`, `latitude`, null, handleChange,
-                            handleBlur, values.latitude)}
+                            {formInputHelper(s.formSubtitle, `Latitude`, touched.latitude,
+                                errors.latitude, s.input, `text`, `latitude`, null, handleChange,
+                                handleBlur, values.latitude)}
 
-                        {formInputHelper(s.formSubtitle, `Date`, touched.date,
-                            errors.date, s.input, `date`, `date`, dateToday, handleChange,
-                            handleBlur, values.date)}
+                            {formInputHelper(s.formSubtitle, `Date`, touched.date,
+                                errors.date, s.input, `date`, `date`, dateToday, handleChange,
+                                handleBlur, values.date)}
 
-                        {formInputHelper(s.formSubtitle, `Dimensions`, touched.dimensions,
-                            errors.dimensions, s.input, `text`, `dimensions`, null, handleChange,
-                            handleBlur, values.dimensions)}
+                            {formInputHelper(s.formSubtitle, `Dimensions`, touched.dimensions,
+                                errors.dimensions, s.input, `text`, `dimensions`, null, handleChange,
+                                handleBlur, values.dimensions)}
+                        </div>
 
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
-                    </fomr>
+                    </form>
                 ) }
             </Formik>
         </div>

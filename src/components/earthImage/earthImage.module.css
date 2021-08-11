@@ -13,6 +13,9 @@
 }
 .image{
     width: 100%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 .imageDate{
     text-align: center;
@@ -34,7 +37,10 @@
 
 .imagesItem{
     width: 450px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 10px;
     margin: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }

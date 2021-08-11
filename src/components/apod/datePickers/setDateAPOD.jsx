@@ -1,5 +1,5 @@
 import React from "react";
-import s from '../apod.module.css'
+import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
@@ -31,13 +31,13 @@ const SetDateAPOD = () => {
                 validationSchema={validationSchema}
             >
                 {({values, errors, touched, handleChange, handleBlur, handleSubmit, isValid, dirty})=>(
-                    <form>
-                        <h3>Choose exact date</h3>
-
-                        {formInputHelper(s.formSubtitle, `Date`, touched.currentDate,
-                            errors.currentDate, s.input, `date`, `currentDate`, dateToday, handleChange,
-                            handleBlur, values.currentDate)}
-
+                    <form className={s.form}>
+                        <h3 className={s.title}>Set exact date</h3>
+                        <div className={s.inputsHolder}>
+                            {formInputHelper(s.formSubtitle, `Date`, touched.currentDate,
+                                errors.currentDate, s.input, `date`, `currentDate`, dateToday, handleChange,
+                                handleBlur, values.currentDate)}
+                        </div>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
 
                     </form>

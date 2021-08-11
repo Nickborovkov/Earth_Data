@@ -30,12 +30,13 @@ const Earth = () => {
         <div className={s.earth}>
             <h2 className={s.title}>Earth Observation Data</h2>
             <ParametersPicker />
-            <p className={s.earthParams}>ID: {earthObs.id}</p>
-            <p className={s.earthParams}>Date: {earthObs.date}</p>
-            <div className={s.imageHolder}>
-                <img className={s.image} src={earthObs.url} alt="earthObs"/>
+            <div className={s.result}>
+                <p className={s.earthParams}>ID: {earthObs.id}</p>
+                <p className={s.earthParams}>Date: {earthObs.date}</p>
+                <div className={s.imageHolder}>
+                    <img className={s.image} src={earthObs.url} alt="earthObs"/>
+                </div>
             </div>
-
         </div>
     )
 }

@@ -1,12 +1,12 @@
 import React from "react";
+import s from './formsStyles.module.css'
+import { RiErrorWarningFill } from 'react-icons/ri'
 
 export const formInputHelper = (titleClass, title, touched, errors,
                             inputClass, type, name, max, handleChange, handleBlur, value) => {
     return (
-        <div>
+        <div className={s.inputHolder}>
             <p className={titleClass}>{title}</p>
-            {touched && errors &&
-            <div>{errors}</div>}
             <input className={inputClass}
                    type={type}
                    name={name}
@@ -14,6 +14,8 @@ export const formInputHelper = (titleClass, title, touched, errors,
                    onChange={handleChange}
                    onBlur={handleBlur}
                    value={value}/>
+            {touched && errors &&
+            <div className={s.errors}><RiErrorWarningFill/>   {errors}</div>}
         </div>
     )
 }

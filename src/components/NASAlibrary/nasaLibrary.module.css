@@ -20,6 +20,9 @@
 }
 .image{
     width: 100%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 .buttonsHolder{
     display: flex;
@@ -36,4 +39,5 @@
     background-color: #333333;
     margin: 0 10px;
     color: #ffffff;
+    outline: none;
 }

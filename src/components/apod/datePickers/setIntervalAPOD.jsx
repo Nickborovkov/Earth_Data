@@ -1,5 +1,5 @@
 import React from "react";
-import s from "../apod.module.css";
+import s from "../../../helpers/formHelpers/formsStyles.module.css";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
@@ -36,9 +36,9 @@ const SetIntervalAPOD = () => {
                 validationSchema={validationSchema}
             >
                 { ({values, errors, touched, handleSubmit, handleBlur, handleChange, isValid, dirty}) => (
-                    <form>
-                        <h3>Choose interval</h3>
-                        <div>
+                    <form className={s.form}>
+                        <h3 className={s.title}>Set time interval</h3>
+                        <div className={s.inputsHolder}>
 
                             {formInputHelper(s.formSubtitle, `Start date`, touched.startDate,
                                 errors.startDate, s.input, `date`, `startDate`, dateToday, handleChange,

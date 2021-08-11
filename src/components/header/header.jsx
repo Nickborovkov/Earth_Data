@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <header className ={s.header}>
             <img className={s.logo} src={mainIcon} alt="mainIcon"/>
-            <h1 className ={s.title}>NASA API app</h1>
+            <h1 className ={s.title}>Earth Data</h1>
             <SearchForm />
         </header>
     )

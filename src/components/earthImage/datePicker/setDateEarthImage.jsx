@@ -1,5 +1,5 @@
 import React from "react";
-import s from '../earthImage.module.css'
+import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import {useDispatch} from "react-redux";
 import * as yup from 'yup'
 import {Formik} from "formik";
@@ -30,11 +30,13 @@ const SetDateEarthImage = () => {
                 validationSchema={validationSchema}
             >
                 { ({values, touched, errors, handleSubmit, handleBlur, handleChange, isValid, dirty}) => (
-                    <form>
-                        <h3>Select date to show</h3>
-                        {formInputHelper(s.formSubtitle, `Date`, touched.selectedDate, errors.selectedDate,
-                            s.input, `date`, `selectedDate`, dateToday, handleChange,
-                            handleBlur, values.selectedDate)}
+                    <form className={s.form}>
+                        <h3 className={s.title}>Set exact date</h3>
+                        <div className={s.inputsHolder}>
+                            {formInputHelper(s.formSubtitle, `Date`, touched.selectedDate, errors.selectedDate,
+                                s.input, `date`, `selectedDate`, dateToday, handleChange,
+                                handleBlur, values.selectedDate)}
+                        </div>
 
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
                     </form>

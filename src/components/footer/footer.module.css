@@ -4,14 +4,27 @@
     display: flex;
     justify-content: center;
 }
-.footerLink{
-    color: #ffffff;
-    text-decoration: none;
-    margin-right: 40%;
-    font-size: 18px;
-}
 .footerAuthor{
     color: gold;
     text-decoration: none;
-
+    outline: none;
+    line-height: 40px;
+    margin-left: 40%;
+}
+.apiLink{
+    display: flex;
+    justify-content: center;
+    outline: none;
+}
+.footerLink{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    line-height: 40px;
+}
+.logo{
+    display: block;
+    width: 40px;
+    margin-left: 10px;
 }

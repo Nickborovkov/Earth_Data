@@ -41,20 +41,21 @@ const Apod = () => {
         <div className={s.apod}>
            <h2 className={s.title}>A picture of the day</h2>
             {datePickerType === 0 &&
-            <div>
+            <div className={s.apodForm}>
                 <SetDateAPOD />
-                <button onClick={ () => {setDatePickerType(1)} }>Choose interval</button>
+                <button className={s.apodButton} onClick={ () => {setDatePickerType(1)} }>Choose interval</button>
             </div>}
 
             {datePickerType === 1 &&
-            <div>
+            <div className={s.apodForm}>
                 <SetIntervalAPOD />
-                <button onClick={ () => {setDatePickerType(0)} }>Choose exact date</button>
+                <button className={s.apodButton}
+                        onClick={ () => {setDatePickerType(0)} }>Choose exact date</button>
             </div>}
 
             <div>
                 {
-                    apodArray.map(a => <div className={cn(s.apodItem, apodArray.length >1 && s.apodMany)} key={a.date}>
+                    apodArray.map(a => <div className={s.apodItem} key={a.date}>
                         <h3 className={s.apodTitle}>{a.title}</h3>
                         <div className={s.apodImageHolder}>
                             <img className={s.apodImage} src={a.url} alt="Not available"/>
@@ -62,8 +63,6 @@ const Apod = () => {
                         <p className={s.apodDate}>Date: {a.date}</p>
                         <p className={s.apodExpTitle}>Explanation</p>
                         <p className={s.apodExplanation}>{a.explanation}</p>
-
-
                     </div>)
                 }
             </div>
