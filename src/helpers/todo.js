@@ -4,10 +4,5 @@
 //TODO `fix timezone bug`
 //TODO `in neows date show not correctly`
 //TODO `try to remove hashRouter with browserRouter`
-//TODO `add limits to forms or at least write limits in forms`
-//TODO `add errors handling (try/catch)`
 //TODO `add home icon`
-//TODO `add list of dates for rovers`
-//TODO `fix titles`
 //TODO `Preloader to photo while it's loading (Jesus...)`
-//TODO `FIX rover items properties size`
