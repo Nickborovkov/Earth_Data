@@ -35,7 +35,8 @@ const SearchForm = () => {
                                placeholder='Search in NASA archive'/>
                         <button className={cn(s.searchButton, m.searchButton)}
                                 disabled={!isValid && !dirty}
-                                onClick={handleSubmit}><BsSearch/></button>
+                                onClick={handleSubmit}
+                                type='submit'><BsSearch/></button>
                     </form>
                 ) }
             </Formik>

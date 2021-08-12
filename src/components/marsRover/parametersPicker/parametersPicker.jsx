@@ -59,10 +59,9 @@ const MarsRoverParams = () => {
                                 <div className={s.errors}><RiErrorWarningFill/>   {errors.rover}</div>}
                             </div>
                             {formInputHelper(s.formSubtitle, `Date`, touched.date, errors.date,
-                                s.input, `date`, `date`, dateToday, handleChange,
+                                s.input, `date`, `date`, null, dateToday, handleChange,
                                 handleBlur, values.date)}
                         </div>
-
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
 
                         {emptyPhotos && <div className={s.errorResponse}>Not available, please change rover or date</div>}

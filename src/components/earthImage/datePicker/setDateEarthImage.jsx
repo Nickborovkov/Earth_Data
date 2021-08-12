@@ -36,7 +36,7 @@ const SetDateEarthImage = () => {
                         <h3 className={s.title}>Set exact date</h3>
                         <div className={s.inputsHolder}>
                             {formInputHelper(s.formSubtitle, `Date`, touched.selectedDate, errors.selectedDate,
-                                s.input, `date`, `selectedDate`, dateToday, handleChange,
+                                s.input, `date`, `selectedDate`, `2015-06-13`, dateToday, handleChange,
                                 handleBlur, values.selectedDate)}
                         </div>
 

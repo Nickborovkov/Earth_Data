@@ -10,7 +10,6 @@ import {
     formButtonHelper,
     formInputHelper
 } from "../../../helpers/formHelpers/formHelpers";
-import {dateToday} from "../../../helpers/dateToday";
 
 const ParametersPicker = () => {
 
@@ -29,15 +28,6 @@ const ParametersPicker = () => {
             .typeError(`Only numbers`)
             .min(-90, `Enter latitude from -90 to 90`)
             .max(90, `Enter latitude from -90 to 90`),
-        date: yup
-            .string()
-            .required(`Date required`),
-        dimensions: yup
-            .number()
-            .required(`Dimensions required`)
-            .typeError(`Only numbers`)
-            .min(0, `Enter float number from 0 to 1`)
-            .max(1, `Enter float number from 0 to 1`),
     })
 
     return (
@@ -46,8 +36,6 @@ const ParametersPicker = () => {
                 initialValues={{
                     longitude: ``,
                     latitude: ``,
-                    date: ``,
-                    dimensions: ``
                 }}
                 validateOnBlur
                 onSubmit={ (values, {resetForm}) => {
@@ -61,20 +49,13 @@ const ParametersPicker = () => {
                         <h3 className={s.title}>Set new parameters</h3>
                         <div className={s.inputsHolder}>
                             {formInputHelper(s.formSubtitle, `Longitude`, touched.longitude,
-                                errors.longitude, s.input, `text`, `longitude`, null, handleChange,
+                                errors.longitude, s.input, `text`, `longitude`, null, null, handleChange,
                                 handleBlur, values.longitude)}
 
                             {formInputHelper(s.formSubtitle, `Latitude`, touched.latitude,
-                                errors.latitude, s.input, `text`, `latitude`, null, handleChange,
+                                errors.latitude, s.input, `text`, `latitude`, null, null, handleChange,
                                 handleBlur, values.latitude)}
 
-                            {formInputHelper(s.formSubtitle, `Date`, touched.date,
-                                errors.date, s.input, `date`, `date`, dateToday, handleChange,
-                                handleBlur, values.date)}
-
-                            {formInputHelper(s.formSubtitle, `Dimensions`, touched.dimensions,
-                                errors.dimensions, s.input, `text`, `dimensions`, null, handleChange,
-                                handleBlur, values.dimensions)}
                         </div>
 
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}

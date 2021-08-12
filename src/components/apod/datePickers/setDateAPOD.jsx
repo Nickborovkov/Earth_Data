@@ -37,7 +37,7 @@ const SetDateAPOD = () => {
                         <h3 className={s.title}>Set exact date</h3>
                         <div className={s.inputsHolder}>
                             {formInputHelper(s.formSubtitle, `Date`, touched.currentDate,
-                                errors.currentDate, s.input, `date`, `currentDate`, dateToday, handleChange,
+                                errors.currentDate, s.input, `date`, `currentDate`, `1995-01-07`, dateToday, handleChange,
                                 handleBlur, values.currentDate)}
                         </div>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
