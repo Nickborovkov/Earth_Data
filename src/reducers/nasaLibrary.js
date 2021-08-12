@@ -10,6 +10,7 @@ const SET_START_YEAR = `nasa/nasaLibrary/SET_START_YEAR`
 const SET_END_YEAR = `nasa/nasaLibrary/SET_END_YEAR`
 const NEXT_PAGE = `nasa/nasaLibrary/NEXT_PAGE`
 const PREV_PAGE = `nasa/nasaLibrary/PREV_PAGE`
+const SET_ERROR = `nasa/nasaLibrary/SET_ERROR`
 
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
     totalPages: ``,
     page: 1,
     isFetching: false,
+    errorMessage: ``
 }
 
 
@@ -77,6 +79,11 @@ const nasaLibraryReducer = (state = initialState, action) => {
                 ...state,
                 page: state.page - 1
             }
+        case SET_ERROR:
+            return {
+                ...state,
+                errorMessage: action.errorMessage
+            }
         default:
             return state
     }
@@ -98,6 +105,9 @@ export const setCurrentSearch = (currentSearch) =>
 
 export const toggleFetching = (isFetching) =>
     ( { type:  TOGGLE_FETCHING, isFetching} )
+
+export const setError = (errorMessage) =>
+    ( { type:  SET_ERROR, errorMessage} )
 
 //*****************
 export const setMediaType = (mediaType) =>
@@ -126,9 +136,15 @@ export const getSearchResult = (search, mediaType, yearStart, yearEnd, page) => 
     dispatch(setSearchResult(null))
     dispatch(setSearchStart(true))
     dispatch(toggleFetching(true))
-    const response = await nasaRequest.searchNasaLibrary(search, mediaType, yearStart, yearEnd, page)
-    //dispatch(setSearchStart(false))
-    dispatch(toggleFetching(false))
-    dispatch(setSearchResult(response.data.collection.items))
-    dispatch(setTotalPages(response.data.collection.metadata.total_hits))
+    try {
+        await nasaRequest.searchNasaLibrary(search, mediaType, yearStart, yearEnd, page)
+    }catch (e) {
+        alert(e)
+    }finally {
+
+        const response = await nasaRequest.searchNasaLibrary(search, mediaType, yearStart, yearEnd, page)
+        dispatch(toggleFetching(false))
+        dispatch(setSearchResult(response.data.collection.items))
+        dispatch(setTotalPages(response.data.collection.metadata.total_hits))
+    }
 }

@@ -45,6 +45,11 @@ export const setIntervalDate = (start, end) =>
 
 //THINK
 export const getNeows = (startDate, endDate) => async dispatch => {
-    const response = await nasaRequest.getNeows(startDate, endDate)
-    dispatch(setNeows(response.data.near_earth_objects))
+    try {
+        const response = await nasaRequest.getNeows(startDate, endDate)
+        dispatch(setNeows(response.data.near_earth_objects))
+    }catch (err) {
+        alert(err)
+    }
+
 }

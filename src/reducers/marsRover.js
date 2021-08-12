@@ -74,11 +74,16 @@ export const setEmptyPhotos = (emptyPhotos) =>
 
 //THUNK
 export const getMarsRoverPhotos = (rover, date, page) => async dispatch => {
-    const response = await nasaRequest.getMarsRoverPhotos(rover, date, page)
-    dispatch(setEmptyPhotos(false))
-    if(response.data.photos.length > 0){
-        dispatch(setMarsRoverPhotos(response.data.photos))
-    }else {
-        dispatch(setEmptyPhotos(true))
+    try {
+        const response = await nasaRequest.getMarsRoverPhotos(rover, date, page)
+        dispatch(setEmptyPhotos(false))
+        if(response.data.photos.length > 0){
+            dispatch(setMarsRoverPhotos(response.data.photos))
+        }else {
+            dispatch(setEmptyPhotos(true))
+        }
+    }catch (err) {
+        alert(err)
     }
+
 }

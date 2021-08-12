@@ -41,6 +41,11 @@ export const setEarthImageDate = (date) =>
 
 //THUNK
 export const getEarthImage = (date) => async dispatch => {
-    const response = await nasaRequest.getEarthImage(date)
-    dispatch(setEarthImage(response.data))
+    try {
+        const response = await nasaRequest.getEarthImage(date)
+        dispatch(setEarthImage(response.data))
+    }catch (err) {
+        alert(err)
+    }
+
 }

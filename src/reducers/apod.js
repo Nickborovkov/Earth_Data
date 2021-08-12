@@ -63,11 +63,21 @@ export const setIntervalDates = (start, end) =>
 
 //THUNK
 export const getApod = (date) => async dispatch => {
-    const response = await nasaRequest.getAPOD(date)
-    dispatch(setApod(response.data))
+    try{
+        const response = await nasaRequest.getAPOD(date)
+        dispatch(setApod(response.data))
+    }catch (err) {
+        alert(err)
+    }
+
 }
 
 export const getApodWithInterval = (startDate, endDate) => async dispatch => {
-    const response = await nasaRequest.getAPODwithInterval(startDate, endDate)
-    dispatch(setApodWithInterval(response.data))
+    try {
+        const response = await nasaRequest.getAPODwithInterval(startDate, endDate)
+        dispatch(setApodWithInterval(response.data))
+    }catch (err) {
+        alert(err)
+    }
+
 }
