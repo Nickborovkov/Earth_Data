@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import {useDispatch} from "react-redux";
 import {setCurrentDate} from "../../../reducers/apod";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
-import {dateToday} from "../../../helpers/dateToday";
+import {dateToday} from "../../../helpers/dateHelper/dateToday";
 
 const SetDateAPOD = () => {
 

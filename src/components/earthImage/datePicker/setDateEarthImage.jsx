@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import {Formik} from "formik";
 import {setEarthImageDate} from "../../../reducers/earthImage";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
-import {dateToday} from "../../../helpers/dateToday";
+import {dateToday} from "../../../helpers/dateHelper/dateToday";
 
 const SetDateEarthImage = () => {
 

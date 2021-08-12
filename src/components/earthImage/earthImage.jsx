@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getEarthImage} from "../../reducers/earthImage";
 import Preloader from "../../helpers/preloaders/preloader";
 import SetDateEarthImage from "./datePicker/setDateEarthImage";
-import {earthImageUrlHelper} from "../../helpers/earthImageURLHelper";
+import {earthImageUrlHelper} from "../../helpers/urlHelper/earthImageURLHelper";
 import {Redirect} from "react-router-dom";
 
 const EarthImage = () => {

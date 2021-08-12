@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Field, Formik} from "formik";
 import {setMarsRoverParams} from "../../../reducers/marsRover";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
-import {dateToday} from "../../../helpers/dateToday";
+import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import { RiErrorWarningFill } from 'react-icons/ri'
 
 const MarsRoverParams = () => {

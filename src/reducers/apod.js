@@ -1,5 +1,5 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
-import {dateToday} from "../helpers/dateToday";
+import {dateToday} from "../helpers/dateHelper/dateToday";
 
 const SET_APOD = `NASA/apod/SET_APOD`
 const SET_APOD_WITH_INTERVAL = `NASA/apod/SET_APOD_WITH_INTERVAL`
