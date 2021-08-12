@@ -1,6 +1,6 @@
 {
-  "homepage": "http://yuribenjamin.github.io/Earth_Data/",
-  "name": "NASA_API_app",
+  "homepage": "https://nickborovkov.github.io/Earth_Data/",
+  "name": "Earth_Data",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
