@@ -1,5 +1,4 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
-import {dateToday} from "../helpers/dateToday";
 
 const SET_EARTH_OBSERVATION = `NASA/earth/SET_EARTH_OBSERVATION`
 const SET_PARAMETERS = `NASA/earth/SET_PARAMETERS`
@@ -9,8 +8,6 @@ const initialState = {
     earthObservation: undefined,
     longitude: 20,
     latitude: 40,
-    date: dateToday,
-    dimensions: 0.25
 }
 
 
@@ -26,8 +23,6 @@ const earthReducer = (state = initialState, action) => {
                 ...state,
                 longitude: action.lon,
                 latitude: action.lat,
-                date: action.date,
-                dimensions: action.dim,
             }
         default:
             return state
@@ -41,13 +36,18 @@ export default earthReducer
 //AC
 const setEarthObservation = (earthObservation) =>
     ( { type: SET_EARTH_OBSERVATION,  earthObservation} )
-export const setParameters = (lon, lat, date, dim) =>
-    ( { type: SET_PARAMETERS,  lon, lat, date, dim} )
+export const setParameters = (lon, lat) =>
+    ( { type: SET_PARAMETERS,  lon, lat} )
 
 
 //THUNK
 
-export const getEarthObservation = (lon, lat, date, dim) => async dispatch => {
-    const response = await nasaRequest.getEarthObservation(lon, lat, date, dim)
-    dispatch(setEarthObservation(response.data))
+export const getEarthObservation = (lon, lat) => async dispatch => {
+    try {
+        const response = await nasaRequest.getEarthObservation(lon, lat)
+        dispatch(setEarthObservation(response.data))
+    }catch (err) {
+        alert(err)
+    }
+
 }
