@@ -31,9 +31,8 @@ const MarsRoverParams = () => {
                     date: ``
                 }}
                 validateOnBlur
-                onSubmit={ (values, {resetForm}) => {
+                onSubmit={ (values) => {
                     dispatch(setMarsRoverParams(values.rover, values.date))
-                    resetForm({values: ``})
                 } }
                 validationSchema={validationSchema}
             >

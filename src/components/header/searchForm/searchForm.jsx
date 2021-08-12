@@ -18,13 +18,12 @@ const SearchForm = () => {
                     search: ``
                 }}
                 validateOnBlur
-                onSubmit={ (values, {resetForm}) => {
+                onSubmit={ (values) => {
                     dispatch(setCurrentSearch(values.search))
                     dispatch(setSearchStart(true))
-                    resetForm({values: ``})
                 } }
             >
-                { ({values, handleBlur, handleChange, handleSubmit, isValid, dirty}) => (
+                { ({values, handleBlur, handleChange, handleSubmit, isValid, dirty, handleReset}) => (
                     <form className={cn(s.searchForm, m.searchForm)}>
                         <input className={cn(s.searchInput, m.searchInput)}
                                type="text"
@@ -32,7 +31,8 @@ const SearchForm = () => {
                                value={values.search}
                                onChange={handleChange}
                                onBlur={handleBlur}
-                               placeholder='Search in NASA archive'/>
+                               placeholder='Search in NASA archive'
+                               onClick={handleReset}/>
                         <button className={cn(s.searchButton, m.searchButton)}
                                 disabled={!isValid && !dirty}
                                 onClick={handleSubmit}

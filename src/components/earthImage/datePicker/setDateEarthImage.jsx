@@ -25,9 +25,8 @@ const SetDateEarthImage = () => {
                     selectedDate: ``
                 }}
                 validateOnBlur
-                onSubmit={ (values, {resetForm}) => {
+                onSubmit={ (values) => {
                     dispatch(setEarthImageDate(values.selectedDate))
-                    resetForm({values: ``})
                 } }
                 validationSchema={validationSchema}
             >

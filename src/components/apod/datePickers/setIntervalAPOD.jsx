@@ -31,9 +31,8 @@ const SetIntervalAPOD = () => {
                     endDate: ``,
                 }}
                 validateOnBlur
-                onSubmit={ (values, {resetForm}) => {
+                onSubmit={ (values) => {
                     dispatch(setIntervalDates(values.startDate, values.endDate))
-                    resetForm({values: ``})
                 }}
                 validationSchema={validationSchema}
             >

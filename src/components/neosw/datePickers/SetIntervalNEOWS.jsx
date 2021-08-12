@@ -31,9 +31,8 @@ const SetIntervalNEOWS = () => {
                     endDate: ``,
                 }}
                 validateOnBlur
-                onSubmit={ (values, {resetForm}) => {
+                onSubmit={ (values) => {
                     dispatch(setIntervalDate(values.startDate, values.endDate))
-                    resetForm({values: ``})
                 }}
                 validationSchema={validationSchema}
             >

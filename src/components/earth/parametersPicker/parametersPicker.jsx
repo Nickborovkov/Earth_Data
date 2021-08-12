@@ -38,9 +38,8 @@ const ParametersPicker = () => {
                     latitude: ``,
                 }}
                 validateOnBlur
-                onSubmit={ (values, {resetForm}) => {
+                onSubmit={ (values) => {
                     dispatch(setParameters(values.longitude, values.latitude ,values.date ,values.dimensions))
-                    resetForm({values: ``})
                 } }
                 validationSchema={validationSchema}
             >
