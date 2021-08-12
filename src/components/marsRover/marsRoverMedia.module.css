@@ -8,6 +8,19 @@
         border-radius: 0;
     }
 }
+@media screen and (max-width: 900px) {
+    .hintBody{
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        padding: 10px 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+    .hintBodySmall{
+        width: 100%;
+    }
+}
 @media screen and (max-width: 600px) {
     .title {
         font-size: 30px;
