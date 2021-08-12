@@ -14,14 +14,12 @@ const Earth = () => {
     const earthObs = useSelector(state => state.earth.earthObservation)
     const longitude = useSelector(state => state.earth.longitude)
     const latitude = useSelector(state => state.earth.latitude)
-    const date = useSelector(state => state.earth.date)
-    const dimensions = useSelector(state => state.earth.dimensions)
     const searchStart = useSelector(state => state.library.searchStart)
 
 
     useEffect(()=>{
-        dispatch(getEarthObservation(longitude, latitude, date, dimensions))
-    },[dispatch, longitude, latitude, date, dimensions])
+        dispatch(getEarthObservation(longitude, latitude))
+    },[dispatch, longitude, latitude])
 
     if(!earthObs) return <Preloader />
 
