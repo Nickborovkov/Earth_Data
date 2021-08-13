@@ -4,12 +4,20 @@ import m from '../headerMedia.module.css'
 import cn from 'classnames'
 import {useDispatch} from "react-redux";
 import {Formik} from "formik";
+import * as yup from 'yup'
 import {setCurrentSearch, setSearchStart} from "../../../reducers/nasaLibrary";
 import { BsSearch } from 'react-icons/bs';
+import {formButtonHelper} from "../../../helpers/formHelpers/formHelpers";
 
 const SearchForm = () => {
 
     const dispatch = useDispatch()
+    const regexp = /^[a-zA-Z0-9_., -]*$/
+    const validationSchema = yup.object().shape({
+        search: yup
+            .string()
+            .matches(regexp, `Only english letters and digits`)
+    })
 
     return (
         <div>
@@ -22,8 +30,10 @@ const SearchForm = () => {
                     dispatch(setCurrentSearch(values.search))
                     dispatch(setSearchStart(true))
                 } }
+                validationSchema={validationSchema}
             >
-                { ({values, handleBlur, handleChange, handleSubmit, isValid, dirty, handleReset}) => (
+                { ({touched, errors, values, handleBlur, handleChange, handleSubmit, isValid,
+                       dirty, handleReset}) => (
                     <form className={cn(s.searchForm, m.searchForm)}>
                         <input className={cn(s.searchInput, m.searchInput)}
                                type="text"
@@ -33,10 +43,10 @@ const SearchForm = () => {
                                onBlur={handleBlur}
                                placeholder='Search in NASA archive'
                                onClick={handleReset}/>
-                        <button className={cn(s.searchButton, m.searchButton)}
-                                disabled={!isValid && !dirty}
-                                onClick={handleSubmit}
-                                type='submit'><BsSearch/></button>
+                        {formButtonHelper(cn(s.searchButton, m.searchButton), isValid, dirty,
+                            handleSubmit, <BsSearch/>)}
+                        {touched.search && errors.search &&
+                        <div className={cn(s.searchError, m.searchError)}>{errors.search}</div>}
                     </form>
                 ) }
             </Formik>
