@@ -3,18 +3,17 @@ import s from './navbar.module.css'
 import m from './navbarMedia.module.css'
 import cn from 'classnames'
 import {NavLink} from "react-router-dom";
-import { BiMenuAltLeft } from 'react-icons/bi'
+import { RiHome2Line } from 'react-icons/ri'
+
 
 const Navbar = () => {
 
     const [burgerMenu, setBurgerMenu] = useState(false)
 
     const toggleMenu = () => {
-        if(!burgerMenu){
-            setBurgerMenu(true)
-        }else {
-            setBurgerMenu(false)
-        }
+        !burgerMenu
+            ? setBurgerMenu(true)
+            : setBurgerMenu(false)
     }
 
     return (
@@ -41,8 +40,17 @@ const Navbar = () => {
                          to='/marsRover'
                          onClick={()=>{setBurgerMenu(false)}}>Mars Rover Photos</NavLink>
             </nav>
-            <div className={cn(s.burger, m.burger)}
-                 onClick={toggleMenu}><BiMenuAltLeft/></div>
+            <div className={cn(s.menuButtons, m.menuButtons)}>
+            <NavLink className={s.menuButton}
+                     to='/'><RiHome2Line/></NavLink>
+            <div className={s.menuButton}
+                    onClick={toggleMenu}>
+                <div className={cn(s.burgerLine, m.burgerLine)}></div>
+                <div className={cn(s.burgerLine, m.burgerLine)}></div>
+                <div className={cn(s.burgerLine, m.burgerLine)}></div>
+            </div>
+                <div className={cn(s.burgerText, m.burgerText)}>menu</div>
+            </div>
         </div>
     )
 }

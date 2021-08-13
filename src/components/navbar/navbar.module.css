@@ -21,6 +21,53 @@
     color: cornflowerblue;
     border-bottom: 2px solid cornflowerblue;
 }
-.burger{
+.menuButtons{
     display: none;
+}
+.menuButton{
+    display: block;
+    width: 45px;
+    height: 45px;
+    font-size: 40px;
+    background-color: #666666;
+    color: gold;
+    position: relative;
+    border: none;
+    border-bottom: 1px solid gold;
+    text-decoration: none;
+    text-align: center;
+}
+.burgerLine{
+    width: 30px;
+    height: 3px;
+    position: absolute;
+    background-color: gold;
+}
+.burgerLine:first-child{
+    top: 7px;
+    left: calc(50% - 15px);
+    transition: .5s;
+}
+.burgerLine:nth-child(2){
+    top: 21px;
+    left: calc(50% - 15px);
+    transition-delay: .2s;
+}
+.burgerLine:last-child{
+    bottom: 7px;
+    left: calc(50% - 15px);
+    transition: .5s;
+}
+.burgerText{
+    background-color: #666666;
+    color: gold;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    font-size: 13px;
+    top: 89px;
+    width: 45px;
+    -webkit-border-radius: 0 0 10px 0;
+    -moz-border-radius: 0 0 10px 0;
+    border-radius: 0 0 10px 0;
 }

@@ -8,7 +8,7 @@
         -moz-border-radius: 0 0 10px 0;
         border-radius: 0 0 10px 0;
         left: -400px;
-        transition: .3s;
+        transition: .5s;
         z-index: 1;
     }
     .navbarActive{
@@ -32,20 +32,24 @@
         color: cornflowerblue;
         border-bottom: none;
     }
-    .burger{
+    .menuButtons{
         display: block;
-        width: 50px;
-        height: 50px;
-        background-color: #666666;
+        width: 45px;
         position: absolute;
-        color: #ffffff;
-        font-size: 45px;
         top: 0;
-        right: -50px;
-        -webkit-border-radius: 0 0 10px 0;
-        -moz-border-radius: 0 0 10px 0;
-        border-radius: 0 0 10px 0;
-        transition: .3s;
+        right: -45px;
+        transition: .5s;
+    }
+    .navbarActive .burgerLine:first-child{
+        transform-origin: top left;
+        transform: skew(0, 44deg);
+    }
+    .navbarActive .burgerLine:nth-child(2){
+        visibility: hidden;
+    }
+    .navbarActive .burgerLine:last-child{
+        transform-origin: bottom left;
+        transform: skew(0, -44deg);
     }
 }
 @media screen and (max-width: 700px){
@@ -59,8 +63,10 @@
     .navbarActive{
         left: 0;
     }
-    .navbarActive .burger{
+    .navbarActive .menuButtons{
         right: 0;
+    }
+    .navbarActive .burgerText{
         -webkit-border-radius: 0 0 0 10px;
         -moz-border-radius: 0 0 0 10px;
         border-radius: 0 0 0 10px;
