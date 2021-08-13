@@ -5,12 +5,12 @@ export const monthNow = String(now.getMonth() + 1).length === 1
     ? `0${String(now.getMonth() + 1)}`
     : String(now.getMonth() + 1)
 
-//Fix for some server requests which work only on timezone UTC-3
+//Fix for some server requests which work correctly only on timezone UTC-6
 export const dayFixedNow = () => {
     const hoursNow = now.getHours()
-    const hoursUTCNow = hoursNow - 6
+    const hoursUTCNow = hoursNow - 8
     let dayNow
-    if(hoursNow - hoursUTCNow < 6 && hoursNow - hoursUTCNow > -6){
+    if(hoursNow - hoursUTCNow < 9 && hoursNow - hoursUTCNow > -9){
         dayNow = String(now.getDate()).length === 1
             ? `0${String(now.getDate() )}`
             : String(now.getDate())
