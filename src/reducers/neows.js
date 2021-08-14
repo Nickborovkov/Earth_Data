@@ -1,5 +1,6 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
 import {dateToday} from "../helpers/dateHelper/dateToday";
+import {setNewError} from "./errors";
 
 const SET_NEOWS = `NASA/neows/SET_NEOWS`
 const SET_INTERVAL_DATE = `NASA/neows/SET_INTERVAL_DATE`
@@ -37,10 +38,9 @@ export default neowsReducer
 
 //AC
 const setNeows = (neowsArray) =>
-    ( { type: SET_NEOWS, neowsArray } )
+    ({type: SET_NEOWS, neowsArray})
 export const setIntervalDate = (start, end) =>
-    ( { type: SET_INTERVAL_DATE, start, end } )
-
+    ({type: SET_INTERVAL_DATE, start, end})
 
 
 //THINK
@@ -48,8 +48,8 @@ export const getNeows = (startDate, endDate) => async dispatch => {
     try {
         const response = await nasaRequest.getNeows(startDate, endDate)
         dispatch(setNeows(response.data.near_earth_objects))
-    }catch (err) {
-        alert(err)
+    }catch (error) {
+        dispatch(setNewError(error))
     }
 
 }

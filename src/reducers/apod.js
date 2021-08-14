@@ -11,7 +11,7 @@ const SET_INTERVAL = `NASA/apod/SET_INTERVAL`
 
 const initialState = {
     apodArray: [],
-    currentDate: `2021-08-22`,
+    currentDate: dateToday,
     intervalDateStart: dateToday,
     intervalDateEnd: dateToday,
 }

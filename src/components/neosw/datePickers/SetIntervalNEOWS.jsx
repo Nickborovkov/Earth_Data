@@ -4,15 +4,17 @@ import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
 import cn from "classnames";
 import {Formik} from "formik";
 import * as yup from 'yup'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setIntervalDate} from "../../../reducers/neows";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
+import {setNewError} from "../../../reducers/errors";
 
 
 const SetIntervalNEOWS = () => {
 
     const dispatch = useDispatch()
+    const error = useSelector(state => state.errors.error)
 
     const validationSchema = yup.object().shape({
         startDate: yup
@@ -33,6 +35,7 @@ const SetIntervalNEOWS = () => {
                 validateOnBlur
                 onSubmit={ (values) => {
                     dispatch(setIntervalDate(values.startDate, values.endDate))
+                    dispatch(setNewError(null))
                 }}
                 validationSchema={validationSchema}
             >
@@ -52,6 +55,7 @@ const SetIntervalNEOWS = () => {
                         </div>
                         <p className={s.intervalHint}>Maximal interval is 1 week</p>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
+                        {error && <h3 className={s.errorCase}>Not available, please change date interval</h3>}
                     </form>
                 ) }
             </Formik>
