@@ -1,5 +1,6 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
 import {dateToday} from "../helpers/dateHelper/dateToday";
+import {setNewError} from "./errors";
 
 const SET_APOD = `NASA/apod/SET_APOD`
 const SET_APOD_WITH_INTERVAL = `NASA/apod/SET_APOD_WITH_INTERVAL`
@@ -7,9 +8,10 @@ const SET_CURRENT_DATE = `NASA/apod/SET_CURRENT_DATE`
 const SET_INTERVAL = `NASA/apod/SET_INTERVAL`
 
 
+
 const initialState = {
     apodArray: [],
-    currentDate: dateToday,
+    currentDate: `2021-08-22`,
     intervalDateStart: dateToday,
     intervalDateEnd: dateToday,
 }
@@ -63,21 +65,16 @@ export const setIntervalDates = (start, end) =>
 
 //THUNK
 export const getApod = (date) => async dispatch => {
-    try{
-        const response = await nasaRequest.getAPOD(date)
+    let response
+    try {
+        response = await nasaRequest.getAPOD(date)
         dispatch(setApod(response.data))
-    }catch (err) {
-        alert(err)
+    }catch (error) {
+        dispatch(setNewError(error.message))
     }
-
 }
 
 export const getApodWithInterval = (startDate, endDate) => async dispatch => {
-    try {
-        const response = await nasaRequest.getAPODwithInterval(startDate, endDate)
-        dispatch(setApodWithInterval(response.data))
-    }catch (err) {
-        alert(err)
-    }
-
+    const response = await nasaRequest.getAPODwithInterval(startDate, endDate)
+    dispatch(setApodWithInterval(response.data))
 }

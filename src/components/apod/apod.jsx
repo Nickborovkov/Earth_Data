@@ -17,6 +17,7 @@ const Apod = () => {
     const intervalDateStart = useSelector(state => state.apod.intervalDateStart)
     const intervalDateEnd = useSelector(state => state.apod.intervalDateEnd)
     const searchStart = useSelector(state => state.library.searchStart)
+    const error = useSelector(state => state.errors.error)
 
     const [datePickerType, setDatePickerType] = useState(0)
 
@@ -32,29 +33,34 @@ const Apod = () => {
         }
     },[dispatch, datePickerType, intervalDateStart, intervalDateEnd])
 
-
-
-    if(apodArray.length === 0) return <Preloader />
-
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
     return (
         <div className={s.apod}>
-           <h2 className={cn(s.title, m.title)}>See NASA picture of the day</h2>
-            {datePickerType === 0 &&
-            <div className={s.apodForm}>
-                <SetDateAPOD />
-                <button className={s.apodButton} onClick={ () => {setDatePickerType(1)} }>Choose interval</button>
-            </div>}
+           <h2 className={cn(s.title, m.title)}>NASA picture of the day</h2>
 
-            {datePickerType === 1 &&
-            <div className={s.apodForm}>
-                <SetIntervalAPOD />
-                <button className={s.apodButton}
-                        onClick={ () => {setDatePickerType(0)} }>Choose exact date</button>
-            </div>}
+            <div>
+                {datePickerType === 0 &&
+                <div className={s.apodForm}>
+                    <SetDateAPOD />
+                    <button className={s.apodButton}
+                            onClick={ () => {setDatePickerType(1)} }>Choose interval</button>
+                </div>}
 
-                    <div className={s.apodList}>
+                {datePickerType === 1 &&
+                <div className={s.apodForm}>
+                    <SetIntervalAPOD />
+                    <button className={s.apodButton}
+                            onClick={ () => {setDatePickerType(0)} }>Choose exact date</button>
+                </div>}
+            </div>
+
+
+            {apodArray.length === 0 && !error &&
+            <Preloader/>}
+
+            {apodArray.length !== 0 && !error &&
+            <div className={s.apodList}>
                 {
                     apodArray.map(a => <div className={cn(s.apodItem, m.apodItem)} key={a.date}>
                         <h3 className={cn(s.apodTitle, m.apodTitle)}>{a.title}</h3>
@@ -66,7 +72,8 @@ const Apod = () => {
                         <p className={cn(s.apodExplanation, m.apodExplanation)}>{a.explanation}</p>
                     </div>)
                 }
-            </div>
+            </div>}
+
         </div>
     )
 }
