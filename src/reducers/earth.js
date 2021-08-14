@@ -1,4 +1,5 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
+import {setNewError} from "./errors";
 
 const SET_EARTH_OBSERVATION = `NASA/earth/SET_EARTH_OBSERVATION`
 const SET_PARAMETERS = `NASA/earth/SET_PARAMETERS`
@@ -46,8 +47,7 @@ export const getEarthObservation = (lon, lat) => async dispatch => {
     try {
         const response = await nasaRequest.getEarthObservation(lon, lat)
         dispatch(setEarthObservation(response.data))
-    }catch (err) {
-        alert(err)
+    }catch (error) {
+        dispatch(setNewError(error))
     }
-
 }

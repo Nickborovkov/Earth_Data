@@ -4,16 +4,18 @@ import m from '../../../helpers/formHelpers/formsStylesMedia.module.css'
 import cn from 'classnames'
 import {Formik} from "formik";
 import * as yup from 'yup'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setParameters} from "../../../reducers/earth";
 import {
     formButtonHelper,
     formInputHelper
 } from "../../../helpers/formHelpers/formHelpers";
+import {setNewError} from "../../../reducers/errors";
 
 const ParametersPicker = () => {
 
     const dispatch = useDispatch()
+    const error = useSelector(state => state.errors.error)
 
     const validationSchema = yup.object().shape({
         longitude: yup
@@ -40,6 +42,7 @@ const ParametersPicker = () => {
                 validateOnBlur
                 onSubmit={ (values) => {
                     dispatch(setParameters(values.longitude, values.latitude ,values.date ,values.dimensions))
+                    dispatch(setNewError(null))
                 } }
                 validationSchema={validationSchema}
             >
@@ -58,6 +61,7 @@ const ParametersPicker = () => {
                         </div>
 
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
+                        {error && <h3 className={s.errorCase}>Not available, please change parameters</h3>}
                     </form>
                 ) }
             </Formik>
