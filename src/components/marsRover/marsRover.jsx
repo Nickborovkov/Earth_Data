@@ -23,6 +23,7 @@ const MarsRover = () => {
 
     useEffect(()=>{
         dispatch(getMarsRoverPhotos(rover, date, page))
+        window.scrollTo(0, 0)
     },[dispatch, rover, date, page])
 
     useEffect(()=>{

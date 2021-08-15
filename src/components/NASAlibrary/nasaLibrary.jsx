@@ -24,6 +24,7 @@ const NasaLibrary = () => {
 
     useEffect(()=>{
         dispatch(getSearchResult(currentSearch, mediaType, yearStart, yearEnd, page))
+        window.scrollTo(0, 0)
     },[dispatch, currentSearch, mediaType, yearStart, yearEnd, page])
 
     useEffect(()=>{
@@ -51,7 +52,10 @@ const NasaLibrary = () => {
                 <div className={s.imagesArray}>
                     {
                         result.map(r => <div className={s.imageHolder} key={result.indexOf(r)}>
-                            <img className={s.image} src={r.links[0].href} alt="Not available"/>
+                            <img className={s.image}
+                                 src={r.links[0].href}
+                                 alt="Not available"
+                                 loading={"lazy"}/>
                         </div>)
                     }
                 </div>
