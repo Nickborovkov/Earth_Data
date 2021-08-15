@@ -105,3 +105,23 @@
     font-size: 18px;
     color: tomato;
 }
+.roversHolder{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.roverButton{
+    display: block;
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+    background-color: cornflowerblue;
+    color: #ffffff;
+    border: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin: 5px;
+}

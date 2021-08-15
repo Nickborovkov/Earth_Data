@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
 import cn from "classnames";
@@ -15,56 +15,76 @@ const MarsRoverParams = () => {
 
     const dispatch= useDispatch()
     const error = useSelector(state => state.errors.error)
+
+    const [rover, setRover] = useState(`spirit`)
+
     const validationSchema = yup.object().shape({
         date: yup
             .string()
             .required(`Date required`),
-        rover: yup
-            .string()
-            .required(`Rover required`)
     })
 
     return (
         <div>
             <Formik
                 initialValues={{
-                    rover: ``,
                     date: ``
                 }}
                 validateOnBlur
                 onSubmit={ (values) => {
-                    dispatch(setMarsRoverParams(values.rover, values.date))
+                    if(rover === `spirit`){
+                        dispatch(setMarsRoverParams(`spirit`, values.date))
+                    }else if(rover === `opportunity`){
+                        dispatch(setMarsRoverParams(`opportunity`, values.date))
+                    }else if(rover === `curiosity`){
+                        dispatch(setMarsRoverParams(`curiosity`, values.date))
+                    }
+
                     dispatch(setNewError(null))
                 } }
                 validationSchema={validationSchema}
             >
                 { ({values, touched, errors, handleChange, handleBlur, handleSubmit, isValid, dirty}) => (
                     <form className={cn(s.form, m.form)}>
+
                         <h3 className={s.title}>Set rover and date parameters</h3>
+
+                        <div className={s.roversHolder}>
+                            <button className={s.roverButton} type='button'
+                                    onClick={ () => {setRover(`spirit`)} }>Spirit</button>
+                            <button className={s.roverButton} type='button'
+                                    onClick={ () => {setRover(`opportunity`)} }>Opportunity</button>
+                            <button className={s.roverButton} type='button'
+                                    onClick={ () => {setRover(`curiosity`)} }>Curiosity</button>
+                        </div>
+
+
                         <div className={s.inputsHolder}>
+
+
                             <div className={s.inputHolder}>
-                                <p className={s.formSubtitle}>Rover</p>
-                                <Field as='select'
-                                       name='rover'
-                                       className={s.inputSelect}>
-                                    <option className={s.option}
-                                            value="">Choose rover</option>
-                                    <option className={s.option}
-                                            value="spirit">Spirit</option>
-                                    <option className={s.option}
-                                            value="opportunity">Opportunity</option>
-                                    <option className={s.option}
-                                            value="curiosity">Curiosity</option>
-                                </Field>
-                                {touched.rover && errors.rover &&
-                                <div className={s.errors}><RiErrorWarningFill/>   {errors.rover}</div>}
+
+                                {rover === `spirit` && <div>
+                                    {formInputHelper(s.formSubtitle, `Date for Spirit`, touched.date, errors.date,
+                                        s.input, `date`, `date`, `2004-01-05`, `2010-03-14`, handleChange,
+                                        handleBlur, values.date)}
+                                </div>}
+                                {rover === `opportunity` && <div>
+                                    {formInputHelper(s.formSubtitle, `Date for Opportunity`, touched.date, errors.date,
+                                        s.input, `date`, `date`, `2004-01-26`, dateToday, handleChange,
+                                        handleBlur, values.date)}
+                                </div>}
+                                {rover === `curiosity` && <div>
+                                    {formInputHelper(s.formSubtitle, `Date for Curiosity`, touched.date, errors.date,
+                                        s.input, `date`, `date`, `2012-08-06`, dateToday, handleChange,
+                                        handleBlur, values.date)}
+                                </div>}
+
                             </div>
-                            {formInputHelper(s.formSubtitle, `Date`, touched.date, errors.date,
-                                s.input, `date`, `date`, null, dateToday, handleChange,
-                                handleBlur, values.date)}
+
                         </div>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
-                        {error && <h3 className={s.errorCase}>Not available, please change date or rover</h3>}
+                        {error && <h3 className={s.errorCase}>Not available, please change date</h3>}
                     </form>
                 ) }
             </Formik>
