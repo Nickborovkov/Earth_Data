@@ -4,11 +4,10 @@ import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
 import cn from "classnames";
 import * as yup from 'yup'
 import {useDispatch, useSelector} from "react-redux";
-import {Field, Formik} from "formik";
+import {Formik} from "formik";
 import {setMarsRoverParams} from "../../../reducers/marsRover";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
-import { RiErrorWarningFill } from 'react-icons/ri'
 import {setNewError} from "../../../reducers/errors";
 
 const MarsRoverParams = () => {
