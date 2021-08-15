@@ -19,6 +19,7 @@ const NasaLibrary = () => {
     const yearEnd = useSelector(state => state.library.yearEnd)
     const page = useSelector(state => state.library.page)
     const totalPages = useSelector(state => state.library.totalPages)
+    const error = useSelector(state => state.errors.error)
 
     useEffect(()=>{
         dispatch(getSearchResult(currentSearch, mediaType, yearStart, yearEnd, page))
@@ -28,35 +29,41 @@ const NasaLibrary = () => {
         dispatch(setSearchStart(false))
     },[dispatch])
 
-    if(!result) return <Preloader />
-
     return (
         <div className={s.nasaLibrary}>
             <h2 className={cn(s.title, m.title)}>NASA photo and Video library</h2>
 
-            {isFetching && <Preloader />}
-            {!isFetching &&
-            <div className={s.imagesArray}>
+            {!result && error &&
+            <div className={s.errorCase}>No results for this search</div>}
+
+            {!result && !error &&
+            <Preloader/>}
+
+            {result && !error &&
+            <div>
+                {isFetching && <Preloader />}
+                {!isFetching &&
+                <div className={s.imagesArray}>
                     {
                         result.map(r => <div className={s.imageHolder} key={result.indexOf(r)}>
                             <img className={s.image} src={r.links[0].href} alt="Not available"/>
                         </div>)
                     }
-            </div>
-            }
-            <div className={s.buttonsHolder}>
-                {
-                    page > 1 &&
-                    <MdNavigateBefore className={s.pageButton}
-                                    onClick={ () => {dispatch(prevPage())} }/>
+                </div>
                 }
-                {
-                    page !== totalPages &&
-                    <MdNavigateNext className={s.pageButton}
-                                onClick={ () => {dispatch(nextPage())} }/>
-                }
-            </div>
-
+                <div className={s.buttonsHolder}>
+                    {
+                        page > 1 &&
+                        <MdNavigateBefore className={s.pageButton}
+                                          onClick={ () => {dispatch(prevPage())} }/>
+                    }
+                    {
+                        page !== totalPages &&
+                        <MdNavigateNext className={s.pageButton}
+                                        onClick={ () => {dispatch(nextPage())} }/>
+                    }
+                </div>
+            </div>}
 
         </div>
     )
