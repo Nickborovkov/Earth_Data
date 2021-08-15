@@ -7,6 +7,7 @@ import {getEarthObservation} from "../../reducers/earth";
 import Preloader from "../../helpers/preloaders/preloader";
 import ParametersPicker from "./parametersPicker/parametersPicker";
 import {Redirect} from "react-router-dom";
+import {setNewError} from "../../reducers/errors";
 
 const Earth = () => {
 
@@ -22,11 +23,15 @@ const Earth = () => {
         dispatch(getEarthObservation(longitude, latitude))
     },[dispatch, longitude, latitude])
 
+    useEffect(()=>{
+       dispatch(setNewError(null))
+    },[dispatch])
+
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
     return (
         <div className={s.earth}>
-            <h2 className={cn(s.title, m.title)}>NASA Landsat Imagery</h2>
+            <h2 className={cn(s.title, m.title)}>NASA Landsat Satellite Imagery Data</h2>
             <ParametersPicker />
 
 

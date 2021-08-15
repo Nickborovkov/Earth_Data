@@ -9,6 +9,7 @@ import MarsRoverParams from "./parametersPicker/parametersPicker";
 import {Redirect} from "react-router-dom";
 import { MdNavigateBefore } from 'react-icons/md';
 import { MdNavigateNext } from 'react-icons/md';
+import {setNewError} from "../../reducers/errors";
 
 const MarsRover = () => {
 
@@ -24,6 +25,10 @@ const MarsRover = () => {
         dispatch(getMarsRoverPhotos(rover, date, page))
     },[dispatch, rover, date, page])
 
+    useEffect(()=>{
+        dispatch(setNewError(null))
+    },[dispatch])
+
     const [hints, setHints] = useState(false)
 
     if(searchStart) return <Redirect to='/nasaLibrary'/>
@@ -31,7 +36,6 @@ const MarsRover = () => {
     return (
         <div className={s.marsRover}>
            <h1 className={cn(s.title, m.title)}>Image Data Gathered By NASA's Rovers On Mars</h1>
-
             {hints &&
             <div className={cn(s.hintBody, m.hintBody)}>
                 <button className={s.hintButton}

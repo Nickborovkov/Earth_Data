@@ -7,6 +7,7 @@ import {getNeows} from "../../reducers/neows";
 import Preloader from "../../helpers/preloaders/preloader";
 import SetIntervalNEOWS from "./datePickers/SetIntervalNEOWS";
 import {Redirect} from "react-router-dom";
+import {setNewError} from "../../reducers/errors";
 
 const Neows = () => {
 
@@ -22,12 +23,17 @@ const Neows = () => {
         dispatch(getNeows(intervalDateStart, intervalDateEnd))
     }, [dispatch, intervalDateStart, intervalDateEnd])
 
+    useEffect(()=>{
+        dispatch(setNewError(null))
+    },[dispatch])
+
 
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
     return (
         <div className={s.neows}>
-            <h2 className={cn(s.title, m.title)}>Near Earth Object Web Service</h2>
+            <h2 className={cn(s.title, m.title)}>List of Asteroids based on their closest approach date to Earth</h2>
+
             <SetIntervalNEOWS />
 
             {neowsArray.length === 0 && !error &&

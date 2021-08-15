@@ -8,6 +8,7 @@ import Preloader from "../../helpers/preloaders/preloader";
 import SetDateEarthImage from "./datePicker/setDateEarthImage";
 import {Redirect} from "react-router-dom";
 import {earthImageUrlHelper} from "../../helpers/urlHelper/earthImageURLHelper";
+import {setNewError} from "../../reducers/errors";
 
 const EarthImage = () => {
 
@@ -21,7 +22,9 @@ const EarthImage = () => {
         dispatch(getEarthImage(SelectedDate))
     }, [dispatch, SelectedDate])
 
-
+    useEffect(()=>{
+        dispatch(setNewError(null))
+    },[dispatch])
 
     if(!earthImage) return <Preloader />
 
@@ -29,7 +32,7 @@ const EarthImage = () => {
 
     return (
         <div className={s.earthImage}>
-            <h2 className={cn(s.title, m.title)}>Earth Polychromatic Imaging Camera</h2>
+            <h2 className={cn(s.title, m.title)}>Earth Polychromatic Imaging Camera Photos</h2>
             <SetDateEarthImage />
 
             {!earthImage && !error &&

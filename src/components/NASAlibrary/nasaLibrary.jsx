@@ -7,6 +7,7 @@ import {getSearchResult, nextPage, prevPage, setSearchStart} from "../../reducer
 import Preloader from "../../helpers/preloaders/preloader";
 import { MdNavigateBefore } from 'react-icons/md';
 import { MdNavigateNext } from 'react-icons/md';
+import {setNewError} from "../../reducers/errors";
 
 const NasaLibrary = () => {
 
@@ -24,6 +25,10 @@ const NasaLibrary = () => {
     useEffect(()=>{
         dispatch(getSearchResult(currentSearch, mediaType, yearStart, yearEnd, page))
     },[dispatch, currentSearch, mediaType, yearStart, yearEnd, page])
+
+    useEffect(()=>{
+        dispatch(setNewError(null))
+    },[dispatch])
 
     useEffect(()=>{
         dispatch(setSearchStart(false))

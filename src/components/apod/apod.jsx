@@ -8,6 +8,7 @@ import Preloader from "../../helpers/preloaders/preloader";
 import SetDateAPOD from "./datePickers/setDateAPOD";
 import SetIntervalAPOD from "./datePickers/setIntervalAPOD";
 import {Redirect} from "react-router-dom";
+import {setNewError} from "../../reducers/errors";
 
 const Apod = () => {
 
@@ -33,11 +34,16 @@ const Apod = () => {
         }
     },[dispatch, datePickerType, intervalDateStart, intervalDateEnd])
 
+    useEffect(()=>{
+        dispatch(setNewError(null))
+    },[dispatch])
+
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
     return (
         <div className={s.apod}>
            <h2 className={cn(s.title, m.title)}>NASA Picture Of The Day</h2>
+            <p></p>
 
             <div>
                 {datePickerType === 0 &&
