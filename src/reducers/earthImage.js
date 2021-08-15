@@ -1,4 +1,5 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
+import {setNewError} from "./errors";
 
 const SET_EARTH_IMAGE = `NASA/earthImage/SET_EARTH_IMAGE`
 const SET_EARTH_IMAGE_DATE = `NASA/earthImage/SET_EARTH_IMAGE_DATE`
@@ -6,7 +7,7 @@ const SET_EARTH_IMAGE_DATE = `NASA/earthImage/SET_EARTH_IMAGE_DATE`
 
 const initialState = {
     earthImage: undefined,
-    //setting date when this date started to be collected, because today's date is not always available
+    //setting date when this api started, because today's date is not always available
     date: `2015-06-13`,
 }
 
@@ -43,9 +44,14 @@ export const setEarthImageDate = (date) =>
 export const getEarthImage = (date) => async dispatch => {
     try {
         const response = await nasaRequest.getEarthImage(date)
-        dispatch(setEarthImage(response.data))
-    }catch (err) {
-        alert(err)
+        if(response.data.length !== 0){
+            dispatch(setEarthImage(response.data))
+        }else {
+            dispatch(setNewError(`No images for this date`))
+        }
+
+    }catch (error) {
+        dispatch(setNewError(error))
     }
 
 }

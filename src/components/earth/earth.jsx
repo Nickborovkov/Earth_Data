@@ -26,7 +26,7 @@ const Earth = () => {
 
     return (
         <div className={s.earth}>
-            <h2 className={cn(s.title, m.title)}>Earth Polychromatic Imaging Camera</h2>
+            <h2 className={cn(s.title, m.title)}>NASA Landsat Imagery</h2>
             <ParametersPicker />
 
 
@@ -34,13 +34,11 @@ const Earth = () => {
             <Preloader/>}
 
             {earthObs && !error &&
-            <div className={s.apodList}>
-                <div className={cn(s.result, m.result)}>
-                    <p className={s.earthParams}>ID: {earthObs.id}</p>
-                    <p className={s.earthParams}>Date: {earthObs.date}</p>
-                    <div className={s.imageHolder}>
-                        <img className={s.image} src={earthObs.url} alt="earthObs"/>
-                    </div>
+            <div className={cn(s.result, m.result)}>
+                <p className={s.earthParams}>ID: {earthObs.id}</p>
+                <p className={s.earthParams}>Date: {earthObs.date}</p>
+                <div className={s.imageHolder}>
+                    <img className={s.image} src={earthObs.url} alt="earthObs"/>
                 </div>
             </div>
             }

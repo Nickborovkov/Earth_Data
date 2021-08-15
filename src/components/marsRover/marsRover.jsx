@@ -30,7 +30,7 @@ const MarsRover = () => {
 
     return (
         <div className={s.marsRover}>
-           <h1 className={cn(s.title, m.title)}>Look for photos that Mars rovers Spirit, Curiosity and Opportunity make</h1>
+           <h1 className={cn(s.title, m.title)}>Image Data Gathered By NASA's Rovers On Mars</h1>
 
             {hints &&
             <div className={cn(s.hintBody, m.hintBody)}>

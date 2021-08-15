@@ -37,7 +37,7 @@ const Apod = () => {
 
     return (
         <div className={s.apod}>
-           <h2 className={cn(s.title, m.title)}>NASA picture of the day</h2>
+           <h2 className={cn(s.title, m.title)}>NASA Picture Of The Day</h2>
 
             <div>
                 {datePickerType === 0 &&
