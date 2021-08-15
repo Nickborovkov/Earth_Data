@@ -8,6 +8,7 @@ import * as yup from 'yup'
 import {setCurrentSearch, setSearchStart} from "../../../reducers/nasaLibrary";
 import { BsSearch } from 'react-icons/bs';
 import {formButtonHelper} from "../../../helpers/formHelpers/formHelpers";
+import {setNewError} from "../../../reducers/errors";
 
 const SearchForm = () => {
 
@@ -29,6 +30,7 @@ const SearchForm = () => {
                 onSubmit={ (values) => {
                     dispatch(setCurrentSearch(values.search))
                     dispatch(setSearchStart(true))
+                    dispatch(setNewError(null))
                 } }
                 validationSchema={validationSchema}
             >
