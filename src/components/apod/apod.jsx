@@ -79,7 +79,7 @@ const Apod = () => {
                         </div>
                         <p className={cn(s.apodDate, m.apodDate)}>Date: {a.date}</p>
                         <p className={cn(s.apodExpTitle, m.apodExpTitle)}>Explanation</p>
-                        <p className={cn(s.apodExplanation, m.apodExplanation)}>{a.explanation}</p>
+                        <p className={cn(s.apodExplanation, m.apodExplanation)}>{a.explanation || `Not available`}</p>
                     </div>)
                 }
             </div>}
