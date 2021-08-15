@@ -1,25 +1,21 @@
-//TODO `add search queries`
-//TODO `restyle search results`
-//TODO `Add videos and audios in nasaLibrary after search`
+//TODO `add search queries+++`
+//TODO `restyle search results+++`
+//TODO `Add videos and audios in nasaLibrary after search+++`
 
-//TODO `in neows date show not correctly`
+//TODO `in neows date show not correctly---`
 
-//TODO `try to remove hashRouter with browserRouter`
+//TODO `try to remove hashRouter with browserRouter+++`
 
-//TODO `Preloader to photo while it's loading (Jesus...)`
+//TODO `Preloader to photo while it's loading (Jesus...)--- (maybe with promises)`
 
-//TODO `Errors handling`
-//TODO `Empty results handling`
+//TODO `Zooming photos (Modal icons for images)---`
 
-//TODO `mars Rover restyle form`
+//TODO `2 ways of showing result array (list or icons)+++`
 
-//TODO `Zooming photos`
+//TODO `Redirecting from nasaLibrary bug???`
 
-//TODO `2 ways of showing result array (list or icons)`
+//TODO `Optimisation (useMemo and other)+++`
 
-//TODO `Redirecting from nasaLibrary bug`
+//TODO `Separate components instead of map+++`
 
-//TODO `Optimisation (useMemo and other)`
-
-
-//TODO `text fix`
+//TODO `Lazy loading for images`
