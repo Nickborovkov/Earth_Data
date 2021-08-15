@@ -10,6 +10,7 @@ import {Redirect} from "react-router-dom";
 import { MdNavigateBefore } from 'react-icons/md';
 import { MdNavigateNext } from 'react-icons/md';
 import {setNewError} from "../../reducers/errors";
+import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
 
 const MarsRover = () => {
 
@@ -51,7 +52,10 @@ const MarsRover = () => {
                             <p className={s.params}>Camera name: {r.camera.full_name}</p>
                             <p className={s.params}>Earth date: {r.earth_date}</p>
                             <div className={s.imageHolder}>
-                                <img className={s.image} src={r.img_src} alt="roverPhoto"/>
+                                <img className={s.image}
+                                     src={r.img_src}
+                                     alt="roverPhoto"
+                                     onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                             </div>
 
                         </div>)

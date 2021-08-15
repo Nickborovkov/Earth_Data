@@ -8,6 +8,7 @@ import Preloader from "../../helpers/preloaders/preloader";
 import { MdNavigateBefore } from 'react-icons/md';
 import { MdNavigateNext } from 'react-icons/md';
 import {setNewError} from "../../reducers/errors";
+import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
 
 const NasaLibrary = () => {
 
@@ -54,8 +55,8 @@ const NasaLibrary = () => {
                         result.map(r => <div className={s.imageHolder} key={result.indexOf(r)}>
                             <img className={s.image}
                                  src={r.links[0].href}
-                                 alt="Not available"
-                                 loading={"lazy"}/>
+                                 alt="archivePhoto"
+                                 onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                         </div>)
                     }
                 </div>

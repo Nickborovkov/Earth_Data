@@ -8,6 +8,7 @@ import Preloader from "../../helpers/preloaders/preloader";
 import ParametersPicker from "./parametersPicker/parametersPicker";
 import {Redirect} from "react-router-dom";
 import {setNewError} from "../../reducers/errors";
+import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
 
 const Earth = () => {
 
@@ -43,7 +44,10 @@ const Earth = () => {
                 <p className={s.earthParams}>ID: {earthObs.id}</p>
                 <p className={s.earthParams}>Date: {earthObs.date}</p>
                 <div className={s.imageHolder}>
-                    <img className={s.image} src={earthObs.url} alt="earthObs"/>
+                    <img className={s.image}
+                         src={earthObs.url}
+                         alt="earthObs"
+                         onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                 </div>
             </div>
             }

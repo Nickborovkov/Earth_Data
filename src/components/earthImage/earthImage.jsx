@@ -9,6 +9,7 @@ import SetDateEarthImage from "./datePicker/setDateEarthImage";
 import {Redirect} from "react-router-dom";
 import {earthImageUrlHelper} from "../../helpers/urlHelper/earthImageURLHelper";
 import {setNewError} from "../../reducers/errors";
+import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
 
 const EarthImage = () => {
 
@@ -48,8 +49,10 @@ const EarthImage = () => {
                             <p className={s.params}>Longitude: {e.centroid_coordinates.lon}</p>
                         </div>
                         <div className={s.imageHolder}>
-                            <img className={s.image} src={earthImageUrlHelper(SelectedDate, e.image)}
-                                 alt="Not available, please change date"/>
+                            <img className={s.image}
+                                 src={earthImageUrlHelper(SelectedDate, e.image)}
+                                 alt="earthImage"
+                                 onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                         </div>
                     </div>)
                 }
