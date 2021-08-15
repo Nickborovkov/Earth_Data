@@ -9,11 +9,12 @@ import {setMarsRoverParams} from "../../../reducers/marsRover";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import { RiErrorWarningFill } from 'react-icons/ri'
+import {setNewError} from "../../../reducers/errors";
 
 const MarsRoverParams = () => {
 
     const dispatch= useDispatch()
-    const emptyPhotos = useSelector(state => state.marsRover.emptyPhotos)
+    const error = useSelector(state => state.errors.error)
     const validationSchema = yup.object().shape({
         date: yup
             .string()
@@ -33,6 +34,7 @@ const MarsRoverParams = () => {
                 validateOnBlur
                 onSubmit={ (values) => {
                     dispatch(setMarsRoverParams(values.rover, values.date))
+                    dispatch(setNewError(null))
                 } }
                 validationSchema={validationSchema}
             >
@@ -62,8 +64,7 @@ const MarsRoverParams = () => {
                                 handleBlur, values.date)}
                         </div>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
-
-                        {emptyPhotos && <div className={s.errorResponse}>Not available, please change rover or date</div>}
+                        {error && <h3 className={s.errorCase}>Not available, please change date or rover</h3>}
                     </form>
                 ) }
             </Formik>

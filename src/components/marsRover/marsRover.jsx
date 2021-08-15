@@ -18,14 +18,13 @@ const MarsRover = () => {
     const date = useSelector(state => state.marsRover.date)
     const page = useSelector(state => state.marsRover.page)
     const searchStart = useSelector(state => state.library.searchStart)
+    const error = useSelector(state => state.errors.error)
 
     useEffect(()=>{
         dispatch(getMarsRoverPhotos(rover, date, page))
     },[dispatch, rover, date, page])
 
     const [hints, setHints] = useState(false)
-
-    if(marsRoverPhotos.length === 0) return <Preloader />
 
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
@@ -61,34 +60,41 @@ const MarsRover = () => {
 
 
             <MarsRoverParams />
-            <div className={s.items}>
-                {
-                    marsRoverPhotos.map(r => <div className={cn(s.item, m.item)} key={r.id}>
-                        <p className={s.params}>Rover: {r.rover.name}</p>
-                        <p className={s.params}>Status: {r.rover.status}</p>
-                        <p className={s.params}>Camera name: {r.camera.full_name}</p>
-                        <p className={s.params}>Earth date: {r.earth_date}</p>
-                        <div className={s.imageHolder}>
-                            <img className={s.image} src={r.img_src} alt="roverPhoto"/>
-                        </div>
 
-                    </div>)
-                }
-            </div>
-            <div className={s.buttonsHolder}>
-                {
-                    page > 1 &&
+            {marsRoverPhotos.length === 0 && !error &&
+            <Preloader/>}
+
+            {marsRoverPhotos.length !== 0 && !error &&
+            <div>
+                <div className={s.items}>
+                    {
+                        marsRoverPhotos.map(r => <div className={cn(s.item, m.item)} key={r.id}>
+                            <p className={s.params}>Rover: {r.rover.name}</p>
+                            <p className={s.params}>Status: {r.rover.status}</p>
+                            <p className={s.params}>Camera name: {r.camera.full_name}</p>
+                            <p className={s.params}>Earth date: {r.earth_date}</p>
+                            <div className={s.imageHolder}>
+                                <img className={s.image} src={r.img_src} alt="roverPhoto"/>
+                            </div>
+
+                        </div>)
+                    }
+                </div>
+                <div className={s.buttonsHolder}>
+                    {
+                        page > 1 &&
+                        <button className={s.pageButton}
+                                onClick={ () => {dispatch(roverPrevPage())} }>
+                            <MdNavigateBefore/>
+                        </button>
+                    }
+
                     <button className={s.pageButton}
-                            onClick={ () => {dispatch(roverPrevPage())} }>
-                        <MdNavigateBefore/>
+                            onClick={ () => {dispatch(roverNextPage())} }>
+                        <MdNavigateNext />
                     </button>
-                }
-
-                <button className={s.pageButton}
-                        onClick={ () => {dispatch(roverNextPage())} }>
-                    <MdNavigateNext />
-                </button>
-            </div>
+                </div>
+            </div>}
         </div>
     )
 }
