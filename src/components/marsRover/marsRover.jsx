@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import s from './marsRover.module.css'
 import m from './marsRoverMedia.module.css'
 import cn from 'classnames'
@@ -12,9 +12,9 @@ import { MdNavigateNext } from 'react-icons/md';
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
 import LazyLoad from 'react-lazyload'
+import ModalWindow from "../../helpers/modalWindow/modalWindow";
 
 const MarsRover = () => {
-
     const dispatch = useDispatch()
     const marsRoverPhotos = useSelector(state => state.marsRover.marsRoverPhotos)
     const rover = useSelector(state => state.marsRover.rover)
@@ -22,6 +22,9 @@ const MarsRover = () => {
     const page = useSelector(state => state.marsRover.page)
     const searchStart = useSelector(state => state.library.searchStart)
     const error = useSelector(state => state.errors.error)
+
+    const [modalWindow, setModalWindow] = useState(false)
+    const [modalSrc, setmodalSrc] = useState(``)
 
     useEffect(()=>{
         dispatch(getMarsRoverPhotos(rover, date, page))
@@ -31,6 +34,7 @@ const MarsRover = () => {
     useEffect(()=>{
         dispatch(setNewError(null))
     },[dispatch])
+
 
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
@@ -48,7 +52,7 @@ const MarsRover = () => {
                 <div className={s.items}>
                     {
                         marsRoverPhotos.map(r => <div className={cn(s.item, m.item)} key={r.id}>
-                            <LazyLoad>
+                            <LazyLoad height={300}>
                                 <div>
                                     <p className={s.params}>Rover: {r.rover.name}</p>
                                     <p className={s.params}>Status: {r.rover.status}</p>
@@ -58,10 +62,20 @@ const MarsRover = () => {
                                         <img className={s.image}
                                              src={r.img_src}
                                              alt="roverPhoto"
+                                             onClick={ (e) => {
+                                                 setModalWindow(true)
+                                                 setmodalSrc(e.currentTarget.src)
+
+                                             } }
                                              onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                                     </div>
                                 </div>
                             </LazyLoad>
+
+                            <ModalWindow active={modalWindow}
+                                         setActive={setModalWindow}
+                                         src={modalSrc}/>
+
                         </div>)
                     }
                 </div>

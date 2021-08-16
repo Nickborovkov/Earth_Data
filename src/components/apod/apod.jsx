@@ -11,6 +11,7 @@ import {Redirect} from "react-router-dom";
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from '../../images/imagePlaceholder.jpg'
 import Lazyload from 'react-lazyload'
+import ModalWindow from "../../helpers/modalWindow/modalWindow";
 
 const Apod = () => {
 
@@ -23,6 +24,8 @@ const Apod = () => {
     const error = useSelector(state => state.errors.error)
 
     const [datePickerType, setDatePickerType] = useState(0)
+    const [modalWindow, setModalWindow] = useState(false)
+    const [modalSrc, setModalSrc] = useState(``)
 
     useEffect(()=>{
         if(datePickerType === 0){
@@ -39,6 +42,7 @@ const Apod = () => {
     useEffect(()=>{
         dispatch(setNewError(null))
     },[dispatch])
+
 
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
@@ -71,13 +75,17 @@ const Apod = () => {
             <div className={s.apodList}>
                 {
                     apodArray.map(a => <div className={cn(s.apodItem, m.apodItem)} key={a.date}>
-                        <Lazyload height={100}>
+                        <Lazyload height={300}>
                             <div>
                                 <h3 className={cn(s.apodTitle, m.apodTitle)}>{a.title}</h3>
                                 <div className={s.apodImageHolder}>
                                     <img className={s.apodImage}
                                          src={a.url}
                                          alt="apod"
+                                         onClick={ (e) => {
+                                             setModalSrc(e.currentTarget.src)
+                                             setModalWindow(true)
+                                         } }
                                          onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                                 </div>
                                 <p className={cn(s.apodDate, m.apodDate)}>Date: {a.date}</p>
@@ -86,6 +94,10 @@ const Apod = () => {
                                     {a.explanation || `Explanation not available`}</p>
                             </div>
                         </Lazyload>
+
+                        <ModalWindow active={modalWindow}
+                                     setActive={setModalWindow}
+                                     src={modalSrc}/>
 
                     </div>)
                 }

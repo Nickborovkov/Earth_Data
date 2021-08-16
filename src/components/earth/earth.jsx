@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import s from './earth.module.css'
 import m from './earthMedia.module.css'
 import cn from 'classnames'
@@ -9,6 +9,7 @@ import ParametersPicker from "./parametersPicker/parametersPicker";
 import {Redirect} from "react-router-dom";
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
+import ModalWindow from "../../helpers/modalWindow/modalWindow";
 
 const Earth = () => {
 
@@ -19,6 +20,7 @@ const Earth = () => {
     const searchStart = useSelector(state => state.library.searchStart)
     const error = useSelector(state => state.errors.error)
 
+    const [modalWindow, setModalWindow] = useState(false)
 
     useEffect(()=>{
         dispatch(getEarthObservation(longitude, latitude))
@@ -27,6 +29,7 @@ const Earth = () => {
     useEffect(()=>{
        dispatch(setNewError(null))
     },[dispatch])
+
 
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
@@ -47,8 +50,14 @@ const Earth = () => {
                     <img className={s.image}
                          src={earthObs.url}
                          alt="earthObs"
+                         onClick={ () => { setModalWindow(true) } }
                          onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                 </div>
+
+                <ModalWindow active={modalWindow}
+                             setActive={setModalWindow}
+                             src={earthObs.url}/>
+
             </div>
             }
         </div>

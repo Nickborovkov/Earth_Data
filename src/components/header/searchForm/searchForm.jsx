@@ -1,8 +1,8 @@
-import React, {useEffect} from "react";
+import React from "react";
 import s from '../header.module.css'
 import m from '../headerMedia.module.css'
 import cn from 'classnames'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {setCurrentSearch, setSearchStart} from "../../../reducers/nasaLibrary";

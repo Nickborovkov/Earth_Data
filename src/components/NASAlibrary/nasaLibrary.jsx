@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import s from './nasaLibrary.module.css'
 import m from './nasaLibraryMedia.module.css'
 import cn from 'classnames'
@@ -10,6 +10,7 @@ import { MdNavigateNext } from 'react-icons/md';
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
 import LazyLoad from 'react-lazyload'
+import ModalWindow from "../../helpers/modalWindow/modalWindow";
 
 const NasaLibrary = () => {
 
@@ -25,6 +26,9 @@ const NasaLibrary = () => {
     const error = useSelector(state => state.errors.error)
     const searchStart = useSelector(state => state.library.searchStart)
 
+    const [modalWindow, setModalWindow] = useState(false)
+    const [modalSrc, setModalSrc] = useState(``)
+
     useEffect(()=>{
         dispatch(getSearchResult(currentSearch, mediaType, yearStart, yearEnd, page))
         window.scrollTo(0, 0)
@@ -37,6 +41,7 @@ const NasaLibrary = () => {
     useEffect(()=>{
         dispatch(setSearchStart(false))
     },[dispatch, searchStart])
+
 
     return (
         <div className={s.nasaLibrary}>
@@ -55,12 +60,21 @@ const NasaLibrary = () => {
                 <div className={s.imagesArray}>
                     {
                         result.map(r => <div className={s.imageHolder} key={result.indexOf(r)}>
-                            <LazyLoad height={100}>
+                            <LazyLoad height={300}>
                                 <img className={s.image}
                                      src={r.links[0].href}
                                      alt="archivePhoto"
+                                     onClick={ (e) => {
+                                         setModalSrc(e.currentTarget.src)
+                                         setModalWindow(true)
+                                     } }
                                      onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                             </LazyLoad>
+
+                            <ModalWindow active={modalWindow}
+                                         setActive={setModalWindow}
+                                         src={modalSrc}/>
+
                         </div>)
                     }
                 </div>
