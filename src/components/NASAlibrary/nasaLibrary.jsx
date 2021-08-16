@@ -9,6 +9,7 @@ import { MdNavigateBefore } from 'react-icons/md';
 import { MdNavigateNext } from 'react-icons/md';
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
+import LazyLoad from 'react-lazyload'
 
 const NasaLibrary = () => {
 
@@ -22,6 +23,7 @@ const NasaLibrary = () => {
     const page = useSelector(state => state.library.page)
     const totalPages = useSelector(state => state.library.totalPages)
     const error = useSelector(state => state.errors.error)
+    const searchStart = useSelector(state => state.library.searchStart)
 
     useEffect(()=>{
         dispatch(getSearchResult(currentSearch, mediaType, yearStart, yearEnd, page))
@@ -34,7 +36,7 @@ const NasaLibrary = () => {
 
     useEffect(()=>{
         dispatch(setSearchStart(false))
-    },[dispatch])
+    },[dispatch, searchStart])
 
     return (
         <div className={s.nasaLibrary}>
@@ -53,10 +55,12 @@ const NasaLibrary = () => {
                 <div className={s.imagesArray}>
                     {
                         result.map(r => <div className={s.imageHolder} key={result.indexOf(r)}>
-                            <img className={s.image}
-                                 src={r.links[0].href}
-                                 alt="archivePhoto"
-                                 onError={ (e) => {e.target.src = imagePlaceHolder}}/>
+                            <LazyLoad height={100}>
+                                <img className={s.image}
+                                     src={r.links[0].href}
+                                     alt="archivePhoto"
+                                     onError={ (e) => {e.target.src = imagePlaceHolder}}/>
+                            </LazyLoad>
                         </div>)
                     }
                 </div>

@@ -10,6 +10,7 @@ import SetIntervalAPOD from "./datePickers/setIntervalAPOD";
 import {Redirect} from "react-router-dom";
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from '../../images/imagePlaceholder.jpg'
+import Lazyload from 'react-lazyload'
 
 const Apod = () => {
 
@@ -70,16 +71,22 @@ const Apod = () => {
             <div className={s.apodList}>
                 {
                     apodArray.map(a => <div className={cn(s.apodItem, m.apodItem)} key={a.date}>
-                        <h3 className={cn(s.apodTitle, m.apodTitle)}>{a.title}</h3>
-                        <div className={s.apodImageHolder}>
-                            <img className={s.apodImage}
-                                 src={a.url}
-                                 alt="apod"
-                                 onError={ (e) => {e.target.src = imagePlaceHolder}}/>
-                        </div>
-                        <p className={cn(s.apodDate, m.apodDate)}>Date: {a.date}</p>
-                        <p className={cn(s.apodExpTitle, m.apodExpTitle)}>Explanation</p>
-                        <p className={cn(s.apodExplanation, m.apodExplanation)}>{a.explanation || `Not available`}</p>
+                        <Lazyload height={100}>
+                            <div>
+                                <h3 className={cn(s.apodTitle, m.apodTitle)}>{a.title}</h3>
+                                <div className={s.apodImageHolder}>
+                                    <img className={s.apodImage}
+                                         src={a.url}
+                                         alt="apod"
+                                         onError={ (e) => {e.target.src = imagePlaceHolder}}/>
+                                </div>
+                                <p className={cn(s.apodDate, m.apodDate)}>Date: {a.date}</p>
+                                <p className={cn(s.apodExpTitle, m.apodExpTitle)}>Explanation</p>
+                                <p className={cn(s.apodExplanation, m.apodExplanation)}>
+                                    {a.explanation || `Explanation not available`}</p>
+                            </div>
+                        </Lazyload>
+
                     </div>)
                 }
             </div>}

@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useEffect} from "react";
 import s from '../header.module.css'
 import m from '../headerMedia.module.css'
 import cn from 'classnames'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {setCurrentSearch, setSearchStart} from "../../../reducers/nasaLibrary";
 import { BsSearch } from 'react-icons/bs';
 import {formButtonHelper} from "../../../helpers/formHelpers/formHelpers";
 import {setNewError} from "../../../reducers/errors";
+
 
 const SearchForm = () => {
 
@@ -19,6 +20,7 @@ const SearchForm = () => {
             .string()
             .matches(regexp, `Only english letters and digits`)
     })
+
 
     return (
         <div>
@@ -44,7 +46,8 @@ const SearchForm = () => {
                                onChange={handleChange}
                                onBlur={handleBlur}
                                placeholder='Search in NASA archive'
-                               onClick={handleReset}/>
+                               onClick={handleReset}
+                               inputMode='search'/>
                         {formButtonHelper(cn(s.searchButton, m.searchButton), isValid, dirty,
                             handleSubmit, <BsSearch/>)}
                         {touched.search && errors.search &&

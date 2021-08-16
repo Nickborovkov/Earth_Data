@@ -10,6 +10,7 @@ import {Redirect} from "react-router-dom";
 import {earthImageUrlHelper} from "../../helpers/urlHelper/earthImageURLHelper";
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
+import Lazyload from 'react-lazyload'
 
 const EarthImage = () => {
 
@@ -43,17 +44,22 @@ const EarthImage = () => {
             <div className={s.imagesArray}>
                 {
                     earthImage.map(e => <div key={e.identifier} className={cn(s.imagesItem, m.imagesItem)}>
-                        <div>
-                            <h3 className={s.imageDate}>Date: {e.date}</h3>
-                            <p className={s.params}>Latitude: {e.centroid_coordinates.lat}</p>
-                            <p className={s.params}>Longitude: {e.centroid_coordinates.lon}</p>
-                        </div>
-                        <div className={s.imageHolder}>
-                            <img className={s.image}
-                                 src={earthImageUrlHelper(SelectedDate, e.image)}
-                                 alt="earthImage"
-                                 onError={ (e) => {e.target.src = imagePlaceHolder}}/>
-                        </div>
+                        <Lazyload height={100}>
+                            <div>
+                                <div>
+                                    <h3 className={s.imageDate}>Date: {e.date}</h3>
+                                    <p className={s.params}>Latitude: {e.centroid_coordinates.lat}</p>
+                                    <p className={s.params}>Longitude: {e.centroid_coordinates.lon}</p>
+                                </div>
+                                <div className={s.imageHolder}>
+                                    <img className={s.image}
+                                         src={earthImageUrlHelper(SelectedDate, e.image)}
+                                         alt="earthImage"
+                                         onError={ (e) => {e.target.src = imagePlaceHolder}}/>
+                                </div>
+                            </div>
+                        </Lazyload>
+
                     </div>)
                 }
             </div>}

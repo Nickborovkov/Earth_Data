@@ -11,6 +11,7 @@ import { MdNavigateBefore } from 'react-icons/md';
 import { MdNavigateNext } from 'react-icons/md';
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
+import LazyLoad from 'react-lazyload'
 
 const MarsRover = () => {
 
@@ -47,17 +48,20 @@ const MarsRover = () => {
                 <div className={s.items}>
                     {
                         marsRoverPhotos.map(r => <div className={cn(s.item, m.item)} key={r.id}>
-                            <p className={s.params}>Rover: {r.rover.name}</p>
-                            <p className={s.params}>Status: {r.rover.status}</p>
-                            <p className={s.params}>Camera name: {r.camera.full_name}</p>
-                            <p className={s.params}>Earth date: {r.earth_date}</p>
-                            <div className={s.imageHolder}>
-                                <img className={s.image}
-                                     src={r.img_src}
-                                     alt="roverPhoto"
-                                     onError={ (e) => {e.target.src = imagePlaceHolder}}/>
-                            </div>
-
+                            <LazyLoad>
+                                <div>
+                                    <p className={s.params}>Rover: {r.rover.name}</p>
+                                    <p className={s.params}>Status: {r.rover.status}</p>
+                                    <p className={s.params}>Camera name: {r.camera.full_name}</p>
+                                    <p className={s.params}>Earth date: {r.earth_date}</p>
+                                    <div className={s.imageHolder}>
+                                        <img className={s.image}
+                                             src={r.img_src}
+                                             alt="roverPhoto"
+                                             onError={ (e) => {e.target.src = imagePlaceHolder}}/>
+                                    </div>
+                                </div>
+                            </LazyLoad>
                         </div>)
                     }
                 </div>

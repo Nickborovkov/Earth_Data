@@ -8,6 +8,7 @@ import Preloader from "../../helpers/preloaders/preloader";
 import SetIntervalNEOWS from "./datePickers/SetIntervalNEOWS";
 import {Redirect} from "react-router-dom";
 import {setNewError} from "../../reducers/errors";
+import Lazyload from 'react-lazyload'
 
 const Neows = () => {
 
@@ -47,22 +48,27 @@ const Neows = () => {
                         <div className={s.asteroidsArray}>
                             {
                                 neowsArray[key].map(v => <div className={s.asteroid} key={v.id}>
-                                    <p className={s.name}>Asteroid name: {v.name}</p>
-                                    <div className={s.diam}>
-                                        <p className={s.diameter}>Diameter:</p>
-                                        <p className={s.diameterEpx}>From {v.estimated_diameter.meters.estimated_diameter_min.toFixed(2)} meters</p>
-                                        <p className={s.diameterEpx}>To {v.estimated_diameter.meters.estimated_diameter_max.toFixed(2)} meters</p>
-                                    </div>
-                                    <div>
-                                        <p className={s.danger}>
-                                            Potentially hazardous? -
-                                            {
-                                                !v.is_potentially_hazardous_asteroid
-                                                    ? <span> No</span>
-                                                    : <span className={s.hazardExp}> Yes</span>
-                                            }
-                                        </p>
-                                    </div>
+                                    <Lazyload>
+                                        <div>
+                                            <p className={s.name}>Asteroid name: {v.name}</p>
+                                            <div className={s.diam}>
+                                                <p className={s.diameter}>Diameter:</p>
+                                                <p className={s.diameterEpx}>From {v.estimated_diameter.meters.estimated_diameter_min.toFixed(2)} meters</p>
+                                                <p className={s.diameterEpx}>To {v.estimated_diameter.meters.estimated_diameter_max.toFixed(2)} meters</p>
+                                            </div>
+                                            <div>
+                                                <p className={s.danger}>
+                                                    Potentially hazardous? -
+                                                    {
+                                                        !v.is_potentially_hazardous_asteroid
+                                                            ? <span> No</span>
+                                                            : <span className={s.hazardExp}> Yes</span>
+                                                    }
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </Lazyload>
+
                                 </div>)
                             }
                         </div>

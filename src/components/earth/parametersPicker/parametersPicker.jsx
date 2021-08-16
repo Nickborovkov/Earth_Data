@@ -52,11 +52,11 @@ const ParametersPicker = () => {
                         <div className={s.inputsHolder}>
                             {formInputHelper(s.formSubtitle, `Longitude`, touched.longitude,
                                 errors.longitude, s.input, `text`, `longitude`, null, null, handleChange,
-                                handleBlur, values.longitude)}
+                                handleBlur, values.longitude, `numeric`)}
 
                             {formInputHelper(s.formSubtitle, `Latitude`, touched.latitude,
                                 errors.latitude, s.input, `text`, `latitude`, null, null, handleChange,
-                                handleBlur, values.latitude)}
+                                handleBlur, values.latitude, `numeric`)}
 
                         </div>
 
