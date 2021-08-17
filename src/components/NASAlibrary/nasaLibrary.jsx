@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import s from './nasaLibrary.module.css'
 import m from './nasaLibraryMedia.module.css'
+import common from '../../helpers/commonStyles/commonStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getSearchResult, nextPage, prevPage, setSearchStart} from "../../reducers/nasaLibrary";
@@ -65,18 +66,21 @@ const NasaLibrary = () => {
                                      src={r.links[0].href}
                                      alt="archivePhoto"
                                      onClick={ (e) => {
-                                         setModalSrc(e.currentTarget.src)
                                          setModalWindow(true)
-                                     } }
+                                         setModalSrc(e.currentTarget.src)
+                                     }}
                                      onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                             </LazyLoad>
-
-                            <ModalWindow active={modalWindow}
-                                         setActive={setModalWindow}
-                                         src={modalSrc}/>
-
                         </div>)
                     }
+
+                    {modalWindow &&
+                    <ModalWindow active={modalWindow} setActive={setModalWindow}>
+                        <img className={cn(common.modalImage)}
+                             src={modalSrc}
+                             alt="modal"/>
+                    </ModalWindow>}
+
                 </div>
                 }
                 <div className={s.buttonsHolder}>

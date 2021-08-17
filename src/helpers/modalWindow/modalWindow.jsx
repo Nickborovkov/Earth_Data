@@ -2,13 +2,13 @@ import React from "react";
 import s from "./modalWindow.module.css"
 import cn from 'classnames'
 
-const ModalWindow = ({active, setActive, src}) => {
+const ModalWindow = ({active, setActive, children}) => {
     return (
-        <div className={cn(s.modalBody, active && s.modalBody_active)}
-             onClick={ () => {setActive(false)} }>
-            <div className={s.modalContent}
+        <div className={cn(s.modalBody, active && s.activeBody)}
+             onClick={ () => { setActive(false) } }>
+            <div className={cn(s.modalContent, active && s.activeContent)}
                  onClick={ (e) => {e.stopPropagation()} }>
-                <img className={s.modalImage} src={src} alt="modalItem"/>
+                {children}
             </div>
         </div>
     )

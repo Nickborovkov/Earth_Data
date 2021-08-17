@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import s from './apod.module.css'
 import m from './apodMedia.module.css'
+import common from '../../helpers/commonStyles/commonStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getApod, getApodWithInterval} from "../../reducers/apod";
@@ -49,7 +50,6 @@ const Apod = () => {
     return (
         <div className={s.apod}>
            <h2 className={cn(s.title, m.title)}>NASA Picture Of The Day</h2>
-            <p></p>
 
             <div>
                 {datePickerType === 0 &&
@@ -83,9 +83,9 @@ const Apod = () => {
                                          src={a.url}
                                          alt="apod"
                                          onClick={ (e) => {
-                                             setModalSrc(e.currentTarget.src)
                                              setModalWindow(true)
-                                         } }
+                                             setModalSrc(e.currentTarget.src)
+                                         }}
                                          onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                                 </div>
                                 <p className={cn(s.apodDate, m.apodDate)}>Date: {a.date}</p>
@@ -94,13 +94,16 @@ const Apod = () => {
                                     {a.explanation || `Explanation not available`}</p>
                             </div>
                         </Lazyload>
-
-                        <ModalWindow active={modalWindow}
-                                     setActive={setModalWindow}
-                                     src={modalSrc}/>
-
                     </div>)
                 }
+
+                {modalWindow &&
+                <ModalWindow active={modalWindow} setActive={setModalWindow}>
+                    <img className={cn(common.modalImage)}
+                         src={modalSrc}
+                         alt="modal"/>
+                </ModalWindow>}
+
             </div>}
 
         </div>

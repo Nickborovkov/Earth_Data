@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import s from './earth.module.css'
 import m from './earthMedia.module.css'
+import common from '../../helpers/commonStyles/commonStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getEarthObservation} from "../../reducers/earth";
@@ -21,6 +22,7 @@ const Earth = () => {
     const error = useSelector(state => state.errors.error)
 
     const [modalWindow, setModalWindow] = useState(false)
+    const [modalSrc, setModalSrc] = useState(``)
 
     useEffect(()=>{
         dispatch(getEarthObservation(longitude, latitude))
@@ -50,16 +52,22 @@ const Earth = () => {
                     <img className={s.image}
                          src={earthObs.url}
                          alt="earthObs"
-                         onClick={ () => { setModalWindow(true) } }
+                         onClick={ (e) => {
+                             setModalWindow(true)
+                             setModalSrc(e.currentTarget.src)
+                         }}
                          onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                 </div>
-
-                <ModalWindow active={modalWindow}
-                             setActive={setModalWindow}
-                             src={earthObs.url}/>
-
             </div>
             }
+
+            {modalWindow &&
+            <ModalWindow active={modalWindow} setActive={setModalWindow}>
+                <img className={cn(common.modalImage)}
+                     src={modalSrc}
+                     alt="modal"/>
+            </ModalWindow>}
+
         </div>
     )
 }

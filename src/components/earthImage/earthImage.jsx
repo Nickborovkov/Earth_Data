@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import s from './earthImage.module.css'
 import m from './earthImageMedia.module.css'
+import common from '../../helpers/commonStyles/commonStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getEarthImage} from "../../reducers/earthImage";
@@ -58,20 +59,23 @@ const EarthImage = () => {
                                          src={earthImageUrlHelper(SelectedDate, e.image)}
                                          alt="earthImage"
                                          onClick={ (e) => {
-                                             setModalSrc(e.currentTarget.src)
                                              setModalWindow(true)
-                                         } }
+                                             setModalSrc(e.currentTarget.src)
+                                         }}
                                          onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                                 </div>
                             </div>
                         </Lazyload>
-
-                        <ModalWindow active={modalWindow}
-                                     setActive={setModalWindow}
-                                     src={modalSrc}/>
-
                     </div>)
                 }
+
+                {modalWindow &&
+                <ModalWindow active={modalWindow} setActive={setModalWindow}>
+                    <img className={cn(common.modalImage)}
+                         src={modalSrc}
+                         alt="modal"/>
+                </ModalWindow>}
+
             </div>}
         </div>
     )

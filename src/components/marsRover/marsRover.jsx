@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import s from './marsRover.module.css'
 import m from './marsRoverMedia.module.css'
+import common from '../../helpers/commonStyles/commonStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getMarsRoverPhotos, roverNextPage, roverPrevPage} from "../../reducers/marsRover";
@@ -24,7 +25,7 @@ const MarsRover = () => {
     const error = useSelector(state => state.errors.error)
 
     const [modalWindow, setModalWindow] = useState(false)
-    const [modalSrc, setmodalSrc] = useState(``)
+    const [modalSrc, setModalSrc] = useState(``)
 
     useEffect(()=>{
         dispatch(getMarsRoverPhotos(rover, date, page))
@@ -64,20 +65,25 @@ const MarsRover = () => {
                                              alt="roverPhoto"
                                              onClick={ (e) => {
                                                  setModalWindow(true)
-                                                 setmodalSrc(e.currentTarget.src)
-
-                                             } }
+                                                 setModalSrc(e.currentTarget.src)
+                                             }}
                                              onError={ (e) => {e.target.src = imagePlaceHolder}}/>
                                     </div>
                                 </div>
                             </LazyLoad>
 
-                            <ModalWindow active={modalWindow}
-                                         setActive={setModalWindow}
-                                         src={modalSrc}/>
+
 
                         </div>)
                     }
+
+                    {modalWindow &&
+                    <ModalWindow active={modalWindow} setActive={setModalWindow}>
+                        <img className={cn(common.modalImage)}
+                             src={modalSrc}
+                             alt="modal"/>
+                    </ModalWindow>}
+
                 </div>
                 <div className={s.buttonsHolder}>
                     {
