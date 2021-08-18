@@ -2,8 +2,8 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from 'redux-thunk'
 import apodReducer from "./apod";
 import neowsReducer from "./neows";
-import earthReducer from "./earth";
-import earthImageReducer from "./earthImage";
+import earthObsReducer from "./earthObs";
+import earthEpicReducer from "./earthEpic";
 import marsRoverReducer from "./marsRover";
 import nasaLibraryReducer from "./nasaLibrary";
 import errorsReducer from "./errors";
@@ -11,8 +11,8 @@ import errorsReducer from "./errors";
 const reducers = combineReducers({
     apod: apodReducer,
     neows: neowsReducer,
-    earth: earthReducer,
-    earthImage: earthImageReducer,
+    earth: earthObsReducer,
+    earthImage: earthEpicReducer,
     marsRover: marsRoverReducer,
     library: nasaLibraryReducer,
     errors: errorsReducer,

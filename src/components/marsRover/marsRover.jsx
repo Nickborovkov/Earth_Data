@@ -6,7 +6,7 @@ import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getMarsRoverPhotos, roverNextPage, roverPrevPage} from "../../reducers/marsRover";
 import Preloader from "../../helpers/preloaders/preloader";
-import MarsRoverParams from "./parametersPicker/parametersPicker";
+import ParamsPickerROVER from "./paramsPickerROVER/paramsPickerROVER";
 import {Redirect} from "react-router-dom";
 import { MdNavigateBefore } from 'react-icons/md';
 import { MdNavigateNext } from 'react-icons/md';
@@ -43,7 +43,7 @@ const MarsRover = () => {
         <div className={s.marsRover}>
            <h1 className={cn(s.title, m.title)}>Image Data Gathered By NASA's Rovers On Mars</h1>
 
-            <MarsRoverParams />
+            <ParamsPickerROVER />
 
             {marsRoverPhotos.length === 0 && !error &&
             <Preloader/>}

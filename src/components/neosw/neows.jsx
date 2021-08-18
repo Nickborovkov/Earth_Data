@@ -5,7 +5,7 @@ import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getNeows} from "../../reducers/neows";
 import Preloader from "../../helpers/preloaders/preloader";
-import SetIntervalNEOWS from "./datePickers/SetIntervalNEOWS";
+import DatePickerNEOWS from "./datePickerNEOWS/datePickerNEOWS";
 import {Redirect} from "react-router-dom";
 import {setNewError} from "../../reducers/errors";
 import Lazyload from 'react-lazyload'
@@ -35,7 +35,7 @@ const Neows = () => {
         <div className={s.neows}>
             <h2 className={cn(s.title, m.title)}>List of Asteroids based on their closest approach date to Earth</h2>
 
-            <SetIntervalNEOWS />
+            <DatePickerNEOWS />
 
             {neowsArray.length === 0 && !error &&
             <Preloader/>}

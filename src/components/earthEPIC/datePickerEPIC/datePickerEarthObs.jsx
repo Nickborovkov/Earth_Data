@@ -5,12 +5,12 @@ import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import * as yup from 'yup'
 import {Formik} from "formik";
-import {setEarthImageDate} from "../../../reducers/earthImage";
+import {setEarthImageDate} from "../../../reducers/earthEpic";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import {setNewError} from "../../../reducers/errors";
 
-const SetDateEarthImage = () => {
+const DatePickerEarthObs = () => {
 
     const dispatch = useDispatch()
     const error = useSelector(state => state.errors.error)
@@ -50,4 +50,4 @@ const SetDateEarthImage = () => {
     )
 }
 
-export default SetDateEarthImage
+export default DatePickerEarthObs

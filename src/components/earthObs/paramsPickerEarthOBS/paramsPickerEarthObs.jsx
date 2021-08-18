@@ -5,14 +5,14 @@ import cn from 'classnames'
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch, useSelector} from "react-redux";
-import {setParameters} from "../../../reducers/earth";
+import {setParameters} from "../../../reducers/earthObs";
 import {
     formButtonHelper,
     formInputHelper
 } from "../../../helpers/formHelpers/formHelpers";
 import {setNewError} from "../../../reducers/errors";
 
-const ParametersPicker = () => {
+const ParamsPickerEarthObs = () => {
 
     const dispatch = useDispatch()
     const error = useSelector(state => state.errors.error)
@@ -69,4 +69,4 @@ const ParametersPicker = () => {
         )
 }
 
-export default ParametersPicker
+export default ParamsPickerEarthObs

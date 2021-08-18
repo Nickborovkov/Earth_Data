@@ -11,7 +11,7 @@ import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import {setNewError} from "../../../reducers/errors";
 
 
-const SetIntervalNEOWS = () => {
+const DatePickerNEOWS = () => {
 
     const dispatch = useDispatch()
     const error = useSelector(state => state.errors.error)
@@ -63,4 +63,4 @@ const SetIntervalNEOWS = () => {
     )
 }
 
-export default SetIntervalNEOWS
+export default DatePickerNEOWS

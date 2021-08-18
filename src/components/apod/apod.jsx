@@ -6,8 +6,8 @@ import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getApod, getApodWithInterval} from "../../reducers/apod";
 import Preloader from "../../helpers/preloaders/preloader";
-import SetDateAPOD from "./datePickers/setDateAPOD";
-import SetIntervalAPOD from "./datePickers/setIntervalAPOD";
+import SetDateAPOD from "./datePickersAPOD/setDateAPOD";
+import SetIntervalAPOD from "./datePickersAPOD/setIntervalAPOD";
 import {Redirect} from "react-router-dom";
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from '../../images/imagePlaceholder.jpg'

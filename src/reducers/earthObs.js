@@ -12,7 +12,7 @@ const initialState = {
 }
 
 
-const earthReducer = (state = initialState, action) => {
+const earthObsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_EARTH_OBSERVATION:
             return {
@@ -31,7 +31,7 @@ const earthReducer = (state = initialState, action) => {
 }
 
 
-export default earthReducer
+export default earthObsReducer
 
 
 //AC

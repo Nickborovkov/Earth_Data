@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from "react";
-import s from './earth.module.css'
-import m from './earthMedia.module.css'
+import s from './earthObs.module.css'
+import m from './earthObsMedia.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
-import {getEarthObservation} from "../../reducers/earth";
+import {getEarthObservation} from "../../reducers/earthObs";
 import Preloader from "../../helpers/preloaders/preloader";
-import ParametersPicker from "./parametersPicker/parametersPicker";
+import ParamsPickerEarthObs from "./paramsPickerEarthOBS/paramsPickerEarthObs";
 import {Redirect} from "react-router-dom";
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
 import ModalWindow from "../../helpers/modalWindow/modalWindow";
 
-const Earth = () => {
+const EarthObs = () => {
 
     const dispatch = useDispatch()
     const earthObs = useSelector(state => state.earth.earthObservation)
@@ -38,7 +38,7 @@ const Earth = () => {
     return (
         <div className={s.earth}>
             <h2 className={cn(s.title, m.title)}>NASA Landsat Satellite Imagery Data</h2>
-            <ParametersPicker />
+            <ParamsPickerEarthObs />
 
 
             {!earthObs && !error &&
@@ -72,4 +72,4 @@ const Earth = () => {
     )
 }
 
-export default Earth
+export default EarthObs

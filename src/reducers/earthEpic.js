@@ -12,7 +12,7 @@ const initialState = {
 }
 
 
-const earthImageReducer = (state = initialState, action) => {
+const earthEpicReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_EARTH_IMAGE:
             return {
@@ -30,7 +30,7 @@ const earthImageReducer = (state = initialState, action) => {
 }
 
 
-export default earthImageReducer
+export default earthEpicReducer
 
 
 //AC

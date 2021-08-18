@@ -10,7 +10,7 @@ import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/fo
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import {setNewError} from "../../../reducers/errors";
 
-const MarsRoverParams = () => {
+const ParamsPickerROVER = () => {
 
     const dispatch= useDispatch()
     const error = useSelector(state => state.errors.error)
@@ -91,4 +91,4 @@ const MarsRoverParams = () => {
     )
 }
 
-export default MarsRoverParams
+export default ParamsPickerROVER

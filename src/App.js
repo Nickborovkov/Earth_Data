@@ -9,8 +9,8 @@ import Page404 from "./helpers/jsxHelpersPages/page404";
 import Preloader from "./helpers/preloaders/preloader";
 const Apod = lazy( () => import("./components/apod/apod"))
 const Neows = lazy( () => import("./components/neosw/neows" ))
-const Earth = lazy( () =>  import("./components/earth/earth"))
-const EarthImage = lazy( () => import("./components/earthImage/earthImage"))
+const Earth = lazy( () =>  import("./components/earthObs/earthObs"))
+const EarthImage = lazy( () => import("./components/earthEPIC/earthEpic"))
 const MarsRover = lazy( () =>  import("./components/marsRover/marsRover"))
 const NasaLibrary = lazy( () => import("./components/NASAlibrary/nasaLibrary") )
 

@@ -1,4 +1,4 @@
-export const earthImageUrlHelper = (date, item) => {
+export const earthEpicURLHelper = (date, item) => {
     const apiKey = `ZWGiTATMzPHjpsUJSj289aerwaSsLpikIiYBhaek`
     const dateArray = date.split(`-`)
     const splitedDate = {

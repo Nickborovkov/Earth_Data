@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from "react";
-import s from './earthImage.module.css'
-import m from './earthImageMedia.module.css'
+import s from './earthEpic.module.css'
+import m from './earthEpicMedia.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
-import {getEarthImage} from "../../reducers/earthImage";
+import {getEarthImage} from "../../reducers/earthEpic";
 import Preloader from "../../helpers/preloaders/preloader";
-import SetDateEarthImage from "./datePicker/setDateEarthImage";
+import DatePickerEarthObs from "./datePickerEPIC/datePickerEarthObs";
 import {Redirect} from "react-router-dom";
-import {earthImageUrlHelper} from "../../helpers/urlHelper/earthImageURLHelper";
+import {earthEpicURLHelper} from "../../helpers/urlHelper/earthEpicURLHelper";
 import {setNewError} from "../../reducers/errors";
 import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
 import Lazyload from 'react-lazyload'
 import ModalWindow from "../../helpers/modalWindow/modalWindow";
 
-const EarthImage = () => {
+const EarthEpic = () => {
     const dispatch = useDispatch()
     const earthImage = useSelector(state => state.earthImage.earthImage)
     const SelectedDate = useSelector(state => state.earthImage.date)
@@ -38,7 +38,7 @@ const EarthImage = () => {
     return (
         <div className={s.earthImage}>
             <h2 className={cn(s.title, m.title)}>Earth Polychromatic Imaging Camera Photos</h2>
-            <SetDateEarthImage />
+            <DatePickerEarthObs />
 
             {!earthImage && !error &&
             <Preloader/>}
@@ -56,7 +56,7 @@ const EarthImage = () => {
                                 </div>
                                 <div className={s.imageHolder}>
                                     <img className={s.image}
-                                         src={earthImageUrlHelper(SelectedDate, e.image)}
+                                         src={earthEpicURLHelper(SelectedDate, e.image)}
                                          alt="earthImage"
                                          onClick={ (e) => {
                                              setModalWindow(true)
@@ -81,4 +81,4 @@ const EarthImage = () => {
     )
 }
 
-export default EarthImage
+export default EarthEpic
