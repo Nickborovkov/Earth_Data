@@ -9,7 +9,7 @@ import s from "../../../helpers/formHelpers/formsStyles.module.css";
 import cn from "classnames";
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
 
-const ParamsPickerLIBRARY = () => {
+const ParamsPickerLIBRARY = ({setParams}) => {
 
     const dispatch = useDispatch()
 
@@ -43,6 +43,7 @@ const ParamsPickerLIBRARY = () => {
                    if(mediaType === `video`){
                        dispatch(setParamsLibrary(`video` ,values.startYear,values.endYear ))
                    }
+                   setParams(false)
                } }
                validationSchema={validationSchema}
            >

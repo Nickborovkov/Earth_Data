@@ -4,16 +4,15 @@ import m from '../../../helpers/formHelpers/formsStylesMedia.module.css'
 import cn from 'classnames'
 import {Formik} from "formik";
 import * as yup from 'yup'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setCurrentDate} from "../../../reducers/apod";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import {setNewError} from "../../../reducers/errors";
 
-const SetDateAPOD = () => {
+const SetDateAPOD = ({setParams}) => {
 
     const dispatch = useDispatch()
-    const error = useSelector(state => state.errors.error)
 
     const validationSchema = yup.object().shape({
         currentDate: yup
@@ -31,6 +30,7 @@ const SetDateAPOD = () => {
                 onSubmit={ (values) => {
                     dispatch(setCurrentDate(values.currentDate))
                     dispatch(setNewError(null))
+                    setParams(false)
                 } }
                 validationSchema={validationSchema}
             >
@@ -43,7 +43,6 @@ const SetDateAPOD = () => {
                                 handleBlur, values.currentDate)}
                         </div>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
-                        {error && <h3 className={s.errorCase}>Not available, please change date</h3>}
                     </form>
                 )}
             </Formik>

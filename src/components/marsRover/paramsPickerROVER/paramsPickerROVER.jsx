@@ -3,17 +3,16 @@ import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
 import cn from "classnames";
 import * as yup from 'yup'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {Formik} from "formik";
 import {setMarsRoverParams} from "../../../reducers/marsRover";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import {setNewError} from "../../../reducers/errors";
 
-const ParamsPickerROVER = () => {
+const ParamsPickerROVER = ({setParams}) => {
 
     const dispatch= useDispatch()
-    const error = useSelector(state => state.errors.error)
 
     const [rover, setRover] = useState(`spirit`)
 
@@ -40,6 +39,7 @@ const ParamsPickerROVER = () => {
                     }
 
                     dispatch(setNewError(null))
+                    setParams(false)
                 } }
                 validationSchema={validationSchema}
             >
@@ -86,7 +86,6 @@ const ParamsPickerROVER = () => {
 
                         </div>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
-                        {error && <h3 className={s.errorCase}>Not available, please change date</h3>}
                     </form>
                 ) }
             </Formik>

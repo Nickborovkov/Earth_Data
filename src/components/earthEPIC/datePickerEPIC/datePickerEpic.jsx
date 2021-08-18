@@ -2,7 +2,7 @@ import React from "react";
 import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import m from '../../../helpers/formHelpers/formsStylesMedia.module.css'
 import cn from 'classnames'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import * as yup from 'yup'
 import {Formik} from "formik";
 import {setEarthImageDate} from "../../../reducers/earthEpic";
@@ -10,10 +10,9 @@ import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/fo
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import {setNewError} from "../../../reducers/errors";
 
-const DatePickerEarthObs = () => {
+const DatePickerEpic = ({setParams}) => {
 
     const dispatch = useDispatch()
-    const error = useSelector(state => state.errors.error)
     const validationSchema = yup.object().shape({
         selectedDate: yup
             .string()
@@ -30,6 +29,7 @@ const DatePickerEarthObs = () => {
                 onSubmit={ (values) => {
                     dispatch(setEarthImageDate(values.selectedDate))
                     dispatch(setNewError(null))
+                    setParams(false)
                 } }
                 validationSchema={validationSchema}
             >
@@ -42,7 +42,7 @@ const DatePickerEarthObs = () => {
                                 handleBlur, values.selectedDate)}
                         </div>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
-                        {error && <h3 className={s.errorCase}>Not available, please change date</h3>}
+
                     </form>
                 ) }
             </Formik>
@@ -50,4 +50,4 @@ const DatePickerEarthObs = () => {
     )
 }
 
-export default DatePickerEarthObs
+export default DatePickerEpic

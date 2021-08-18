@@ -15,6 +15,7 @@ export const formInputHelper = (titleClass, title, touched, errors, inputClass,
                    onChange={handleChange}
                    onBlur={handleBlur}
                    value={value}
+                   autoFocus
                    inputMode={inputMode}/>
             {touched && errors &&
             <div className={s.errors}><RiErrorWarningFill/>   {errors}</div>}
