@@ -48,12 +48,15 @@ const ParamsPickerROVER = () => {
 
                         <h3 className={s.title}>Set rover and date parameters</h3>
 
-                        <div className={s.roversHolder}>
-                            <button className={s.roverButton} type='button'
+                        <div className={s.typesHolder}>
+                            <button className={s.typeButton}
+                                    type='button'
                                     onClick={ () => {setRover(`spirit`)} }>Spirit</button>
-                            <button className={s.roverButton} type='button'
+                            <button className={s.typeButton}
+                                    type='button'
                                     onClick={ () => {setRover(`opportunity`)} }>Opportunity</button>
-                            <button className={s.roverButton} type='button'
+                            <button className={s.typeButton}
+                                    type='button'
                                     onClick={ () => {setRover(`curiosity`)} }>Curiosity</button>
                         </div>
 
