@@ -1,23 +1,28 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
 import {setNewError} from "./errors";
+import axios from "axios";
 
 const SET_SEARCH_RESULT = `nasa/nasaLibrary/SET_SEARCH_RESULT`
 const SET_SEARCH_START = `nasa/nasaLibrary/SET_SEARCH_START`
 const TOGGLE_FETCHING = `nasa/nasaLibrary/TOGGLE_FETCHING`
 const SET_CURRENT_SEARCH = `nasa/nasaLibrary/SET_CURRENT_SEARCH`
+const SET_VIDEOS_LINKS = `nasa/nasaLibrary/SET_VIDEOS_LINKS`
 const SET_TOTAL_PAGES = `nasa/nasaLibrary/SET_TOTAL_PAGES`
+const NEXT_PAGE = `nasa/nasaLibrary/NEXT_PAGE`
+const PREV_PAGE = `nasa/nasaLibrary/PREV_PAGE`
+
+
 const SET_MEDIA_TYPE = `nasa/nasaLibrary/SET_MEDIA_TYPE`
 const SET_START_YEAR = `nasa/nasaLibrary/SET_START_YEAR`
 const SET_END_YEAR = `nasa/nasaLibrary/SET_END_YEAR`
-const NEXT_PAGE = `nasa/nasaLibrary/NEXT_PAGE`
-const PREV_PAGE = `nasa/nasaLibrary/PREV_PAGE`
 
 
 const initialState = {
     result: null,
     currentSearch: null,
     searchStart: false,
-    mediaType: `image`,
+    videosLinks: [],
+    mediaType: `video`,
     yearStart: `2005`,
     yearEnd: `2021`,
     totalPages: ``,
@@ -42,6 +47,11 @@ const nasaLibraryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 searchStart: action.searchStart
+            }
+        case SET_VIDEOS_LINKS:
+            return {
+                ...state,
+                videosLinks: action.videosLinks,
             }
         case TOGGLE_FETCHING:
             return {
@@ -94,6 +104,9 @@ const setSearchResult = (result) =>
 export const setSearchStart = (searchStart) =>
     ( { type:  SET_SEARCH_START, searchStart} )
 
+export const setVideosLinks = (videosLinks) =>
+    ( { type:  SET_VIDEOS_LINKS, videosLinks} )
+
 export const setCurrentSearch = (currentSearch) =>
     ( { type:  SET_CURRENT_SEARCH, currentSearch} )
 
@@ -142,4 +155,9 @@ export const getSearchResult = (search, mediaType, yearStart, yearEnd, page) => 
     }
 
 
+}
+
+export const getVideoLinks = (json) => async dispatch => {
+    const response = await axios.get(json.toString())
+    dispatch(setVideosLinks(response.data))
 }

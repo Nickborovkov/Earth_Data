@@ -8,21 +8,4 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, .8);
-    opacity: 0;
-    transition: 5s;
-}
-.modalBody.activeBody{
-    transition: .5s;
-    opacity: 1;
-}
-.modalContent{
-    height: 50vw;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    transform: scale(0);
-    transition: .5s;
-}
-.modalContent.activeContent{
-    transform: scale(1);
 }
