@@ -105,14 +105,14 @@
     font-size: 18px;
     color: tomato;
 }
-.roversHolder{
+.typesHolder{
     width: 60%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
-.roverButton{
+.typeButton{
     display: block;
     width: 100px;
     height: 30px;

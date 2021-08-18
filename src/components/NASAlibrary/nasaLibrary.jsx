@@ -8,6 +8,7 @@ import Preloader from "../../helpers/preloaders/preloader";
 import {setNewError} from "../../reducers/errors";
 import NASALibraryItem from "./NasaLIbraryItem/NASALibraryItem";
 import Pagination from "../../helpers/Pagination/pagination";
+import ParamsPickerLIBRARY from "./paramsPickerLIBRARY/paramsPickerLIBRARY";
 
 const NasaLibrary = () => {
 
@@ -20,7 +21,6 @@ const NasaLibrary = () => {
     const currentSearch = useSelector(state => state.library.currentSearch)
     const page = useSelector(state => state.library.page)
     const totalPages = useSelector(state => state.library.totalPages)
-    //*********************************************************************************
     const mediaType = useSelector(state => state.library.mediaType)
     const yearStart = useSelector(state => state.library.yearStart)
     const yearEnd = useSelector(state => state.library.yearEnd)
@@ -48,6 +48,8 @@ const NasaLibrary = () => {
     return (
         <div className={s.nasaLibrary}>
             <h2 className={cn(s.title, m.title)}>NASA photo and Video library</h2>
+
+            <ParamsPickerLIBRARY />
 
             {/*Error case*/}
             {!result && error &&

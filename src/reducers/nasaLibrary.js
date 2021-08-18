@@ -8,13 +8,9 @@ const TOGGLE_FETCHING = `nasa/nasaLibrary/TOGGLE_FETCHING`
 const SET_CURRENT_SEARCH = `nasa/nasaLibrary/SET_CURRENT_SEARCH`
 const SET_VIDEOS_LINKS = `nasa/nasaLibrary/SET_VIDEOS_LINKS`
 const SET_TOTAL_PAGES = `nasa/nasaLibrary/SET_TOTAL_PAGES`
+const SET_PARAMS = `nasa/nasaLibrary/SET_PARAMS`
 const NEXT_PAGE = `nasa/nasaLibrary/NEXT_PAGE`
 const PREV_PAGE = `nasa/nasaLibrary/PREV_PAGE`
-
-
-const SET_MEDIA_TYPE = `nasa/nasaLibrary/SET_MEDIA_TYPE`
-const SET_START_YEAR = `nasa/nasaLibrary/SET_START_YEAR`
-const SET_END_YEAR = `nasa/nasaLibrary/SET_END_YEAR`
 
 
 const initialState = {
@@ -22,7 +18,7 @@ const initialState = {
     currentSearch: null,
     searchStart: false,
     videosLinks: [],
-    mediaType: `video`,
+    mediaType: `image`,
     yearStart: `2005`,
     yearEnd: `2021`,
     totalPages: ``,
@@ -58,20 +54,12 @@ const nasaLibraryReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
-        case SET_MEDIA_TYPE:
+        case SET_PARAMS:
             return {
                 ...state,
-                mediaType: action.mediaType
-            }
-        case SET_START_YEAR:
-            return {
-                ...state,
-                yearStart: action.yearStart
-            }
-        case SET_END_YEAR:
-            return {
-                ...state,
-                yearEnd: action.yearEnd
+                mediaType: action.mediaType ,
+                yearStart: action.yearStart ,
+                yearEnd: action.yearEnd ,
             }
         case SET_TOTAL_PAGES:
             return {
@@ -113,16 +101,8 @@ export const setCurrentSearch = (currentSearch) =>
 export const toggleFetching = (isFetching) =>
     ( { type:  TOGGLE_FETCHING, isFetching} )
 
-
-// export const setMediaType = (mediaType) =>
-//     ( { type:  SET_MEDIA_TYPE, mediaType} )
-//
-// export const setStartYear = (startYear) =>
-//     ( { type:  SET_START_YEAR, startYear} )
-//
-// export const setEndYear = (endYear) =>
-//     ( { type:  SET_END_YEAR, endYear} )
-
+export const setParamsLibrary = (mediaType, yearStart, yearEnd) =>
+    ( { type:  SET_PARAMS, mediaType, yearStart, yearEnd} )
 
 export const nextPage = () =>
     ( { type:  NEXT_PAGE} )
