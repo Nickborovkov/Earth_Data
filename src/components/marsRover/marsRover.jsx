@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import s from './marsRover.module.css'
 import m from './marsRoverMedia.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
+import form from '../../helpers/formHelpers/formsStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getMarsRoverPhotos, roverNextPage, roverPrevPage} from "../../reducers/marsRover";
@@ -27,6 +28,13 @@ const MarsRover = () => {
     const [modalWindow, setModalWindow] = useState(false)
     const [modalSrc, setModalSrc] = useState(``)
 
+    const [params, setParams] = useState(false)
+    const setParameters = () => {
+        params
+            ? setParams(false)
+            : setParams(true)
+    }
+
     useEffect(()=>{
         dispatch(getMarsRoverPhotos(rover, date, page))
         window.scrollTo(0, 0)
@@ -41,9 +49,17 @@ const MarsRover = () => {
 
     return (
         <div className={s.marsRover}>
-           <h1 className={cn(s.title, m.title)}>Image Data Gathered By NASA's Rovers On Mars</h1>
+           <h1 className={common.title}>Image Data Gathered By NASA's Rovers On Mars</h1>
 
-            <ParamsPickerROVER />
+            {!params &&
+            <button className={form.formOpenButton} onClick={setParameters}>Set parameters</button>}
+
+            {params && <div>
+                <button className={form.formOpenButton} onClick={setParameters}>Close parameters</button>
+                <ParamsPickerROVER setParams={setParams}/>
+            </div>}
+
+            {error && <h3 className={common.errorCase}>Not available, please change date</h3>}
 
             {marsRoverPhotos.length === 0 && !error &&
             <Preloader/>}

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import s from './apod.module.css'
 import m from './apodMedia.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
+import form from '../../helpers/formHelpers/formsStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getApod, getApodWithInterval} from "../../reducers/apod";
@@ -28,6 +29,13 @@ const Apod = () => {
     const [modalWindow, setModalWindow] = useState(false)
     const [modalSrc, setModalSrc] = useState(``)
 
+    const [params, setParams] = useState(false)
+    const setParameters = () => {
+        params
+            ? setParams(false)
+            : setParams(true)
+    }
+
     useEffect(()=>{
         if(datePickerType === 0){
             dispatch(getApod(currentDate))
@@ -49,24 +57,32 @@ const Apod = () => {
 
     return (
         <div className={s.apod}>
-           <h2 className={cn(s.title, m.title)}>NASA Picture Of The Day</h2>
+           <h2 className={common.title}>NASA Picture Of The Day</h2>
 
-            <div>
-                {datePickerType === 0 &&
-                <div className={s.apodForm}>
-                    <SetDateAPOD />
-                    <button className={s.apodButton}
-                            onClick={ () => {setDatePickerType(1)} }>Choose interval</button>
-                </div>}
+            {!params &&
+            <button className={form.formOpenButton} onClick={setParameters}>Set parameters</button>}
 
-                {datePickerType === 1 &&
-                <div className={s.apodForm}>
-                    <SetIntervalAPOD />
-                    <button className={s.apodButton}
-                            onClick={ () => {setDatePickerType(0)} }>Choose exact date</button>
-                </div>}
-            </div>
+            {params && <div>
+                <button className={form.formOpenButton} onClick={setParameters}>Close parameters</button>
+                <div>
+                    {datePickerType === 0 &&
+                    <div className={s.apodForm}>
+                        <SetDateAPOD setParams={setParams}/>
+                        <button className={s.apodButton}
+                                onClick={ () => {setDatePickerType(1)} }>Choose interval</button>
+                    </div>}
 
+                    {datePickerType === 1 &&
+                    <div className={s.apodForm}>
+                        <SetIntervalAPOD setParams={setParams}/>
+                        <button className={s.apodButton}
+                                onClick={ () => {setDatePickerType(0)} }>Choose exact date</button>
+                    </div>}
+                </div>
+            </div>}
+
+
+            {error && <h3 className={common.errorCase}>Not available, please change date</h3>}
 
             {apodArray.length === 0 && !error &&
             <Preloader/>}

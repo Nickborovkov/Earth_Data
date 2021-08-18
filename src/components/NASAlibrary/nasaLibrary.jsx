@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import s from './nasaLibrary.module.css'
-import m from './nasaLibraryMedia.module.css'
-import cn from 'classnames'
+import common from '../../helpers/commonStyles/commonStyles.module.css'
+import form from '../../helpers/formHelpers/formsStyles.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {getSearchResult, setSearchStart} from "../../reducers/nasaLibrary";
 import Preloader from "../../helpers/preloaders/preloader";
@@ -12,9 +12,9 @@ import ParamsPickerLIBRARY from "./paramsPickerLIBRARY/paramsPickerLIBRARY";
 
 const NasaLibrary = () => {
 
+    //State
     const dispatch = useDispatch()
 
-    //State
     const isFetching = useSelector(state => state.library.isFetching)
     const result = useSelector(state => state.library.result)
     const searchStart = useSelector(state => state.library.searchStart)
@@ -24,6 +24,14 @@ const NasaLibrary = () => {
     const mediaType = useSelector(state => state.library.mediaType)
     const yearStart = useSelector(state => state.library.yearStart)
     const yearEnd = useSelector(state => state.library.yearEnd)
+
+    //Open/close parameters
+    const [params, setParams] = useState(false)
+    const setParameters = () => {
+        params
+            ? setParams(false)
+            : setParams(true)
+    }
 
     //Error state
     const error = useSelector(state => state.errors.error)
@@ -47,9 +55,16 @@ const NasaLibrary = () => {
 
     return (
         <div className={s.nasaLibrary}>
-            <h2 className={cn(s.title, m.title)}>NASA photo and Video library</h2>
+            <h2 className={common.title}>NASA photo and Video library</h2>
 
-            <ParamsPickerLIBRARY />
+            {/*Parameters section*/}
+            {!params &&
+            <button className={form.formOpenButton} onClick={setParameters}>Set parameters</button>}
+
+            {params && <div>
+                <button className={form.formOpenButton} onClick={setParameters}>Close parameters</button>
+                <ParamsPickerLIBRARY setParams={setParams}/>
+            </div>}
 
             {/*Error case*/}
             {!result && error &&

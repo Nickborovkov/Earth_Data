@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import s from './neows.module.css'
-import m from './neowsMedia.module.css'
-import cn from 'classnames'
+import common from '../../helpers/commonStyles/commonStyles.module.css'
+import form from '../../helpers/formHelpers/formsStyles.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {getNeows} from "../../reducers/neows";
 import Preloader from "../../helpers/preloaders/preloader";
@@ -19,6 +19,12 @@ const Neows = () => {
     const searchStart = useSelector(state => state.library.searchStart)
     const error = useSelector(state => state.errors.error)
 
+    const [params, setParams] = useState(false)
+    const setParameters = () => {
+        params
+            ? setParams(false)
+            : setParams(true)
+    }
 
     useEffect(() => {
         dispatch(getNeows(intervalDateStart, intervalDateEnd))
@@ -33,9 +39,19 @@ const Neows = () => {
 
     return (
         <div className={s.neows}>
-            <h2 className={cn(s.title, m.title)}>List of Asteroids based on their closest approach date to Earth</h2>
+            <h2 className={common.title}>List of Asteroids based on their closest approach date to Earth</h2>
 
-            <DatePickerNEOWS />
+            {!params &&
+            <button className={form.formOpenButton}
+                    onClick={setParameters}>Set parameters</button>}
+
+            {params && <div>
+                <button className={form.formOpenButton}
+                        onClick={setParameters}>Close parameters</button>
+                <DatePickerNEOWS setParams={setParams}/>
+            </div>}
+
+            {error && <h3 className={common.errorCase}>Not available, please change date interval</h3>}
 
             {neowsArray.length === 0 && !error &&
             <Preloader/>}

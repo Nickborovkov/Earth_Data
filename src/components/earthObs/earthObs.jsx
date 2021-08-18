@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import s from './earthObs.module.css'
 import m from './earthObsMedia.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
+import form from '../../helpers/formHelpers/formsStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getEarthObservation} from "../../reducers/earthObs";
@@ -24,6 +25,14 @@ const EarthObs = () => {
     const [modalWindow, setModalWindow] = useState(false)
     const [modalSrc, setModalSrc] = useState(``)
 
+    const [params, setParams] = useState(false)
+    const setParameters = () => {
+        params
+            ? setParams(false)
+            : setParams(true)
+    }
+
+
     useEffect(()=>{
         dispatch(getEarthObservation(longitude, latitude))
     },[dispatch, longitude, latitude])
@@ -37,9 +46,17 @@ const EarthObs = () => {
 
     return (
         <div className={s.earth}>
-            <h2 className={cn(s.title, m.title)}>NASA Landsat Satellite Imagery Data</h2>
-            <ParamsPickerEarthObs />
+            <h2 className={common.title}>NASA Landsat Satellite Imagery Data</h2>
 
+            {!params &&
+            <button className={form.formOpenButton} onClick={setParameters}>Set parameters</button>}
+
+            {params && <div>
+                <button className={form.formOpenButton} onClick={setParameters}>Close parameters</button>
+                <ParamsPickerEarthObs setParams={setParams}/>
+            </div>}
+
+            {error && <h3 className={common.errorCase}>Not available, please change parameters</h3>}
 
             {!earthObs && !error &&
             <Preloader/>}

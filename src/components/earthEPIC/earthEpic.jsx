@@ -2,11 +2,12 @@ import React, {useEffect, useState} from "react";
 import s from './earthEpic.module.css'
 import m from './earthEpicMedia.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
+import form from '../../helpers/formHelpers/formsStyles.module.css'
 import cn from 'classnames'
 import {useDispatch, useSelector} from "react-redux";
 import {getEarthImage} from "../../reducers/earthEpic";
 import Preloader from "../../helpers/preloaders/preloader";
-import DatePickerEarthObs from "./datePickerEPIC/datePickerEarthObs";
+import DatePickerEpic from "./datePickerEPIC/datePickerEpic";
 import {Redirect} from "react-router-dom";
 import {earthEpicURLHelper} from "../../helpers/urlHelper/earthEpicURLHelper";
 import {setNewError} from "../../reducers/errors";
@@ -24,6 +25,13 @@ const EarthEpic = () => {
     const [modalWindow, setModalWindow] = useState(false)
     const [modalSrc, setModalSrc] = useState(``)
 
+    const [params, setParams] = useState(false)
+    const setParameters = () => {
+        params
+            ? setParams(false)
+            : setParams(true)
+    }
+
     useEffect(() => {
         dispatch(getEarthImage(SelectedDate))
     }, [dispatch, SelectedDate])
@@ -37,8 +45,17 @@ const EarthEpic = () => {
 
     return (
         <div className={s.earthImage}>
-            <h2 className={cn(s.title, m.title)}>Earth Polychromatic Imaging Camera Photos</h2>
-            <DatePickerEarthObs />
+            <h2 className={common.title}>Earth Polychromatic Imaging Camera Photos</h2>
+
+            {!params &&
+            <button className={form.formOpenButton} onClick={setParameters}>Set parameters</button>}
+
+            {params && <div>
+                <button className={form.formOpenButton} onClick={setParameters}>Close parameters</button>
+                <DatePickerEpic setParams={setParams}/>
+            </div>}
+
+            {error && <h3 className={common.errorCase}>Not available, please change date</h3>}
 
             {!earthImage && !error &&
             <Preloader/>}
