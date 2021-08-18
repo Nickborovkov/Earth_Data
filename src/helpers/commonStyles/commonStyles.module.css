@@ -7,3 +7,29 @@
 .video{
     width: 50vw;
 }
+
+@media screen and (max-width: 1000px){
+    .modalImage{
+        width: 60vw;
+    }
+    .video{
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .modalImage{
+        width: 70vw;
+    }
+    .video{
+        width: 70vw;
+    }
+}
+@media screen and (max-width: 500px){
+    .modalImage{
+        width: 100%;
+    }
+    .video{
+        width: 100%;
+    }
+}

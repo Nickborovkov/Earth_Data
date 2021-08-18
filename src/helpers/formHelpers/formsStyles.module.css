@@ -41,6 +41,7 @@
     border-radius: 10px;
     margin: 20px;
     outline: none;
+    cursor: pointer;
 }
 .inputSelect{
     width: 180px;
@@ -73,9 +74,13 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: cornflowerblue;
     color: #ffffff;
+    cursor: pointer;
 }
 .formButton:disabled{
     background-color: #444444;
+}
+.formButton:active{
+    background-color: gold;
 }
 .errors{
     display: block;
@@ -124,4 +129,8 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
     margin: 5px;
+    cursor: pointer;
+}
+.typeButton:active{
+    background: gold;
 }

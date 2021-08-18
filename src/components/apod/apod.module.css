@@ -38,6 +38,7 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    cursor: pointer;
 }
 .apodDate{
     text-align: center;
@@ -76,4 +77,5 @@
     top: 90px;
     left: calc(50% - 100px);
     outline: none;
+    cursor: pointer;
 }

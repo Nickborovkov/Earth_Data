@@ -45,7 +45,6 @@ const NASALibraryItem = ({item, mediaType}) => {
                                  setModalWindow(true)
                                  setVideoSrc(item.href)
                              }
-
                          }}
                          onError={(e) => {
                              e.target.src = imagePlaceHolder
