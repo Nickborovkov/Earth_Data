@@ -18,12 +18,22 @@
     width: 450px;
     padding: 10px;
     margin: 10px;
+    position: relative;
 }
 .image{
     width: 100%;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    cursor: pointer;
+}
+.videoIcon{
+    font-size: 80px;
+    position: absolute;
+    top: calc(50% - 40px);
+    left: calc(50% - 40px);
+    color: #ffffff;
+    opacity: 0.8;
     cursor: pointer;
 }
 .errorCase{

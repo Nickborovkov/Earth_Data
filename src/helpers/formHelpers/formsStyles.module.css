@@ -75,6 +75,7 @@
     background-color: cornflowerblue;
     color: #ffffff;
     cursor: pointer;
+    outline: none;
 }
 .formButton:disabled{
     background-color: #444444;
@@ -133,4 +134,5 @@
 }
 .typeButton:active{
     background: gold;
+    outline: none;
 }

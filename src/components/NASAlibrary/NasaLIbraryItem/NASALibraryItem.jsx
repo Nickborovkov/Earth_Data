@@ -8,6 +8,7 @@ import Lazyload from 'react-lazyload'
 import ModalWindow from "../../../helpers/modalWindow/modalWindow";
 import {getVideoLinks} from "../../../reducers/nasaLibrary";
 import {useDispatch, useSelector} from "react-redux";
+import { AiFillPlayCircle } from 'react-icons/ai'
 
 const NASALibraryItem = ({item, mediaType}) => {
 
@@ -47,8 +48,13 @@ const NASALibraryItem = ({item, mediaType}) => {
                              }
                          }}
                          onError={(e) => {
-                             e.target.src = imagePlaceHolder
-                         }}/>
+                             e.target.src = imagePlaceHolder}}/>
+                    {mediaType === `video` &&
+                            <AiFillPlayCircle className={s.videoIcon}
+                                              onClick={ () => {
+                                                  setModalWindow(true)
+                                                  setVideoSrc(item.href)
+                                              } }/>}
                 </Lazyload>
             </div>
 
@@ -65,7 +71,8 @@ const NASALibraryItem = ({item, mediaType}) => {
             <ModalWindow active={modalWindow} setActive={setModalWindow}>
                 <video className={common.video}
                        src={videosLinks[0]}
-                       controls/>
+                       controls
+                       autoPlay/>
             </ModalWindow>}
 
         </div>
