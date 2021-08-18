@@ -131,8 +131,24 @@
     border-radius: 10px;
     margin: 5px;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .typeButton:active{
     background: gold;
     outline: none;
+}
+.formOpenButton{
+    font-size: 20px;
+    display: block;
+    margin: 50px auto;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    background-color: cornflowerblue;
+    color: #ffffff;
+    border: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
