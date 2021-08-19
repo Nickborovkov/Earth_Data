@@ -28,7 +28,9 @@ const DatePickerEpic = ({setParams}) => {
                 validateOnBlur
                 onSubmit={ (values) => {
                     dispatch(setEarthImageDate(values.selectedDate))
+                    //Reset error after submit
                     dispatch(setNewError(null))
+                    //Close params after submit
                     setParams(false)
                 } }
                 validationSchema={validationSchema}

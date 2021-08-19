@@ -42,7 +42,6 @@ export const setParameters = (lon, lat) =>
 
 
 //THUNK
-
 export const getEarthObservation = (lon, lat) => async dispatch => {
     try {
         const response = await nasaRequest.getEarthObservation(lon, lat)

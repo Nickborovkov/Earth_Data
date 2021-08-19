@@ -31,7 +31,9 @@ const SearchForm = () => {
                 validateOnBlur
                 onSubmit={ (values) => {
                     dispatch(setCurrentSearch(values.search))
+                    //Set searchStart = true for redirecting when submitting search in header
                     dispatch(setSearchStart(true))
+                    //Reset error after submit
                     dispatch(setNewError(null))
                 } }
                 validationSchema={validationSchema}

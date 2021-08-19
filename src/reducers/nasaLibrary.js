@@ -141,10 +141,9 @@ export const getSearchResult = (search, mediaType, yearStart, yearEnd, page) => 
     }catch (error) {
         dispatch(setNewError(error))
     }
-
-
 }
 
+//Thunk for getting links fro videos (video links comes as a json)
 export const getVideoLinks = (json) => async dispatch => {
     const response = await axios.get(json.toString())
     dispatch(setVideosLinks(response.data))

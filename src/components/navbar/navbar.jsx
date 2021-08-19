@@ -8,6 +8,7 @@ import { RiHome2Line } from 'react-icons/ri'
 
 const Navbar = () => {
 
+    //Burger menu state
     const [burgerMenu, setBurgerMenu] = useState(false)
 
     const toggleMenu = () => {

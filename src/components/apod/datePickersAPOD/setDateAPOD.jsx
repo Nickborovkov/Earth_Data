@@ -29,7 +29,9 @@ const SetDateAPOD = ({setParams}) => {
                 validateOnBlur
                 onSubmit={ (values) => {
                     dispatch(setCurrentDate(values.currentDate))
+                    //Reset error after submit
                     dispatch(setNewError(null))
+                    //Close params after submit
                     setParams(false)
                 } }
                 validationSchema={validationSchema}

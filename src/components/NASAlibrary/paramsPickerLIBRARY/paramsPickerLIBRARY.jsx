@@ -37,7 +37,9 @@ const ParamsPickerLIBRARY = ({setParams}) => {
                validateOnBlur
                onSubmit={ (values) => {
                    dispatch(setDateIntervalLibrary(values.startYear,values.endYear ))
+                   //Reset error after submit
                    dispatch(setNewError(null))
+                   //Close params after submit
                    setParams(false)
                } }
                validationSchema={validationSchema}

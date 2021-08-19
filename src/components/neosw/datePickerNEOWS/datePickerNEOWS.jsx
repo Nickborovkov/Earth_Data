@@ -34,7 +34,9 @@ const DatePickerNEOWS = ({setParams}) => {
                 validateOnBlur
                 onSubmit={ (values) => {
                     dispatch(setIntervalDate(values.startDate, values.endDate))
+                    //Reset error after submit
                     dispatch(setNewError(null))
+                    //Closing params after submit
                     setParams(false)
                 }}
                 validationSchema={validationSchema}

@@ -14,8 +14,10 @@ const ParamsPickerROVER = ({setParams}) => {
 
     const dispatch= useDispatch()
 
+    //Choosing rover
     const [rover, setRover] = useState(`spirit`)
 
+    //Active rover from applying styles
     const [activeRover, setActiveRover] = useState({
         spirit: true,
         opportunity: false,
@@ -43,8 +45,9 @@ const ParamsPickerROVER = ({setParams}) => {
                     }else if(rover === `curiosity`){
                         dispatch(setMarsRoverParams(`curiosity`, values.date))
                     }
-
+                    //Reset error after submit
                     dispatch(setNewError(null))
+                    //Close params after submit
                     setParams(false)
                 } }
                 validationSchema={validationSchema}

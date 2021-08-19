@@ -37,9 +37,10 @@ const ParamsPickerEarthObs = ({setParams}) => {
                 }}
                 validateOnBlur
                 onSubmit={ (values) => {
-                    dispatch(setParameters(values.longitude, values.latitude,
-                        values.date ,values.dimensions))
+                    dispatch(setParameters(values.longitude, values.latitude))
+                    //Reset error after submit
                     dispatch(setNewError(null))
+                    //Close params after submit
                     setParams(false)
                 } }
                 validationSchema={validationSchema}
