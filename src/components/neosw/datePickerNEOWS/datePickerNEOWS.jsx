@@ -45,12 +45,12 @@ const DatePickerNEOWS = ({setParams}) => {
                         <div className={s.inputsHolder}>
 
                             {formInputHelper(s.formSubtitle, `Start date`, touched.startDate,
-                                errors.startDate, s.input, `date`, `startDate`, `1900-01-01`, dateToday, handleChange,
-                                handleBlur, values.startDate)}
+                                errors.startDate, s.input, `date`, `startDate`, `1900-01-01`,
+                                dateToday, handleChange, handleBlur, values.startDate, ``, true)}
 
                             {formInputHelper(s.formSubtitle, `End date`, touched.endDate,
-                                errors.endDate, s.input, `date`, `endDate`, `1900-01-01`, dateToday, handleChange,
-                                handleBlur, values.endDate)}
+                                errors.endDate, s.input, `date`, `endDate`, `1900-01-01`,
+                                dateToday, handleChange, handleBlur, values.endDate, ``, false)}
 
                         </div>
                         <p className={s.intervalHint}>Maximal interval is 1 week</p>

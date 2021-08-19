@@ -1,24 +1,28 @@
 import React, {useEffect, useState} from "react";
+import {Redirect} from "react-router-dom";
 import s from './neows.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
-import {useDispatch, useSelector} from "react-redux";
-import {getNeows} from "../../reducers/neows";
 import Preloader from "../../helpers/preloaders/preloader";
 import DatePickerNEOWS from "./datePickerNEOWS/datePickerNEOWS";
-import {Redirect} from "react-router-dom";
+import NeowsItem from "./neowsItem/neowsItem";
+import {useDispatch, useSelector} from "react-redux";
+import {getNeows} from "../../reducers/neows";
 import {setNewError} from "../../reducers/errors";
-import Lazyload from 'react-lazyload'
+import { GiClick } from 'react-icons/gi';
 
 const Neows = () => {
 
+    //State
     const dispatch = useDispatch()
+
     const neowsArray = useSelector(state => state.neows.neowsArray)
     const intervalDateStart = useSelector(state => state.neows.intervalDateStart)
     const intervalDateEnd = useSelector(state => state.neows.intervalDateEnd)
     const searchStart = useSelector(state => state.library.searchStart)
     const error = useSelector(state => state.errors.error)
 
+    //Open/close parameters
     const [params, setParams] = useState(false)
     const setParameters = () => {
         params
@@ -26,36 +30,42 @@ const Neows = () => {
             : setParams(true)
     }
 
+    //Setting items
     useEffect(() => {
         dispatch(getNeows(intervalDateStart, intervalDateEnd))
     }, [dispatch, intervalDateStart, intervalDateEnd])
 
+    //Error = null when page loads
     useEffect(()=>{
         dispatch(setNewError(null))
     },[dispatch])
 
-
+    //Redirect to nasaLibrary when submit search field if header
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
     return (
         <div className={s.neows}>
             <h2 className={common.title}>List of Asteroids based on their closest approach date to Earth</h2>
 
+            {/*Parameters section*/}
             {!params &&
             <button className={form.formOpenButton}
-                    onClick={setParameters}>Set parameters</button>}
+                    onClick={setParameters}><GiClick/> Set parameters</button>}
 
             {params && <div>
                 <button className={form.formOpenButton}
-                        onClick={setParameters}>Close parameters</button>
+                        onClick={setParameters}><GiClick/> Close parameters</button>
                 <DatePickerNEOWS setParams={setParams}/>
             </div>}
 
+            {/*Error case*/}
             {error && <h3 className={common.errorCase}>Not available, please change date interval</h3>}
 
+            {/*Preloader*/}
             {neowsArray.length === 0 && !error &&
             <Preloader/>}
 
+            {/*Result*/}
             {neowsArray.length !== 0 && !error &&
             <div>
                 {
@@ -63,29 +73,8 @@ const Neows = () => {
                         <h3 className={s.date}>Date: {key}</h3>
                         <div className={s.asteroidsArray}>
                             {
-                                neowsArray[key].map(v => <div className={s.asteroid} key={v.id}>
-                                    <Lazyload>
-                                        <div>
-                                            <p className={s.name}>Asteroid name: {v.name}</p>
-                                            <div className={s.diam}>
-                                                <p className={s.diameter}>Diameter:</p>
-                                                <p className={s.diameterEpx}>From {v.estimated_diameter.meters.estimated_diameter_min.toFixed(2)} meters</p>
-                                                <p className={s.diameterEpx}>To {v.estimated_diameter.meters.estimated_diameter_max.toFixed(2)} meters</p>
-                                            </div>
-                                            <div>
-                                                <p className={s.danger}>
-                                                    Potentially hazardous? -
-                                                    {
-                                                        !v.is_potentially_hazardous_asteroid
-                                                            ? <span> No</span>
-                                                            : <span className={s.hazardExp}> Yes</span>
-                                                    }
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </Lazyload>
-
-                                </div>)
+                                neowsArray[key].map(v => <NeowsItem key={v.id}
+                                                                    item={v}/>)
                             }
                         </div>
 

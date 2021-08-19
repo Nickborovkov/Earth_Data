@@ -16,6 +16,12 @@ const ParamsPickerROVER = ({setParams}) => {
 
     const [rover, setRover] = useState(`spirit`)
 
+    const [activeRover, setActiveRover] = useState({
+        spirit: true,
+        opportunity: false,
+        curiosity: false,
+    })
+
     const validationSchema = yup.object().shape({
         date: yup
             .string()
@@ -43,21 +49,40 @@ const ParamsPickerROVER = ({setParams}) => {
                 } }
                 validationSchema={validationSchema}
             >
-                { ({values, touched, errors, handleChange, handleBlur, handleSubmit, isValid, dirty}) => (
+                { ({values, touched, errors, handleChange, handleBlur,
+                       handleSubmit, isValid, dirty}) => (
                     <form className={cn(s.form, m.form)}>
 
                         <h3 className={s.title}>Set rover and date parameters</h3>
 
                         <div className={s.typesHolder}>
-                            <button className={s.typeButton}
+                            <button className={cn(s.typeButton, activeRover.spirit && s.activeType)}
                                     type='button'
-                                    onClick={ () => {setRover(`spirit`)} }>Spirit</button>
-                            <button className={s.typeButton}
+                                    onClick={ () => {
+                                        setRover(`spirit`)
+                                        setActiveRover({
+                                            spirit: true,
+                                            opportunity: false,
+                                            curiosity: false,})
+                                    } }>Spirit</button>
+                            <button className={cn(s.typeButton, activeRover.opportunity && s.activeType)}
                                     type='button'
-                                    onClick={ () => {setRover(`opportunity`)} }>Opportunity</button>
-                            <button className={s.typeButton}
+                                    onClick={ () => {
+                                        setRover(`opportunity`)
+                                        setActiveRover({
+                                            spirit: false,
+                                            opportunity: true,
+                                            curiosity: false,})
+                                    } }>Opportunity</button>
+                            <button className={cn(s.typeButton, activeRover.curiosity && s.activeType)}
                                     type='button'
-                                    onClick={ () => {setRover(`curiosity`)} }>Curiosity</button>
+                                    onClick={ () => {
+                                        setRover(`curiosity`)
+                                        setActiveRover({
+                                            spirit: false,
+                                            opportunity: false,
+                                            curiosity: true,})
+                                    } }>Curiosity</button>
                         </div>
 
 
@@ -67,19 +92,21 @@ const ParamsPickerROVER = ({setParams}) => {
                             <div className={s.inputHolder}>
 
                                 {rover === `spirit` && <div>
-                                    {formInputHelper(s.formSubtitle, `Date for Spirit`, touched.date, errors.date,
-                                        s.input, `date`, `date`, `2004-01-05`, `2010-03-14`, handleChange,
-                                        handleBlur, values.date)}
+                                    {formInputHelper(s.formSubtitle, `Date for Spirit`, touched.date,
+                                        errors.date, s.input, `date`, `date`, `2004-01-05`,
+                                        `2010-03-14`, handleChange, handleBlur, values.date, ``, true)}
                                 </div>}
                                 {rover === `opportunity` && <div>
-                                    {formInputHelper(s.formSubtitle, `Date for Opportunity`, touched.date, errors.date,
-                                        s.input, `date`, `date`, `2004-01-26`, dateToday, handleChange,
-                                        handleBlur, values.date)}
+                                    {formInputHelper(s.formSubtitle, `Date for Opportunity`,
+                                        touched.date, errors.date, s.input, `date`, `date`,
+                                        `2004-01-26`, dateToday, handleChange, handleBlur,
+                                        values.date, ``, true)}
                                 </div>}
                                 {rover === `curiosity` && <div>
-                                    {formInputHelper(s.formSubtitle, `Date for Curiosity`, touched.date, errors.date,
-                                        s.input, `date`, `date`, `2012-08-06`, dateToday, handleChange,
-                                        handleBlur, values.date)}
+                                    {formInputHelper(s.formSubtitle, `Date for Curiosity`,
+                                        touched.date, errors.date, s.input, `date`, `date`,
+                                        `2012-08-06`, dateToday, handleChange, handleBlur,
+                                        values.date, ``, true)}
                                 </div>}
 
                             </div>

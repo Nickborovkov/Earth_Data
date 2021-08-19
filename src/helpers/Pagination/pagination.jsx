@@ -1,10 +1,10 @@
 import s from "./pagination.module.css";
 import {MdNavigateBefore, MdNavigateNext} from "react-icons/md";
-import {nextPage, prevPage} from "../../reducers/nasaLibrary";
 import React from "react";
 import {useDispatch} from "react-redux";
 
-const Pagination = ({page, prevPageCondition, nextPageCondition}) => {
+const Pagination = ({page, prevPageCondition, prevPageDispatch,
+                        nextPageCondition, nextPageDispatch}) => {
 
     const dispatch = useDispatch()
 
@@ -12,11 +12,11 @@ const Pagination = ({page, prevPageCondition, nextPageCondition}) => {
         <div className={s.buttonsHolder}>
             {page > prevPageCondition &&
             <MdNavigateBefore className={s.pageButton}
-                              onClick={ () => {dispatch(prevPage())} }/>}
+                              onClick={ () => {dispatch(prevPageDispatch())} }/>}
 
             {page !== nextPageCondition &&
             <MdNavigateNext className={s.pageButton}
-                            onClick={ () => {dispatch(nextPage())} }/>}
+                            onClick={ () => {dispatch(nextPageDispatch())} }/>}
         </div>
     )
 }

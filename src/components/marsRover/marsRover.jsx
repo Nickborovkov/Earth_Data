@@ -1,23 +1,22 @@
 import React, {useEffect, useState} from "react";
+import {Redirect} from "react-router-dom";
 import s from './marsRover.module.css'
-import m from './marsRoverMedia.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
-import cn from 'classnames'
-import {useDispatch, useSelector} from "react-redux";
-import {getMarsRoverPhotos, roverNextPage, roverPrevPage} from "../../reducers/marsRover";
 import Preloader from "../../helpers/preloaders/preloader";
 import ParamsPickerROVER from "./paramsPickerROVER/paramsPickerROVER";
-import {Redirect} from "react-router-dom";
-import { MdNavigateBefore } from 'react-icons/md';
-import { MdNavigateNext } from 'react-icons/md';
+import MarsRoverItem from "./marsRoverItem/marsRoverItem";
+import Pagination from "../../helpers/Pagination/pagination";
+import {useDispatch, useSelector} from "react-redux";
+import {getMarsRoverPhotos, roverNextPage, roverPrevPage} from "../../reducers/marsRover";
 import {setNewError} from "../../reducers/errors";
-import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
-import LazyLoad from 'react-lazyload'
-import ModalWindow from "../../helpers/modalWindow/modalWindow";
+import { GiClick } from 'react-icons/gi';
 
 const MarsRover = () => {
+
+    //State
     const dispatch = useDispatch()
+
     const marsRoverPhotos = useSelector(state => state.marsRover.marsRoverPhotos)
     const rover = useSelector(state => state.marsRover.rover)
     const date = useSelector(state => state.marsRover.date)
@@ -25,9 +24,7 @@ const MarsRover = () => {
     const searchStart = useSelector(state => state.library.searchStart)
     const error = useSelector(state => state.errors.error)
 
-    const [modalWindow, setModalWindow] = useState(false)
-    const [modalSrc, setModalSrc] = useState(``)
-
+    //Open/close parameters
     const [params, setParams] = useState(false)
     const setParameters = () => {
         params
@@ -35,86 +32,56 @@ const MarsRover = () => {
             : setParams(true)
     }
 
+    //Setting items
     useEffect(()=>{
         dispatch(getMarsRoverPhotos(rover, date, page))
         window.scrollTo(0, 0)
     },[dispatch, rover, date, page])
 
+    //SearchStart = null when page loads (with this is's possible to go to other links)
     useEffect(()=>{
         dispatch(setNewError(null))
     },[dispatch])
 
-
+    //Redirect to nasaLibrary when submit search field if header
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
     return (
         <div className={s.marsRover}>
            <h1 className={common.title}>Image Data Gathered By NASA's Rovers On Mars</h1>
 
+            {/*Parameters section*/}
             {!params &&
-            <button className={form.formOpenButton} onClick={setParameters}>Set parameters</button>}
+            <button className={form.formOpenButton} onClick={setParameters}><GiClick/> Set parameters</button>}
 
             {params && <div>
-                <button className={form.formOpenButton} onClick={setParameters}>Close parameters</button>
+                <button className={form.formOpenButton} onClick={setParameters}><GiClick/> Close parameters</button>
                 <ParamsPickerROVER setParams={setParams}/>
             </div>}
 
+            {/*Error case*/}
             {error && <h3 className={common.errorCase}>Not available, please change date</h3>}
 
+            {/*Preloader*/}
             {marsRoverPhotos.length === 0 && !error &&
             <Preloader/>}
 
+            {/*Result*/}
             {marsRoverPhotos.length !== 0 && !error &&
             <div>
                 <div className={s.items}>
-                    {
-                        marsRoverPhotos.map(r => <div className={cn(s.item, m.item)} key={r.id}>
-                            <LazyLoad height={300}>
-                                <div>
-                                    <p className={s.params}>Rover: {r.rover.name}</p>
-                                    <p className={s.params}>Status: {r.rover.status}</p>
-                                    <p className={s.params}>Camera name: {r.camera.full_name}</p>
-                                    <p className={s.params}>Earth date: {r.earth_date}</p>
-                                    <div className={s.imageHolder}>
-                                        <img className={s.image}
-                                             src={r.img_src}
-                                             alt="roverPhoto"
-                                             onClick={ (e) => {
-                                                 setModalWindow(true)
-                                                 setModalSrc(e.currentTarget.src)
-                                             }}
-                                             onError={ (e) => {e.target.src = imagePlaceHolder}}/>
-                                    </div>
-                                </div>
-                            </LazyLoad>
-
-
-
-                        </div>)
-                    }
-
-                    {modalWindow &&
-                    <ModalWindow active={modalWindow} setActive={setModalWindow}>
-                        <img className={cn(common.modalImage)}
-                             src={modalSrc}
-                             alt="modal"/>
-                    </ModalWindow>}
-
+                    {marsRoverPhotos.map(r => <MarsRoverItem key={r.id}
+                                                                item={r}/>)}
                 </div>
-                <div className={s.buttonsHolder}>
-                    {
-                        page > 1 &&
-                        <button className={s.pageButton}
-                                onClick={ () => {dispatch(roverPrevPage())} }>
-                            <MdNavigateBefore/>
-                        </button>
-                    }
 
-                    <button className={s.pageButton}
-                            onClick={ () => {dispatch(roverNextPage())} }>
-                        <MdNavigateNext />
-                    </button>
-                </div>
+                {/*Pagination*/}
+                <Pagination page = {page}
+                            prevPageCondition = {'1'}
+                            prevPageDispatch={roverPrevPage}
+                            nextPageCondition = {``}
+                            nextPageDispatch={roverNextPage}/>
+
+
             </div>}
         </div>
     )

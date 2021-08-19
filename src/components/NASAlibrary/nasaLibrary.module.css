@@ -41,3 +41,28 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
+.mediaType{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.mediaTypeButton{
+    display: block;
+    width: 120px;
+    height: 40px;
+    background-color: cornflowerblue;
+    color: #ffffff;
+    border: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin:0 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.mediaIcon{
+    line-height: 40px;
+}
+.mediaBtnAct{
+    color: gold;
+}

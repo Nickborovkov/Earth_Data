@@ -12,9 +12,9 @@ import { AiFillPlayCircle } from 'react-icons/ai'
 
 const NASALibraryItem = ({item, mediaType}) => {
 
+    //State
     const dispatch = useDispatch()
 
-    //State
     const videosLinks = useSelector(state => state.library.videosLinks)
 
     //State for modal window

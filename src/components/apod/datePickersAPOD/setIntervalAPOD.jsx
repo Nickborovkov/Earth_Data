@@ -45,12 +45,12 @@ const SetIntervalAPOD = ({setParams}) => {
                         <div className={s.inputsHolder}>
 
                             {formInputHelper(s.formSubtitle, `Start date`, touched.startDate,
-                                errors.startDate, s.input, `date`, `startDate`, `1995-01-07`, dateToday, handleChange,
-                                handleBlur, values.startDate)}
+                                errors.startDate, s.input, `date`, `startDate`, `1995-01-07`,
+                                dateToday, handleChange, handleBlur, values.startDate, ``, true)}
 
                             {formInputHelper(s.formSubtitle, `End date`, touched.endDate,
-                                errors.endDate, s.input, `date`, `endDate`, `1995-01-07`, dateToday, handleChange,
-                                handleBlur, values.endDate)}
+                                errors.endDate, s.input, `date`, `endDate`, `1995-01-07`,
+                                dateToday, handleChange,handleBlur, values.endDate, ``, false)}
 
                         </div>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}

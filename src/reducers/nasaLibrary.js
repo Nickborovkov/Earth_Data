@@ -8,7 +8,8 @@ const TOGGLE_FETCHING = `nasa/nasaLibrary/TOGGLE_FETCHING`
 const SET_CURRENT_SEARCH = `nasa/nasaLibrary/SET_CURRENT_SEARCH`
 const SET_VIDEOS_LINKS = `nasa/nasaLibrary/SET_VIDEOS_LINKS`
 const SET_TOTAL_PAGES = `nasa/nasaLibrary/SET_TOTAL_PAGES`
-const SET_PARAMS = `nasa/nasaLibrary/SET_PARAMS`
+const SET_DATE_INTERVAL = `nasa/nasaLibrary/SET_DATE_INTERVAL`
+const SET_MEDIA_TYPE = `nasa/nasaLibrary/SET_MEDIA_TYPE`
 const NEXT_PAGE = `nasa/nasaLibrary/NEXT_PAGE`
 const PREV_PAGE = `nasa/nasaLibrary/PREV_PAGE`
 
@@ -54,12 +55,16 @@ const nasaLibraryReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
-        case SET_PARAMS:
+        case SET_DATE_INTERVAL:
+            return {
+                ...state,
+                yearStart: action.yearStart ,
+                yearEnd: action.yearEnd ,
+            }
+        case SET_MEDIA_TYPE:
             return {
                 ...state,
                 mediaType: action.mediaType ,
-                yearStart: action.yearStart ,
-                yearEnd: action.yearEnd ,
             }
         case SET_TOTAL_PAGES:
             return {
@@ -101,8 +106,11 @@ export const setCurrentSearch = (currentSearch) =>
 export const toggleFetching = (isFetching) =>
     ( { type:  TOGGLE_FETCHING, isFetching} )
 
-export const setParamsLibrary = (mediaType, yearStart, yearEnd) =>
-    ( { type:  SET_PARAMS, mediaType, yearStart, yearEnd} )
+export const setDateIntervalLibrary = (yearStart, yearEnd) =>
+    ( { type:  SET_DATE_INTERVAL, yearStart, yearEnd} )
+
+export const setMediaTypeLIbrary = (mediaType) =>
+    ( { type:  SET_MEDIA_TYPE, mediaType } )
 
 export const nextPage = () =>
     ( { type:  NEXT_PAGE} )

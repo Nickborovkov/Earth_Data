@@ -1,23 +1,22 @@
 import React, {useEffect, useState} from "react";
+import {Redirect} from "react-router-dom";
 import s from './apod.module.css'
-import m from './apodMedia.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
-import cn from 'classnames'
-import {useDispatch, useSelector} from "react-redux";
-import {getApod, getApodWithInterval} from "../../reducers/apod";
 import Preloader from "../../helpers/preloaders/preloader";
 import SetDateAPOD from "./datePickersAPOD/setDateAPOD";
 import SetIntervalAPOD from "./datePickersAPOD/setIntervalAPOD";
-import {Redirect} from "react-router-dom";
+import ApodItem from "./apodItem/apodItem";
+import {useDispatch, useSelector} from "react-redux";
+import {getApod, getApodWithInterval} from "../../reducers/apod";
 import {setNewError} from "../../reducers/errors";
-import imagePlaceHolder from '../../images/imagePlaceholder.jpg'
-import Lazyload from 'react-lazyload'
-import ModalWindow from "../../helpers/modalWindow/modalWindow";
+import { GiClick } from 'react-icons/gi';
 
 const Apod = () => {
 
+    //State
     const dispatch = useDispatch()
+
     const apodArray = useSelector(state => state.apod.apodArray)
     const currentDate = useSelector(state => state.apod.currentDate)
     const intervalDateStart = useSelector(state => state.apod.intervalDateStart)
@@ -25,10 +24,10 @@ const Apod = () => {
     const searchStart = useSelector(state => state.library.searchStart)
     const error = useSelector(state => state.errors.error)
 
+    //Toggle exact date/date interval
     const [datePickerType, setDatePickerType] = useState(0)
-    const [modalWindow, setModalWindow] = useState(false)
-    const [modalSrc, setModalSrc] = useState(``)
 
+    //Open/close parameters
     const [params, setParams] = useState(false)
     const setParameters = () => {
         params
@@ -36,34 +35,33 @@ const Apod = () => {
             : setParams(true)
     }
 
+    //Setting items
     useEffect(()=>{
         if(datePickerType === 0){
             dispatch(getApod(currentDate))
-        }
-    },[dispatch, datePickerType, currentDate])
-
-    useEffect(()=>{
-        if(datePickerType === 1){
+        }else if(datePickerType === 1){
             dispatch(getApodWithInterval(intervalDateStart,intervalDateEnd))
         }
-    },[dispatch, datePickerType, intervalDateStart, intervalDateEnd])
+    },[dispatch, datePickerType, currentDate, intervalDateStart, intervalDateEnd])
 
+    //SearchStart = null when page loads (with this is's possible to go to other links)
     useEffect(()=>{
         dispatch(setNewError(null))
     },[dispatch])
 
-
+    //Redirect to nasaLibrary when submit search field if header
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
     return (
         <div className={s.apod}>
            <h2 className={common.title}>NASA Picture Of The Day</h2>
 
+            {/*Parameters section*/}
             {!params &&
-            <button className={form.formOpenButton} onClick={setParameters}>Set parameters</button>}
+            <button className={form.formOpenButton} onClick={setParameters}><GiClick/> Set parameters</button>}
 
             {params && <div>
-                <button className={form.formOpenButton} onClick={setParameters}>Close parameters</button>
+                <button className={form.formOpenButton} onClick={setParameters}><GiClick/> Close parameters</button>
                 <div>
                     {datePickerType === 0 &&
                     <div className={s.apodForm}>
@@ -81,45 +79,18 @@ const Apod = () => {
                 </div>
             </div>}
 
-
+            {/*Error case*/}
             {error && <h3 className={common.errorCase}>Not available, please change date</h3>}
 
+            {/*Preloader*/}
             {apodArray.length === 0 && !error &&
             <Preloader/>}
 
+            {/*Result*/}
             {apodArray.length !== 0 && !error &&
             <div className={s.apodList}>
-                {
-                    apodArray.map(a => <div className={cn(s.apodItem, m.apodItem)} key={a.date}>
-                        <Lazyload height={300}>
-                            <div>
-                                <h3 className={cn(s.apodTitle, m.apodTitle)}>{a.title}</h3>
-                                <div className={s.apodImageHolder}>
-                                    <img className={s.apodImage}
-                                         src={a.url}
-                                         alt="apod"
-                                         onClick={ (e) => {
-                                             setModalWindow(true)
-                                             setModalSrc(e.currentTarget.src)
-                                         }}
-                                         onError={ (e) => {e.target.src = imagePlaceHolder}}/>
-                                </div>
-                                <p className={cn(s.apodDate, m.apodDate)}>Date: {a.date}</p>
-                                <p className={cn(s.apodExpTitle, m.apodExpTitle)}>Explanation</p>
-                                <p className={cn(s.apodExplanation, m.apodExplanation)}>
-                                    {a.explanation || `Explanation not available`}</p>
-                            </div>
-                        </Lazyload>
-                    </div>)
-                }
-
-                {modalWindow &&
-                <ModalWindow active={modalWindow} setActive={setModalWindow}>
-                    <img className={cn(common.modalImage)}
-                         src={modalSrc}
-                         alt="modal"/>
-                </ModalWindow>}
-
+                {apodArray.map(a => <ApodItem key={a.date}
+                                                 item={a}/>)}
             </div>}
 
         </div>

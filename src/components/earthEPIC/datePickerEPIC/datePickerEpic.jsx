@@ -33,13 +33,14 @@ const DatePickerEpic = ({setParams}) => {
                 } }
                 validationSchema={validationSchema}
             >
-                { ({values, touched, errors, handleSubmit, handleBlur, handleChange, isValid, dirty}) => (
+                { ({values, touched, errors, handleSubmit, handleBlur,
+                       handleChange, isValid, dirty}) => (
                     <form className={cn(s.form, m.form)}>
                         <h3 className={s.title}>Set exact date</h3>
                         <div className={s.inputsHolder}>
-                            {formInputHelper(s.formSubtitle, `Date`, touched.selectedDate, errors.selectedDate,
-                                s.input, `date`, `selectedDate`, `2015-06-13`, dateToday, handleChange,
-                                handleBlur, values.selectedDate)}
+                            {formInputHelper(s.formSubtitle, `Date`, touched.selectedDate,
+                                errors.selectedDate, s.input, `date`, `selectedDate`, `2015-06-13`,
+                                dateToday, handleChange, handleBlur, values.selectedDate, ``, true)}
                         </div>
                         {formButtonHelper(s.formButton, isValid, dirty, handleSubmit, `Show`)}
 

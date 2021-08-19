@@ -77,12 +77,6 @@
     cursor: pointer;
     outline: none;
 }
-.formButton:disabled{
-    background-color: #444444;
-}
-.formButton:active{
-    background-color: gold;
-}
 .errors{
     display: block;
     width: 300px;
@@ -133,9 +127,8 @@
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.typeButton:active{
-    background: gold;
-    outline: none;
+.activeType{
+    color: gold;
 }
 .formOpenButton{
     font-size: 20px;
@@ -151,4 +144,5 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
 }

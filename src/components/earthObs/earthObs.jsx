@@ -1,30 +1,28 @@
 import React, {useEffect, useState} from "react";
+import {Redirect} from "react-router-dom";
 import s from './earthObs.module.css'
-import m from './earthObsMedia.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
-import cn from 'classnames'
-import {useDispatch, useSelector} from "react-redux";
-import {getEarthObservation} from "../../reducers/earthObs";
 import Preloader from "../../helpers/preloaders/preloader";
 import ParamsPickerEarthObs from "./paramsPickerEarthOBS/paramsPickerEarthObs";
-import {Redirect} from "react-router-dom";
+import EarthObsItem from "./earthObsItem/earthObsItem";
+import {useDispatch, useSelector} from "react-redux";
+import {getEarthObservation} from "../../reducers/earthObs";
 import {setNewError} from "../../reducers/errors";
-import imagePlaceHolder from "../../images/imagePlaceholder.jpg";
-import ModalWindow from "../../helpers/modalWindow/modalWindow";
+import { GiClick } from 'react-icons/gi';
 
 const EarthObs = () => {
 
+    //State
     const dispatch = useDispatch()
+
     const earthObs = useSelector(state => state.earth.earthObservation)
     const longitude = useSelector(state => state.earth.longitude)
     const latitude = useSelector(state => state.earth.latitude)
     const searchStart = useSelector(state => state.library.searchStart)
     const error = useSelector(state => state.errors.error)
 
-    const [modalWindow, setModalWindow] = useState(false)
-    const [modalSrc, setModalSrc] = useState(``)
-
+    //Open/close parameters
     const [params, setParams] = useState(false)
     const setParameters = () => {
         params
@@ -32,58 +30,42 @@ const EarthObs = () => {
             : setParams(true)
     }
 
-
+    //Setting items
     useEffect(()=>{
         dispatch(getEarthObservation(longitude, latitude))
     },[dispatch, longitude, latitude])
 
+    //SearchStart = null when page loads (with this is's possible to go to other links)
     useEffect(()=>{
        dispatch(setNewError(null))
     },[dispatch])
 
-
+    //Redirect to nasaLibrary when submit search field if header
     if(searchStart) return <Redirect to='/nasaLibrary'/>
 
     return (
         <div className={s.earth}>
             <h2 className={common.title}>NASA Landsat Satellite Imagery Data</h2>
 
+            {/*Parameters section*/}
             {!params &&
-            <button className={form.formOpenButton} onClick={setParameters}>Set parameters</button>}
+            <button className={form.formOpenButton} onClick={setParameters}><GiClick/> Set parameters</button>}
 
             {params && <div>
-                <button className={form.formOpenButton} onClick={setParameters}>Close parameters</button>
+                <button className={form.formOpenButton} onClick={setParameters}><GiClick/> Close parameters</button>
                 <ParamsPickerEarthObs setParams={setParams}/>
             </div>}
 
+            {/*Error case*/}
             {error && <h3 className={common.errorCase}>Not available, please change parameters</h3>}
 
+            {/*Preloader*/}
             {!earthObs && !error &&
             <Preloader/>}
 
+            {/*Result*/}
             {earthObs && !error &&
-            <div className={cn(s.result, m.result)}>
-                <p className={s.earthParams}>ID: {earthObs.id}</p>
-                <p className={s.earthParams}>Date: {earthObs.date}</p>
-                <div className={s.imageHolder}>
-                    <img className={s.image}
-                         src={earthObs.url}
-                         alt="earthObs"
-                         onClick={ (e) => {
-                             setModalWindow(true)
-                             setModalSrc(e.currentTarget.src)
-                         }}
-                         onError={ (e) => {e.target.src = imagePlaceHolder}}/>
-                </div>
-            </div>
-            }
-
-            {modalWindow &&
-            <ModalWindow active={modalWindow} setActive={setModalWindow}>
-                <img className={cn(common.modalImage)}
-                     src={modalSrc}
-                     alt="modal"/>
-            </ModalWindow>}
+            <EarthObsItem item={earthObs}/>}
 
         </div>
     )

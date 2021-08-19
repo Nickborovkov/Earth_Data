@@ -37,23 +37,25 @@ const ParamsPickerEarthObs = ({setParams}) => {
                 }}
                 validateOnBlur
                 onSubmit={ (values) => {
-                    dispatch(setParameters(values.longitude, values.latitude ,values.date ,values.dimensions))
+                    dispatch(setParameters(values.longitude, values.latitude,
+                        values.date ,values.dimensions))
                     dispatch(setNewError(null))
                     setParams(false)
                 } }
                 validationSchema={validationSchema}
             >
-                { ({values, errors, touched, handleSubmit, handleChange, handleBlur, isValid, dirty}) => (
+                { ({values, errors, touched, handleSubmit, handleChange,
+                       handleBlur, isValid, dirty}) => (
                     <form className={cn(s.form, m.form)}>
                         <h3 className={s.title}>Set new parameters</h3>
                         <div className={s.inputsHolder}>
                             {formInputHelper(s.formSubtitle, `Longitude`, touched.longitude,
-                                errors.longitude, s.input, `text`, `longitude`, null, null, handleChange,
-                                handleBlur, values.longitude, `numeric`)}
+                                errors.longitude, s.input, `text`, `longitude`, null, null,
+                                handleChange, handleBlur, values.longitude, `numeric`, true)}
 
                             {formInputHelper(s.formSubtitle, `Latitude`, touched.latitude,
-                                errors.latitude, s.input, `text`, `latitude`, null, null, handleChange,
-                                handleBlur, values.latitude, `numeric`)}
+                                errors.latitude, s.input, `text`, `latitude`, null, null,
+                                handleChange, handleBlur, values.latitude, `numeric`, false)}
 
                         </div>
 

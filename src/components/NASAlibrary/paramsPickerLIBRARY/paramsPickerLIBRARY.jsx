@@ -1,19 +1,18 @@
-import React, {useState} from "react";
+import React from "react";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
-import {setParamsLibrary} from "../../../reducers/nasaLibrary";
+import {setDateIntervalLibrary} from "../../../reducers/nasaLibrary";
 import {yearNow} from "../../../helpers/dateHelper/dateToday";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import s from "../../../helpers/formHelpers/formsStyles.module.css";
 import cn from "classnames";
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
+import {setNewError} from "../../../reducers/errors";
 
 const ParamsPickerLIBRARY = ({setParams}) => {
 
     const dispatch = useDispatch()
-
-    const [mediaType, setMediaType] = useState(`image`)
 
     const validationSchema = yup.object().shape({
         startYear: yup
@@ -37,12 +36,8 @@ const ParamsPickerLIBRARY = ({setParams}) => {
                }}
                validateOnBlur
                onSubmit={ (values) => {
-                   if(mediaType === `image`){
-                       dispatch(setParamsLibrary(`image` ,values.startYear,values.endYear ))
-                   }
-                   if(mediaType === `video`){
-                       dispatch(setParamsLibrary(`video` ,values.startYear,values.endYear ))
-                   }
+                   dispatch(setDateIntervalLibrary(values.startYear,values.endYear ))
+                   dispatch(setNewError(null))
                    setParams(false)
                } }
                validationSchema={validationSchema}
@@ -51,15 +46,6 @@ const ParamsPickerLIBRARY = ({setParams}) => {
                    <form className={cn(s.form, m.form)}>
 
                        <h3 className={s.title}>Set media type and date</h3>
-
-                       <div className={s.typesHolder}>
-                           <button className={s.typeButton}
-                                   type='button'
-                                   onClick={ () => {setMediaType(`image`)} }>Images</button>
-                           <button className={s.typeButton}
-                                   type='button'
-                                   onClick={ () => {setMediaType(`video`)} }>Videos</button>
-                       </div>
 
                        <div className={s.inputsHolder}>
                            {formInputHelper(s.formSubtitle, `Start year`, touched.startYear, errors.startYear,
