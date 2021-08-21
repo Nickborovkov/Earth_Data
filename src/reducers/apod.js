@@ -1,6 +1,7 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
 import {dateToday} from "../helpers/dateHelper/dateToday";
 import {setNewError} from "./errors";
+import imagePreloader from '../helpers/preloaders/imageLoader.gif'
 
 const SET_APOD = `NASA/apod/SET_APOD`
 const SET_APOD_WITH_INTERVAL = `NASA/apod/SET_APOD_WITH_INTERVAL`
@@ -10,7 +11,9 @@ const SET_INTERVAL = `NASA/apod/SET_INTERVAL`
 
 
 const initialState = {
-    apodArray: [],
+    apodArray: [{
+        url: imagePreloader
+    }],
     currentDate: dateToday,
     intervalDateStart: dateToday,
     intervalDateEnd: dateToday,

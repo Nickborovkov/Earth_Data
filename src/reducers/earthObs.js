@@ -1,12 +1,15 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
 import {setNewError} from "./errors";
+import imagePreloader from '../helpers/preloaders/imageLoader.gif'
 
 const SET_EARTH_OBSERVATION = `NASA/earth/SET_EARTH_OBSERVATION`
 const SET_PARAMETERS = `NASA/earth/SET_PARAMETERS`
 
 
 const initialState = {
-    earthObservation: undefined,
+    earthObservation: {
+        url: imagePreloader
+    },
     longitude: 20,
     latitude: 40,
 }
