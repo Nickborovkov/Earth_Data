@@ -49,6 +49,7 @@ export const getNeows = (startDate, endDate) => async dispatch => {
         dispatch(toggleIsFetching(true))
         const response = await nasaRequest.getNeows(startDate, endDate)
         dispatch(setNeows(response.data.near_earth_objects))
+        dispatch(toggleIsFetching(false))
     }catch (error) {
         dispatch(setNewError(error))
     }
