@@ -14,7 +14,6 @@ import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 import { BsCameraVideo } from 'react-icons/bs';
 import { HiOutlinePhotograph } from 'react-icons/hi';
-import SearchForm from "../header/searchForm/searchForm";
 
 const NasaLibrary = () => {
 

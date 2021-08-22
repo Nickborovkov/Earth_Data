@@ -1,5 +1,5 @@
 import './App.css';
-import React, {Suspense, lazy} from "react";
+import React, {Suspense, lazy, useState, useEffect} from "react";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
@@ -7,6 +7,7 @@ import {Route, Switch} from "react-router-dom";
 import StartedPage from "./helpers/jsxHelpersPages/startedPage";
 import Page404 from "./helpers/jsxHelpersPages/page404";
 import Preloader from "./helpers/preloaders/preloader";
+import { BiArrowToTop } from 'react-icons/bi';
 const Apod = lazy( () => import("./components/apod/apod"))
 const Neows = lazy( () => import("./components/neosw/neows" ))
 const Earth = lazy( () =>  import("./components/earthObs/earthObs"))
@@ -15,8 +16,21 @@ const MarsRover = lazy( () =>  import("./components/marsRover/marsRover"))
 const NasaLibrary = lazy( () => import("./components/NASAlibrary/nasaLibrary") )
 
 
-
 let App = () => {
+
+    //Scroll to top button
+    const [showButton, setShowButton] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener(`scroll`, () => {
+            if (window.pageYOffset > 1100) {
+                setShowButton(true);
+            } else {
+                setShowButton(false);
+            }
+        });
+    }, []);
+
     return (
         <div className='appWrapper'>
             <Header />
@@ -43,7 +57,11 @@ let App = () => {
                                    render={ () => <Page404 /> }/>
                         </Switch>
                     </Suspense>
-
+                    {showButton &&
+                    <button className='backToTop'
+                            onClick={ () => {window.scrollTo({top: 0, behavior: "smooth"})} }>
+                        <BiArrowToTop className='topIcon'/> To top
+                    </button>}
                 </div>
             </div>
             <Footer />
