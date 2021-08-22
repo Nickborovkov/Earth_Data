@@ -1,3 +1,15 @@
+.yearHolder{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.year{
+    display: block;
+    text-align: center;
+    width: 150px;
+    font-size: 18px;
+    color: cornflowerblue;
+}
 .nasaLibrary{
     padding: 50px 0 100px 0;
 }

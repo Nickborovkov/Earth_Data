@@ -72,7 +72,8 @@ const NASALibraryItem = ({item, mediaType}) => {
                 <video className={common.video}
                        src={videosLinks[0]}
                        controls
-                       autoPlay/>
+                       autoPlay
+                />
             </ModalWindow>}
 
         </div>

@@ -1,7 +1,7 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
 import {dateToday} from "../helpers/dateHelper/dateToday";
-import {setNewError} from "./errors";
-import imagePreloader from '../helpers/preloaders/imageLoader.gif'
+import {setNewError, toggleIsFetching} from "./common";
+
 
 const SET_APOD = `NASA/apod/SET_APOD`
 const SET_APOD_WITH_INTERVAL = `NASA/apod/SET_APOD_WITH_INTERVAL`
@@ -9,11 +9,8 @@ const SET_CURRENT_DATE = `NASA/apod/SET_CURRENT_DATE`
 const SET_INTERVAL = `NASA/apod/SET_INTERVAL`
 
 
-
 const initialState = {
-    apodArray: [{
-        url: imagePreloader
-    }],
+    apodArray: [],
     currentDate: dateToday,
     intervalDateStart: dateToday,
     intervalDateEnd: dateToday,
@@ -68,16 +65,23 @@ export const setIntervalDates = (start, end) =>
 
 //THUNK
 export const getApod = (date) => async dispatch => {
-    let response
     try {
-        response = await nasaRequest.getAPOD(date)
+        dispatch(toggleIsFetching(true))
+        let response = await nasaRequest.getAPOD(date)
         dispatch(setApod(response.data))
+        dispatch(toggleIsFetching(false))
     }catch (error) {
         dispatch(setNewError(error.message))
     }
 }
 
 export const getApodWithInterval = (startDate, endDate) => async dispatch => {
-    const response = await nasaRequest.getAPODwithInterval(startDate, endDate)
-    dispatch(setApodWithInterval(response.data))
+    try {
+        dispatch(toggleIsFetching(true))
+        let response = await nasaRequest.getAPODwithInterval(startDate, endDate)
+        dispatch(setApodWithInterval(response.data))
+        dispatch(toggleIsFetching(false))
+    }catch (error) {
+        dispatch(setNewError(error.message))
+    }
 }

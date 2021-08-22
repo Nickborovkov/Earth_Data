@@ -9,7 +9,7 @@ import SetIntervalAPOD from "./datePickersAPOD/setIntervalAPOD";
 import ApodItem from "./apodItem/apodItem";
 import {useDispatch, useSelector} from "react-redux";
 import {getApod, getApodWithInterval} from "../../reducers/apod";
-import {setNewError} from "../../reducers/errors";
+import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 
 const Apod = () => {
@@ -22,7 +22,8 @@ const Apod = () => {
     const intervalDateStart = useSelector(state => state.apod.intervalDateStart)
     const intervalDateEnd = useSelector(state => state.apod.intervalDateEnd)
     const searchStart = useSelector(state => state.library.searchStart)
-    const error = useSelector(state => state.errors.error)
+    const isFetching = useSelector(state => state.common.isFetching)
+    const error = useSelector(state => state.common.error)
 
     //Toggle exact date/date interval
     const [datePickerType, setDatePickerType] = useState(0)
@@ -83,11 +84,11 @@ const Apod = () => {
             {error && <h3 className={common.errorCase}>Not available, please change date</h3>}
 
             {/*Preloader*/}
-            {apodArray.length === 0 && !error &&
+            {isFetching && !error &&
             <Preloader/>}
 
             {/*Result*/}
-            {apodArray.length !== 0 && !error &&
+            {!isFetching && !error &&
             <div className={s.apodList}>
                 {apodArray.map(a => <ApodItem key={a.date}
                                                  item={a}/>)}

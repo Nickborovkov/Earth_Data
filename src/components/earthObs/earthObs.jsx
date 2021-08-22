@@ -8,7 +8,7 @@ import ParamsPickerEarthObs from "./paramsPickerEarthOBS/paramsPickerEarthObs";
 import EarthObsItem from "./earthObsItem/earthObsItem";
 import {useDispatch, useSelector} from "react-redux";
 import {getEarthObservation} from "../../reducers/earthObs";
-import {setNewError} from "../../reducers/errors";
+import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 
 const EarthObs = () => {
@@ -20,7 +20,8 @@ const EarthObs = () => {
     const longitude = useSelector(state => state.earth.longitude)
     const latitude = useSelector(state => state.earth.latitude)
     const searchStart = useSelector(state => state.library.searchStart)
-    const error = useSelector(state => state.errors.error)
+    const isFetching = useSelector(state => state.common.isFetching)
+    const error = useSelector(state => state.common.error)
 
     //Open/close parameters
     const [params, setParams] = useState(false)
@@ -60,11 +61,11 @@ const EarthObs = () => {
             {error && <h3 className={common.errorCase}>Not available, please change parameters</h3>}
 
             {/*Preloader*/}
-            {!earthObs && !error &&
+            {isFetching && !error &&
             <Preloader/>}
 
             {/*Result*/}
-            {earthObs && !error &&
+            {!isFetching && !error &&
             <EarthObsItem item={earthObs}/>}
 
         </div>

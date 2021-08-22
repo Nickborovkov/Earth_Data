@@ -9,7 +9,7 @@ import MarsRoverItem from "./marsRoverItem/marsRoverItem";
 import Pagination from "../../helpers/Pagination/pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {getMarsRoverPhotos, roverNextPage, roverPrevPage} from "../../reducers/marsRover";
-import {setNewError} from "../../reducers/errors";
+import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 
 const MarsRover = () => {
@@ -22,7 +22,8 @@ const MarsRover = () => {
     const date = useSelector(state => state.marsRover.date)
     const page = useSelector(state => state.marsRover.page)
     const searchStart = useSelector(state => state.library.searchStart)
-    const error = useSelector(state => state.errors.error)
+    const isFetching = useSelector(state => state.common.isFetching)
+    const error = useSelector(state => state.common.error)
 
     //Open/close parameters
     const [params, setParams] = useState(false)
@@ -63,11 +64,11 @@ const MarsRover = () => {
             {error && <h3 className={common.errorCase}>Not available, please change date</h3>}
 
             {/*Preloader*/}
-            {marsRoverPhotos.length === 0 && !error &&
+            {isFetching && !error &&
             <Preloader/>}
 
             {/*Result*/}
-            {marsRoverPhotos.length !== 0 && !error &&
+            {!isFetching && !error &&
             <div>
                 <div className={s.items}>
                     {marsRoverPhotos.map(r => <MarsRoverItem key={r.id}

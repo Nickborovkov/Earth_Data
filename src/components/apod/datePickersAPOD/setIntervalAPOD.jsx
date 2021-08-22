@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 import {setIntervalDates} from "../../../reducers/apod";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
-import {setNewError} from "../../../reducers/errors";
+import {setNewError} from "../../../reducers/common";
 
 
 const SetIntervalAPOD = ({setParams}) => {

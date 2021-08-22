@@ -8,7 +8,7 @@ import DatePickerEpic from "./datePickerEPIC/datePickerEpic";
 import EarthEPICItem from "./earthEPICItem/earthEpicItem";
 import {useDispatch, useSelector} from "react-redux";
 import {getEarthImage} from "../../reducers/earthEpic";
-import {setNewError} from "../../reducers/errors";
+import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 
 const EarthEpic = () => {
@@ -19,7 +19,8 @@ const EarthEpic = () => {
     const earthImage = useSelector(state => state.earthImage.earthImage)
     const SelectedDate = useSelector(state => state.earthImage.date)
     const searchStart = useSelector(state => state.library.searchStart)
-    const error = useSelector(state => state.errors.error)
+    const isFetching = useSelector(state => state.common.isFetching)
+    const error = useSelector(state => state.common.error)
 
     //Open/close parameters
     const [params, setParams] = useState(false)
@@ -59,11 +60,11 @@ const EarthEpic = () => {
             {error && <h3 className={common.errorCase}>Not available, please change date</h3>}
 
             {/*Preloader*/}
-            {!earthImage && !error &&
+            {isFetching&& !error &&
             <Preloader/>}
 
             {/*Result*/}
-            {earthImage && !error &&
+            {!isFetching && !error &&
             <div className={s.imagesArray}>
                 {earthImage.map(e => <EarthEPICItem key={e.identifier}
                                                        item={e}/>)}

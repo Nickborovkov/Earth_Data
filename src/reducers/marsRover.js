@@ -1,5 +1,5 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
-import {setNewError} from "./errors";
+import {setNewError, toggleIsFetching} from "./common";
 
 const SET_MARS_ROVER_PHOTOS = `nasa/marsRover/SET_MARS_ROVER_PHOTOS`
 const SET_MARS_ROVER_PARAMS = `nasa/marsRover/SET_MARS_ROVER_PARAMS`
@@ -66,9 +66,11 @@ export const roverPrevPage = () =>
 //THUNK
 export const getMarsRoverPhotos = (rover, date, page) => async dispatch => {
     try{
+        dispatch(toggleIsFetching(true))
         const response = await nasaRequest.getMarsRoverPhotos(rover, date, page)
         if(response.data.photos.length > 0){
             dispatch(setMarsRoverPhotos(response.data.photos))
+            dispatch(toggleIsFetching(false))
         }else {
             dispatch(setNewError(`Empty mars rover photos`))
         }

@@ -5,10 +5,11 @@ import cn from 'classnames'
 import {useDispatch} from "react-redux";
 import {Formik} from "formik";
 import * as yup from 'yup'
-import {setCurrentSearch, setSearchStart} from "../../../reducers/nasaLibrary";
+import {setCurrentSearch, setDateIntervalLibrary, setSearchStart} from "../../../reducers/nasaLibrary";
 import { BsSearch } from 'react-icons/bs';
 import {formButtonHelper} from "../../../helpers/formHelpers/formHelpers";
-import {setNewError} from "../../../reducers/errors";
+import {setNewError} from "../../../reducers/common";
+import {yearNow} from "../../../helpers/dateHelper/dateToday";
 
 
 const SearchForm = () => {
@@ -30,6 +31,8 @@ const SearchForm = () => {
                 }}
                 validateOnBlur
                 onSubmit={ (values) => {
+                    //Setting default data
+                    dispatch(setDateIntervalLibrary(yearNow - 2, yearNow))
                     dispatch(setCurrentSearch(values.search))
                     //Set searchStart = true for redirecting when submitting search in header
                     dispatch(setSearchStart(true))

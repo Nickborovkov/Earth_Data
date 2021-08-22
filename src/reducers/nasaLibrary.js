@@ -1,10 +1,9 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
-import {setNewError} from "./errors";
+import {setNewError, toggleIsFetching} from "./common";
 import axios from "axios";
 
 const SET_SEARCH_RESULT = `nasa/nasaLibrary/SET_SEARCH_RESULT`
 const SET_SEARCH_START = `nasa/nasaLibrary/SET_SEARCH_START`
-const TOGGLE_FETCHING = `nasa/nasaLibrary/TOGGLE_FETCHING`
 const SET_CURRENT_SEARCH = `nasa/nasaLibrary/SET_CURRENT_SEARCH`
 const SET_VIDEOS_LINKS = `nasa/nasaLibrary/SET_VIDEOS_LINKS`
 const SET_TOTAL_PAGES = `nasa/nasaLibrary/SET_TOTAL_PAGES`
@@ -15,16 +14,15 @@ const PREV_PAGE = `nasa/nasaLibrary/PREV_PAGE`
 
 
 const initialState = {
-    result: null,
+    result: [],
     currentSearch: null,
     searchStart: false,
     videosLinks: [],
     mediaType: `image`,
-    yearStart: `2005`,
+    yearStart: `2019`,
     yearEnd: `2021`,
     totalPages: ``,
     page: 1,
-    isFetching: false,
 }
 
 
@@ -49,11 +47,6 @@ const nasaLibraryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 videosLinks: action.videosLinks,
-            }
-        case TOGGLE_FETCHING:
-            return {
-                ...state,
-                isFetching: action.isFetching
             }
         case SET_DATE_INTERVAL:
             return {
@@ -103,9 +96,6 @@ export const setVideosLinks = (videosLinks) =>
 export const setCurrentSearch = (currentSearch) =>
     ( { type:  SET_CURRENT_SEARCH, currentSearch} )
 
-export const toggleFetching = (isFetching) =>
-    ( { type:  TOGGLE_FETCHING, isFetching} )
-
 export const setDateIntervalLibrary = (yearStart, yearEnd) =>
     ( { type:  SET_DATE_INTERVAL, yearStart, yearEnd} )
 
@@ -126,14 +116,14 @@ export const setTotalPages = (totalPages) =>
 //THUNK
 export const getSearchResult = (search, mediaType, yearStart, yearEnd, page) => async dispatch => {
     try {
+        dispatch(toggleIsFetching(true))
         dispatch(setSearchResult(null))
         dispatch(setSearchStart(true))
-        dispatch(toggleFetching(true))
         const response = await nasaRequest.searchNasaLibrary(search, mediaType, yearStart, yearEnd, page)
-        dispatch(toggleFetching(false))
         if(response.data.collection.metadata.total_hits !== 0){
             dispatch(setSearchResult(response.data.collection.items))
             dispatch(setTotalPages(response.data.collection.metadata.total_hits))
+            dispatch(toggleIsFetching(false))
         }else {
             dispatch(setNewError(`No results for search`))
         }
@@ -143,7 +133,7 @@ export const getSearchResult = (search, mediaType, yearStart, yearEnd, page) => 
     }
 }
 
-//Thunk for getting links fro videos (video links comes as a json)
+//Thunk for getting links for videos (video links comes as a json)
 export const getVideoLinks = (json) => async dispatch => {
     const response = await axios.get(json.toString())
     dispatch(setVideosLinks(response.data))

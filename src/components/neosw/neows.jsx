@@ -8,7 +8,7 @@ import DatePickerNEOWS from "./datePickerNEOWS/datePickerNEOWS";
 import NeowsItem from "./neowsItem/neowsItem";
 import {useDispatch, useSelector} from "react-redux";
 import {getNeows} from "../../reducers/neows";
-import {setNewError} from "../../reducers/errors";
+import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 
 const Neows = () => {
@@ -20,7 +20,8 @@ const Neows = () => {
     const intervalDateStart = useSelector(state => state.neows.intervalDateStart)
     const intervalDateEnd = useSelector(state => state.neows.intervalDateEnd)
     const searchStart = useSelector(state => state.library.searchStart)
-    const error = useSelector(state => state.errors.error)
+    const isFetching = useSelector(state => state.common.isFetching)
+    const error = useSelector(state => state.common.error)
 
     //Open/close parameters
     const [params, setParams] = useState(false)
@@ -62,11 +63,11 @@ const Neows = () => {
             {error && <h3 className={common.errorCase}>Not available, please change date interval</h3>}
 
             {/*Preloader*/}
-            {neowsArray.length === 0 && !error &&
+            {isFetching && !error &&
             <Preloader/>}
 
             {/*Result*/}
-            {neowsArray.length !== 0 && !error &&
+            {!isFetching && !error &&
             <div>
                 {
                     Object.keys(neowsArray).map(key => <div key={key}>

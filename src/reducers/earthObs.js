@@ -1,15 +1,13 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
-import {setNewError} from "./errors";
-import imagePreloader from '../helpers/preloaders/imageLoader.gif'
+import {setNewError, toggleIsFetching} from "./common";
+
 
 const SET_EARTH_OBSERVATION = `NASA/earth/SET_EARTH_OBSERVATION`
 const SET_PARAMETERS = `NASA/earth/SET_PARAMETERS`
 
 
 const initialState = {
-    earthObservation: {
-        url: imagePreloader
-    },
+    earthObservation: {},
     longitude: 20,
     latitude: 40,
 }
@@ -47,8 +45,10 @@ export const setParameters = (lon, lat) =>
 //THUNK
 export const getEarthObservation = (lon, lat) => async dispatch => {
     try {
+        dispatch(toggleIsFetching(true))
         const response = await nasaRequest.getEarthObservation(lon, lat)
         dispatch(setEarthObservation(response.data))
+        dispatch(toggleIsFetching(false))
     }catch (error) {
         dispatch(setNewError(error))
     }

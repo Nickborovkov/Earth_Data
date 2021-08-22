@@ -8,7 +8,7 @@ import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/fo
 import s from "../../../helpers/formHelpers/formsStyles.module.css";
 import cn from "classnames";
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
-import {setNewError} from "../../../reducers/errors";
+import {setNewError} from "../../../reducers/common";
 
 const ParamsPickerLIBRARY = ({setParams}) => {
 
@@ -36,7 +36,7 @@ const ParamsPickerLIBRARY = ({setParams}) => {
                }}
                validateOnBlur
                onSubmit={ (values) => {
-                   dispatch(setDateIntervalLibrary(values.startYear,values.endYear ))
+                   dispatch(setDateIntervalLibrary(values.startYear, values.endYear ))
                    //Reset error after submit
                    dispatch(setNewError(null))
                    //Close params after submit

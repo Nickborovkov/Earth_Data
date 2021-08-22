@@ -10,17 +10,17 @@ import Pagination from "../../helpers/Pagination/pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {getSearchResult, nextPage, prevPage,
     setMediaTypeLIbrary, setSearchStart} from "../../reducers/nasaLibrary";
-import {setNewError} from "../../reducers/errors";
+import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 import { BsCameraVideo } from 'react-icons/bs';
 import { HiOutlinePhotograph } from 'react-icons/hi';
+import SearchForm from "../header/searchForm/searchForm";
 
 const NasaLibrary = () => {
 
     //State
     const dispatch = useDispatch()
 
-    const isFetching = useSelector(state => state.library.isFetching)
     const result = useSelector(state => state.library.result)
     const searchStart = useSelector(state => state.library.searchStart)
     const currentSearch = useSelector(state => state.library.currentSearch)
@@ -29,6 +29,8 @@ const NasaLibrary = () => {
     const mediaType = useSelector(state => state.library.mediaType)
     const yearStart = useSelector(state => state.library.yearStart)
     const yearEnd = useSelector(state => state.library.yearEnd)
+    const isFetching = useSelector(state => state.common.isFetching)
+    const error = useSelector(state => state.common.error)
 
     //Open/close parameters
     const [params, setParams] = useState(false)
@@ -38,14 +40,12 @@ const NasaLibrary = () => {
             : setParams(true)
     }
 
-    //Active style for pressed media bytton
+    //Active style for pressed media button
     const [mediaActive, setMediaActive] = useState({
         image: true,
         video: false
     })
 
-    //Error state
-    const error = useSelector(state => state.errors.error)
 
     //Setting items
     useEffect(()=>{
@@ -67,6 +67,11 @@ const NasaLibrary = () => {
     return (
         <div className={s.nasaLibrary}>
             <h2 className={common.title}>NASA photo and Video library</h2>
+            <div className={s.yearHolder}>
+                <p className={s.year}>Start year: {yearStart}</p>
+                <p className={s.year}>End year: {yearEnd}</p>
+            </div>
+
 
             {/*Media type section*/}
             <div className={s.mediaType}>
@@ -98,26 +103,22 @@ const NasaLibrary = () => {
             </div>}
 
             {/*Error case*/}
-            {!result && error &&
+            {error &&
             <div className={s.errorCase}>No results for this search</div>}
 
             {/*Preloader*/}
-            {!result && !error &&
+            {isFetching && !error &&
             <Preloader/>}
 
             {/*Result*/}
-            {result && !error &&
+            {!isFetching && !error &&
             <div>
-                {/*Preloader*/}
-                {isFetching && <Preloader />}
-
                 {/*Result items*/}
-                {!isFetching &&
                 <div className={s.itemsArray}>
                     {result.map(r => <NASALibraryItem key={result.indexOf(r)}
                                                       item={r}
                                                       mediaType={mediaType}/>)}
-                </div>}
+                </div>
 
                 {/*Pagination*/}
                 <Pagination page = {page}

@@ -1,12 +1,12 @@
 import {nasaRequest} from "../serverRequests/serverRequests";
-import {setNewError} from "./errors";
+import {setNewError, toggleIsFetching} from "./common";
 
 const SET_EARTH_IMAGE = `NASA/earthImage/SET_EARTH_IMAGE`
 const SET_EARTH_IMAGE_DATE = `NASA/earthImage/SET_EARTH_IMAGE_DATE`
 
 
 const initialState = {
-    earthImage: undefined,
+    earthImage: [],
     //setting date when this api started, because today's date is not always available
     date: `2015-06-13`,
 }
@@ -43,13 +43,14 @@ export const setEarthImageDate = (date) =>
 //THUNK
 export const getEarthImage = (date) => async dispatch => {
     try {
+        dispatch(toggleIsFetching(true))
         const response = await nasaRequest.getEarthImage(date)
         if(response.data.length !== 0){
             dispatch(setEarthImage(response.data))
+            dispatch(toggleIsFetching(false))
         }else {
             dispatch(setNewError(`No images for this date`))
         }
-
     }catch (error) {
         dispatch(setNewError(error))
     }

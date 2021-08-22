@@ -7,6 +7,7 @@ import ModalWindow from "../../../helpers/modalWindow/modalWindow";
 import Lazyload from "react-lazyload";
 import imagePlaceHolder from "../../../images/imagePlaceholder.jpg";
 
+
 const ApodItem = ({item}) => {
 
     //State for modal window

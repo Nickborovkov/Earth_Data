@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 import {setIntervalDate} from "../../../reducers/neows";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
-import {setNewError} from "../../../reducers/errors";
+import {setNewError} from "../../../reducers/common";
 
 
 const DatePickerNEOWS = ({setParams}) => {

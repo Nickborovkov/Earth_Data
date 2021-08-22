@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import {useDispatch} from "react-redux";
 import {setParameters} from "../../../reducers/earthObs";
 import {formButtonHelper,formInputHelper} from "../../../helpers/formHelpers/formHelpers";
-import {setNewError} from "../../../reducers/errors";
+import {setNewError} from "../../../reducers/common";
 
 const ParamsPickerEarthObs = ({setParams}) => {
 
