@@ -4,7 +4,7 @@ import m from "../earthEpicMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
 import cn from "classnames";
 import Lazyload from "react-lazyload";
-import imagePlaceHolder from "../../../images/imagePlaceholder.jpg";
+import imagePreloader from "../../../helpers/preloaders/imageLoader.gif"
 import ModalWindow from "../../../helpers/modalWindow/modalWindow";
 import {earthEpicURLHelper} from "../../../helpers/urlHelper/earthEpicURLHelper";
 import {useSelector} from "react-redux";
@@ -31,15 +31,16 @@ const EarthEPICItem = ({item}) => {
                         </div>
                         <div className={s.imageHolder}>
                             <img className={s.image}
-                                 src={earthEpicURLHelper(SelectedDate, item.image)}
+                                 src={imagePreloader}
                                  alt="earthImage"
                                  onClick={(e) => {
                                      setModalWindow(true)
                                      setModalSrc(e.currentTarget.src)
                                  }}
-                                 onError={(e) => {
-                                     e.target.src = imagePlaceHolder
-                                 }}/>
+                                 onLoad={(e) => {
+                                     e.target.src = earthEpicURLHelper(SelectedDate, item.image)
+                                 }}
+                            />
                         </div>
                     </div>
                 </Lazyload>

@@ -4,7 +4,7 @@ import m from "../marsRoverMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
 import cn from "classnames";
 import LazyLoad from "react-lazyload";
-import imagePlaceHolder from "../../../images/imagePlaceholder.jpg";
+import imagePreloader from "../../../helpers/preloaders/imageLoader.gif"
 import ModalWindow from "../../../helpers/modalWindow/modalWindow";
 
 const MarsRoverItem = ({item}) => {
@@ -25,14 +25,14 @@ const MarsRoverItem = ({item}) => {
                         <p className={s.params}>Earth date: {item.earth_date}</p>
                         <div className={s.imageHolder}>
                             <img className={s.image}
-                                 src={item.img_src}
+                                 src={imagePreloader}
                                  alt="roverPhoto"
                                  onClick={(e) => {
                                      setModalWindow(true)
                                      setModalSrc(e.currentTarget.src)
                                  }}
-                                 onError={(e) => {
-                                     e.target.src = imagePlaceHolder
+                                 onLoad={(e) => {
+                                     e.target.src = item.img_src
                                  }}/>
                         </div>
                     </div>

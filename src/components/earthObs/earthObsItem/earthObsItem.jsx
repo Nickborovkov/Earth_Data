@@ -3,8 +3,8 @@ import s from "../earthObs.module.css";
 import m from "../earthObsMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
 import cn from "classnames";
-import imagePlaceHolder from "../../../images/imagePlaceholder.jpg";
 import ModalWindow from "../../../helpers/modalWindow/modalWindow";
+import imagePreloader from "../../../helpers/preloaders/imageLoader.gif"
 
 const EarthObsItem = ({item}) => {
 
@@ -20,13 +20,14 @@ const EarthObsItem = ({item}) => {
                 <p className={s.earthParams}>Date: {item.date}</p>
                 <div className={s.imageHolder}>
                     <img className={s.image}
-                         src={item.url}
+                         src={imagePreloader}
                          alt="earthObs"
                          onClick={ (e) => {
                              setModalWindow(true)
                              setModalSrc(e.currentTarget.src)
                          }}
-                         onError={ (e) => {e.target.src = imagePlaceHolder}}/>
+                         onLoad={ (e) => {e.target.src = item.url} }
+                    />
                 </div>
             </div>
 
