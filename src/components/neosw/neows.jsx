@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {Redirect} from "react-router-dom";
 import s from './neows.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
@@ -11,7 +11,7 @@ import {getNeows} from "../../reducers/neows";
 import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 
-const Neows = () => {
+const Neows = memo(() => {
 
     //State
     const dispatch = useDispatch()
@@ -85,6 +85,6 @@ const Neows = () => {
             }
         </div>
     )
-}
+})
 
 export default Neows

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import m from '../../../helpers/formHelpers/formsStylesMedia.module.css'
 import cn from 'classnames'
@@ -9,7 +9,7 @@ import {setParameters} from "../../../reducers/earthObs";
 import {formButtonHelper,formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {setNewError} from "../../../reducers/common";
 
-const ParamsPickerEarthObs = ({setParams}) => {
+const ParamsPickerEarthObs = memo(({setParams}) => {
 
     const dispatch = useDispatch()
 
@@ -66,6 +66,6 @@ const ParamsPickerEarthObs = ({setParams}) => {
             </Formik>
         </div>
         )
-}
+})
 
 export default ParamsPickerEarthObs

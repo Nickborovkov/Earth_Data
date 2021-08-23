@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
@@ -10,7 +10,7 @@ import cn from "classnames";
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
 import {setNewError} from "../../../reducers/common";
 
-const ParamsPickerLIBRARY = ({setParams}) => {
+const ParamsPickerLIBRARY = memo(({setParams}) => {
 
     const dispatch = useDispatch()
 
@@ -65,6 +65,6 @@ const ParamsPickerLIBRARY = ({setParams}) => {
            </Formik>
         </div>
     )
-}
+})
 
 export default ParamsPickerLIBRARY

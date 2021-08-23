@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import s from './nasaLibrary.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
@@ -15,7 +15,7 @@ import { GiClick } from 'react-icons/gi';
 import { BsCameraVideo } from 'react-icons/bs';
 import { HiOutlinePhotograph } from 'react-icons/hi';
 
-const NasaLibrary = () => {
+const NasaLibrary = memo(() => {
 
     //State
     const dispatch = useDispatch()
@@ -130,6 +130,6 @@ const NasaLibrary = () => {
 
         </div>
     )
-}
+})
 
 export default NasaLibrary

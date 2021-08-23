@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {Redirect} from "react-router-dom";
 import s from './earthEpic.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
@@ -11,7 +11,7 @@ import {getEarthImage} from "../../reducers/earthEpic";
 import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 
-const EarthEpic = () => {
+const EarthEpic = memo(() => {
 
     //State
     const dispatch = useDispatch()
@@ -71,6 +71,6 @@ const EarthEpic = () => {
             </div>}
         </div>
     )
-}
+})
 
 export default EarthEpic

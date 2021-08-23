@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import s from "../earthObs.module.css";
 import m from "../earthObsMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
@@ -6,7 +6,7 @@ import cn from "classnames";
 import ModalWindow from "../../../helpers/modalWindow/modalWindow";
 import imagePreloader from "../../../helpers/preloaders/imageLoader.gif"
 
-const EarthObsItem = ({item}) => {
+const EarthObsItem = memo(({item}) => {
 
     //State for modal window
     const [modalWindow, setModalWindow] = useState(false)
@@ -41,6 +41,6 @@ const EarthObsItem = ({item}) => {
 
         </div>
     )
-}
+})
 
 export default EarthObsItem

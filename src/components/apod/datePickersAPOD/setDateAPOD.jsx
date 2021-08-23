@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import m from '../../../helpers/formHelpers/formsStylesMedia.module.css'
 import cn from 'classnames'
@@ -10,7 +10,7 @@ import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/fo
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import {setNewError} from "../../../reducers/common";
 
-const SetDateAPOD = ({setParams}) => {
+const SetDateAPOD = memo(({setParams}) => {
 
     const dispatch = useDispatch()
 
@@ -51,6 +51,6 @@ const SetDateAPOD = ({setParams}) => {
             </Formik>
         </div>
     )
-}
+})
 
 export default SetDateAPOD

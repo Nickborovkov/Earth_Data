@@ -1,8 +1,8 @@
-import React from "react";
+import React, {memo} from "react";
 import s from "../neows.module.css";
 import Lazyload from "react-lazyload";
 
-const NeowsItem = ({item}) => {
+const NeowsItem = memo(({item}) => {
     return (
         <div>
             {/*Item*/}
@@ -36,6 +36,6 @@ const NeowsItem = ({item}) => {
             </div>
         </div>
     )
-}
+})
 
 export default NeowsItem

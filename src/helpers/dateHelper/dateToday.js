@@ -10,7 +10,7 @@ export const dayFixedNow = () => {
     const hoursNow = now.getHours()
     const hoursUTCNow = hoursNow - 8
     let dayNow
-    if(hoursNow - hoursUTCNow < 8 && hoursNow - hoursUTCNow > -8){
+    if(hoursNow - hoursUTCNow < 9 && hoursNow - hoursUTCNow > -9){
         dayNow = String(now.getDate()).length === 1
             ? `0${String(now.getDate() )}`
             : String(now.getDate())

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import s from "../nasaLibrary.module.css";
 import m from "../nasaLibraryMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
@@ -10,7 +10,7 @@ import {getVideoLinks} from "../../../reducers/nasaLibrary";
 import {useDispatch, useSelector} from "react-redux";
 import { AiFillPlayCircle } from 'react-icons/ai'
 
-const NASALibraryItem = ({item, mediaType}) => {
+const NASALibraryItem = memo(({item, mediaType}) => {
 
     //State
     const dispatch = useDispatch()
@@ -79,6 +79,6 @@ const NASALibraryItem = ({item, mediaType}) => {
         </div>
 
     )
-}
+})
 
 export default NASALibraryItem

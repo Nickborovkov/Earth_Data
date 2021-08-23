@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
 import cn from "classnames";
@@ -10,7 +10,7 @@ import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/fo
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import {setNewError} from "../../../reducers/common";
 
-const ParamsPickerROVER = ({setParams}) => {
+const ParamsPickerROVER = memo(({setParams}) => {
 
     const dispatch= useDispatch()
 
@@ -121,6 +121,6 @@ const ParamsPickerROVER = ({setParams}) => {
             </Formik>
         </div>
     )
-}
+})
 
 export default ParamsPickerROVER

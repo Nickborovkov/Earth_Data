@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {Redirect} from "react-router-dom";
 import s from './earthObs.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
@@ -11,7 +11,7 @@ import {getEarthObservation} from "../../reducers/earthObs";
 import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 
-const EarthObs = () => {
+const EarthObs = memo(() => {
 
     //State
     const dispatch = useDispatch()
@@ -70,6 +70,6 @@ const EarthObs = () => {
 
         </div>
     )
-}
+})
 
 export default EarthObs

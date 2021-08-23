@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {Redirect} from "react-router-dom";
 import s from './apod.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
@@ -12,7 +12,7 @@ import {getApod, getApodWithInterval} from "../../reducers/apod";
 import {setNewError} from "../../reducers/common";
 import { GiClick } from 'react-icons/gi';
 
-const Apod = () => {
+const Apod = memo(() => {
 
     //State
     const dispatch = useDispatch()
@@ -96,6 +96,6 @@ const Apod = () => {
 
         </div>
     )
-}
+})
 
 export default Apod

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import s from "../marsRover.module.css";
 import m from "../marsRoverMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
@@ -7,7 +7,7 @@ import LazyLoad from "react-lazyload";
 import imagePreloader from "../../../helpers/preloaders/imageLoader.gif"
 import ModalWindow from "../../../helpers/modalWindow/modalWindow";
 
-const MarsRoverItem = ({item}) => {
+const MarsRoverItem = memo(({item}) => {
 
     //State for modal window
     const [modalWindow, setModalWindow] = useState(false)
@@ -49,6 +49,6 @@ const MarsRoverItem = ({item}) => {
 
         </div>
     )
-}
+})
 
 export default MarsRoverItem

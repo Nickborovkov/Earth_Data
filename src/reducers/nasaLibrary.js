@@ -19,7 +19,7 @@ const initialState = {
     searchStart: false,
     videosLinks: [],
     mediaType: `image`,
-    yearStart: `2019`,
+    yearStart: `2000`,
     yearEnd: `2021`,
     totalPages: ``,
     page: 1,

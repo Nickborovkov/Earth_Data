@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import s from "../earthEpic.module.css";
 import m from "../earthEpicMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
@@ -9,7 +9,7 @@ import ModalWindow from "../../../helpers/modalWindow/modalWindow";
 import {earthEpicURLHelper} from "../../../helpers/urlHelper/earthEpicURLHelper";
 import {useSelector} from "react-redux";
 
-const EarthEPICItem = ({item}) => {
+const EarthEPICItem = memo(({item}) => {
 
     //State
     const SelectedDate = useSelector(state => state.earthImage.date)
@@ -56,6 +56,6 @@ const EarthEPICItem = ({item}) => {
 
         </div>
     )
-}
+})
 
 export default EarthEPICItem

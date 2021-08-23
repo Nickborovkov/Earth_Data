@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import s from '../../../helpers/formHelpers/formsStyles.module.css'
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
 import cn from "classnames";
@@ -11,7 +11,7 @@ import {dateToday} from "../../../helpers/dateHelper/dateToday";
 import {setNewError} from "../../../reducers/common";
 
 
-const DatePickerNEOWS = ({setParams}) => {
+const DatePickerNEOWS = memo(({setParams}) => {
 
     const dispatch = useDispatch()
 
@@ -62,6 +62,6 @@ const DatePickerNEOWS = ({setParams}) => {
             </Formik>
         </div>
     )
-}
+})
 
 export default DatePickerNEOWS

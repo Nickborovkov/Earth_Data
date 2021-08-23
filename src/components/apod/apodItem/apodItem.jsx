@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {memo, useMemo, useState} from "react";
 import s from "../apod.module.css";
 import m from "../apodMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
@@ -8,11 +8,15 @@ import Lazyload from "react-lazyload";
 import imagePlaceHolder from "../../../images/imagePlaceholder.jpg";
 
 
-const ApodItem = ({item}) => {
+const ApodItem = memo(({item}) => {
 
     //State for modal window
     const [modalWindow, setModalWindow] = useState(false)
     const [modalSrc, setModalSrc] = useState(``)
+
+    useMemo(()=>{
+      return item
+    },[item])
 
     return (
         <div>
@@ -50,6 +54,6 @@ const ApodItem = ({item}) => {
             </ModalWindow>}
         </div>
     )
-}
+})
 
 export default ApodItem
