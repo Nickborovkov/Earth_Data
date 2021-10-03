@@ -1,5 +1,7 @@
 # Project that shows EarthObs and space date built with [NASA public API](https://api.nasa.gov/)
 
+![image](https://github.com/Nickborovkov/Earth_Data/blob/master/appScreenshot.png)
+
 ## What it can do:
 - The app is responsive
 - Search images and videos in NASA Image and Video library
