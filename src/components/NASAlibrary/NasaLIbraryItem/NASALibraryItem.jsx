@@ -3,10 +3,10 @@ import s from "../nasaLibrary.module.css";
 import m from "../nasaLibraryMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
 import cn from "classnames";
-import imagePlaceHolder from "../../../images/imagePlaceholder.jpg";
+import imagePlaceHolder from "../../../assets/images/imagePlaceholder.jpg";
 import Lazyload from 'react-lazyload'
-import ModalWindow from "../../../helpers/modalWindow/modalWindow";
-import {getVideoLinks} from "../../../reducers/nasaLibrary";
+import ModalWindow from "../../common/modalWindow/modalWindow";
+import {getVideoLinks} from "../../../store/nasaLibraryReducer";
 import {useDispatch, useSelector} from "react-redux";
 import { AiFillPlayCircle } from 'react-icons/ai'
 

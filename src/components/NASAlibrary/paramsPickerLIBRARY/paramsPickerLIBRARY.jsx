@@ -2,13 +2,13 @@ import React, {memo} from "react";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
-import {setDateIntervalLibrary} from "../../../reducers/nasaLibrary";
+import {setDateIntervalLibrary} from "../../../store/nasaLibraryReducer";
 import {yearNow} from "../../../helpers/dateHelper/dateToday";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import s from "../../../helpers/formHelpers/formsStyles.module.css";
 import cn from "classnames";
 import m from "../../../helpers/formHelpers/formsStylesMedia.module.css";
-import {setNewError} from "../../../reducers/common";
+import {setNewError} from "../../../store/commonReducer";
 
 const ParamsPickerLIBRARY = memo(({setParams}) => {
 

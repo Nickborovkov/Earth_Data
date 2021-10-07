@@ -1,12 +1,12 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from 'redux-thunk'
-import apodReducer from "./apod";
-import neowsReducer from "./neows";
-import earthObsReducer from "./earthObs";
-import earthEpicReducer from "./earthEpic";
-import marsRoverReducer from "./marsRover";
-import nasaLibraryReducer from "./nasaLibrary";
-import commonReducer from "./common";
+import apodReducer from "./apodReducer";
+import neowsReducer from "./neowsReducer";
+import earthObsReducer from "./earthObsReducer";
+import earthEpicReducer from "./earthEpicReducer";
+import marsRoverReducer from "./marsRoverReducer";
+import nasaLibraryReducer from "./nasaLibraryReducer";
+import commonReducer from "./commonReducer";
 
 
 const reducers = combineReducers({
@@ -22,5 +22,3 @@ const reducers = combineReducers({
 const store = createStore(reducers, applyMiddleware(thunk))
 
 export default store
-
-window.store = store

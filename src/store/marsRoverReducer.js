@@ -1,5 +1,5 @@
-import {nasaRequest} from "../serverRequests/serverRequests";
-import {setNewError, toggleIsFetching} from "./common";
+import {nasaRequest} from "../API/serverRequests";
+import {setNewError, toggleIsFetching} from "./commonReducer";
 
 const SET_MARS_ROVER_PHOTOS = `nasa/marsRover/SET_MARS_ROVER_PHOTOS`
 const SET_MARS_ROVER_PARAMS = `nasa/marsRover/SET_MARS_ROVER_PARAMS`

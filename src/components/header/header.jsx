@@ -3,7 +3,7 @@ import s from './header.module.css'
 import m from './headerMedia.module.css'
 import cn from 'classnames'
 import SearchForm from "./searchForm/searchForm";
-import mainIcon from '../../images/nasaLogo.png'
+import mainIcon from '../../assets/images/nasaLogo.png'
 import {NavLink} from "react-router-dom";
 import {RiHome2Line} from "react-icons/ri";
 

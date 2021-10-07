@@ -5,10 +5,10 @@ import cn from "classnames";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
 import {Formik} from "formik";
-import {setMarsRoverParams} from "../../../reducers/marsRover";
+import {setMarsRoverParams} from "../../../store/marsRoverReducer";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
-import {setNewError} from "../../../reducers/common";
+import {setNewError} from "../../../store/commonReducer";
 
 const ParamsPickerROVER = memo(({setParams}) => {
 

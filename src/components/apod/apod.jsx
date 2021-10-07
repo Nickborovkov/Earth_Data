@@ -3,13 +3,13 @@ import {Redirect} from "react-router-dom";
 import s from './apod.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
-import Preloader from "../../helpers/preloaders/preloader";
+import Preloader from "../common/preloaders/preloader";
 import SetDateAPOD from "./datePickersAPOD/setDateAPOD";
 import SetIntervalAPOD from "./datePickersAPOD/setIntervalAPOD";
 import ApodItem from "./apodItem/apodItem";
 import {useDispatch, useSelector} from "react-redux";
-import {getApod, getApodWithInterval} from "../../reducers/apod";
-import {setNewError} from "../../reducers/common";
+import {getApod, getApodWithInterval} from "../../store/apodReducer";
+import {setNewError} from "../../store/commonReducer";
 import { GiClick } from 'react-icons/gi';
 
 const Apod = memo(() => {

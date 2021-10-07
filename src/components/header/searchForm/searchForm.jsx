@@ -5,10 +5,10 @@ import cn from 'classnames'
 import {useDispatch} from "react-redux";
 import {Formik} from "formik";
 import * as yup from 'yup'
-import {setCurrentSearch, setSearchStart} from "../../../reducers/nasaLibrary";
+import {setCurrentSearch, setSearchStart} from "../../../store/nasaLibraryReducer";
 import { BsSearch } from 'react-icons/bs';
 import {formButtonHelper} from "../../../helpers/formHelpers/formHelpers";
-import {setNewError} from "../../../reducers/common";
+import {setNewError} from "../../../store/commonReducer";
 
 
 const SearchForm = () => {

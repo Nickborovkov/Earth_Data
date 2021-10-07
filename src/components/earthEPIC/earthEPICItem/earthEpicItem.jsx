@@ -4,8 +4,8 @@ import m from "../earthEpicMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
 import cn from "classnames";
 import Lazyload from "react-lazyload";
-import imagePreloader from "../../../helpers/preloaders/imageLoader.gif"
-import ModalWindow from "../../../helpers/modalWindow/modalWindow";
+import imagePreloader from "../../common/preloaders/imageLoader.gif"
+import ModalWindow from "../../common/modalWindow/modalWindow";
 import {earthEpicURLHelper} from "../../../helpers/urlHelper/earthEpicURLHelper";
 import {useSelector} from "react-redux";
 

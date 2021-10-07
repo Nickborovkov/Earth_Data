@@ -1,6 +1,6 @@
-import {nasaRequest} from "../serverRequests/serverRequests";
-import {setNewError, toggleIsFetching} from "./common";
-import imagePreloader from "../helpers/preloaders/imageLoader.gif"
+import {nasaRequest} from "../API/serverRequests";
+import {setNewError, toggleIsFetching} from "./commonReducer";
+import imagePreloader from "../components/common/preloaders/imageLoader.gif"
 
 
 const SET_EARTH_OBSERVATION = `NASA/earth/SET_EARTH_OBSERVATION`

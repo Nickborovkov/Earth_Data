@@ -5,9 +5,9 @@ import cn from 'classnames'
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
-import {setParameters} from "../../../reducers/earthObs";
+import {setParameters} from "../../../store/earthObsReducer";
 import {formButtonHelper,formInputHelper} from "../../../helpers/formHelpers/formHelpers";
-import {setNewError} from "../../../reducers/common";
+import {setNewError} from "../../../store/commonReducer";
 
 const ParamsPickerEarthObs = memo(({setParams}) => {
 

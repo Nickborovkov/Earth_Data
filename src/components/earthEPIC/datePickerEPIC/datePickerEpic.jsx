@@ -5,10 +5,10 @@ import cn from 'classnames'
 import {useDispatch} from "react-redux";
 import * as yup from 'yup'
 import {Formik} from "formik";
-import {setEarthImageDate} from "../../../reducers/earthEpic";
+import {setEarthImageDate} from "../../../store/earthEpicReducer";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
-import {setNewError} from "../../../reducers/common";
+import {setNewError} from "../../../store/commonReducer";
 
 const DatePickerEpic = memo(({setParams}) => {
 

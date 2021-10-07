@@ -3,9 +3,9 @@ import s from "../apod.module.css";
 import m from "../apodMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
 import cn from "classnames";
-import ModalWindow from "../../../helpers/modalWindow/modalWindow";
+import ModalWindow from "../../common/modalWindow/modalWindow";
 import Lazyload from "react-lazyload";
-import imagePlaceHolder from "../../../images/imagePlaceholder.jpg";
+import imagePlaceHolder from "../../../assets/images/imagePlaceholder.jpg";
 
 
 const ApodItem = memo(({item}) => {

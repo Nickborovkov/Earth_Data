@@ -5,10 +5,10 @@ import cn from "classnames";
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
-import {setIntervalDate} from "../../../reducers/neows";
+import {setIntervalDate} from "../../../store/neowsReducer";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
-import {setNewError} from "../../../reducers/common";
+import {setNewError} from "../../../store/commonReducer";
 
 
 const DatePickerNEOWS = memo(({setParams}) => {

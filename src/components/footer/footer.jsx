@@ -3,7 +3,7 @@ import s from './footer.module.css'
 import m from './footerMedia.module.css'
 import cn from 'classnames'
 import { BiCopyright } from 'react-icons/bi';
-import nasaLogo from '../../images/nasaLogo.png'
+import nasaLogo from '../../assets/images/nasaLogo.png'
 
 const Footer = () => {
     return (

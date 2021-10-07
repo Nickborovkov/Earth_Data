@@ -5,10 +5,10 @@ import cn from 'classnames'
 import {Formik} from "formik";
 import * as yup from 'yup'
 import {useDispatch} from "react-redux";
-import {setCurrentDate} from "../../../reducers/apod";
+import {setCurrentDate} from "../../../store/apodReducer";
 import {formButtonHelper, formInputHelper} from "../../../helpers/formHelpers/formHelpers";
 import {dateToday} from "../../../helpers/dateHelper/dateToday";
-import {setNewError} from "../../../reducers/common";
+import {setNewError} from "../../../store/commonReducer";
 
 const SetDateAPOD = memo(({setParams}) => {
 

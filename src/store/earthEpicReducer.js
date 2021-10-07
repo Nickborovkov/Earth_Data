@@ -1,5 +1,5 @@
-import {nasaRequest} from "../serverRequests/serverRequests";
-import {setNewError, toggleIsFetching} from "./common";
+import {nasaRequest} from "../API/serverRequests";
+import {setNewError, toggleIsFetching} from "./commonReducer";
 
 const SET_EARTH_IMAGE = `NASA/earthImage/SET_EARTH_IMAGE`
 const SET_EARTH_IMAGE_DATE = `NASA/earthImage/SET_EARTH_IMAGE_DATE`

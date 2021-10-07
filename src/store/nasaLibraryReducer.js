@@ -1,5 +1,5 @@
-import {nasaRequest} from "../serverRequests/serverRequests";
-import {setNewError, toggleIsFetching} from "./common";
+import {nasaRequest} from "../API/serverRequests";
+import {setNewError, toggleIsFetching} from "./commonReducer";
 import axios from "axios";
 
 const SET_SEARCH_RESULT = `nasa/nasaLibrary/SET_SEARCH_RESULT`

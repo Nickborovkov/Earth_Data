@@ -3,12 +3,12 @@ import {Redirect} from "react-router-dom";
 import s from './earthObs.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
-import Preloader from "../../helpers/preloaders/preloader";
+import Preloader from "../common/preloaders/preloader";
 import ParamsPickerEarthObs from "./paramsPickerEarthOBS/paramsPickerEarthObs";
 import EarthObsItem from "./earthObsItem/earthObsItem";
 import {useDispatch, useSelector} from "react-redux";
-import {getEarthObservation} from "../../reducers/earthObs";
-import {setNewError} from "../../reducers/common";
+import {getEarthObservation} from "../../store/earthObsReducer";
+import {setNewError} from "../../store/commonReducer";
 import { GiClick } from 'react-icons/gi';
 
 const EarthObs = memo(() => {

@@ -3,13 +3,13 @@ import {Redirect} from "react-router-dom";
 import s from './marsRover.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
-import Preloader from "../../helpers/preloaders/preloader";
+import Preloader from "../common/preloaders/preloader";
 import ParamsPickerROVER from "./paramsPickerROVER/paramsPickerROVER";
 import MarsRoverItem from "./marsRoverItem/marsRoverItem";
-import Pagination from "../../helpers/Pagination/pagination";
+import Pagination from "../common/pagination/pagination";
 import {useDispatch, useSelector} from "react-redux";
-import {getMarsRoverPhotos, roverNextPage, roverPrevPage} from "../../reducers/marsRover";
-import {setNewError} from "../../reducers/common";
+import {getMarsRoverPhotos, roverNextPage, roverPrevPage} from "../../store/marsRoverReducer";
+import {setNewError} from "../../store/commonReducer";
 import { GiClick } from 'react-icons/gi';
 
 const MarsRover = () => {
@@ -75,7 +75,7 @@ const MarsRover = () => {
                                                                 item={r}/>)}
                 </div>
 
-                {/*Pagination*/}
+                {/*pagination*/}
                 <Pagination page = {page}
                             prevPageCondition = {'1'}
                             prevPageDispatch={roverPrevPage}

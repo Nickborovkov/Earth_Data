@@ -3,8 +3,8 @@ import s from "../earthObs.module.css";
 import m from "../earthObsMedia.module.css";
 import common from "../../../helpers/commonStyles/commonStyles.module.css";
 import cn from "classnames";
-import ModalWindow from "../../../helpers/modalWindow/modalWindow";
-import imagePreloader from "../../../helpers/preloaders/imageLoader.gif"
+import ModalWindow from "../../common/modalWindow/modalWindow";
+import imagePreloader from "../../common/preloaders/imageLoader.gif"
 
 const EarthObsItem = memo(({item}) => {
 

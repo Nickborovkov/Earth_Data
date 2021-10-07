@@ -3,12 +3,12 @@ import {Redirect} from "react-router-dom";
 import s from './neows.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
-import Preloader from "../../helpers/preloaders/preloader";
+import Preloader from "../common/preloaders/preloader";
 import DatePickerNEOWS from "./datePickerNEOWS/datePickerNEOWS";
 import NeowsItem from "./neowsItem/neowsItem";
 import {useDispatch, useSelector} from "react-redux";
-import {getNeows} from "../../reducers/neows";
-import {setNewError} from "../../reducers/common";
+import {getNeows} from "../../store/neowsReducer";
+import {setNewError} from "../../store/commonReducer";
 import { GiClick } from 'react-icons/gi';
 
 const Neows = memo(() => {

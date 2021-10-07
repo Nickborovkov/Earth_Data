@@ -1,6 +1,6 @@
-import {nasaRequest} from "../serverRequests/serverRequests";
+import {nasaRequest} from "../API/serverRequests";
 import {dateToday} from "../helpers/dateHelper/dateToday";
-import {setNewError, toggleIsFetching} from "./common";
+import {setNewError, toggleIsFetching} from "./commonReducer";
 
 const SET_NEOWS = `NASA/neows/SET_NEOWS`
 const SET_INTERVAL_DATE = `NASA/neows/SET_INTERVAL_DATE`

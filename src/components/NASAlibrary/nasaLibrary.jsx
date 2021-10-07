@@ -3,14 +3,14 @@ import s from './nasaLibrary.module.css'
 import common from '../../helpers/commonStyles/commonStyles.module.css'
 import form from '../../helpers/formHelpers/formsStyles.module.css'
 import cn from 'classnames'
-import Preloader from "../../helpers/preloaders/preloader";
+import Preloader from "../common/preloaders/preloader";
 import NASALibraryItem from "./NasaLIbraryItem/NASALibraryItem";
 import ParamsPickerLIBRARY from "./paramsPickerLIBRARY/paramsPickerLIBRARY";
-import Pagination from "../../helpers/Pagination/pagination";
+import Pagination from "../common/pagination/pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {getSearchResult, nextPage, prevPage,
-    setMediaTypeLIbrary, setSearchStart} from "../../reducers/nasaLibrary";
-import {setNewError} from "../../reducers/common";
+    setMediaTypeLIbrary, setSearchStart} from "../../store/nasaLibraryReducer";
+import {setNewError} from "../../store/commonReducer";
 import { GiClick } from 'react-icons/gi';
 import { BsCameraVideo } from 'react-icons/bs';
 import { HiOutlinePhotograph } from 'react-icons/hi';
@@ -119,7 +119,7 @@ const NasaLibrary = memo(() => {
                                                       mediaType={mediaType}/>)}
                 </div>
 
-                {/*Pagination*/}
+                {/*pagination*/}
                 <Pagination page = {page}
                             prevPageCondition = {'1'}
                             prevPageDispatch={prevPage}

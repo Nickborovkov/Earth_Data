@@ -4,9 +4,9 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
 import {Route, Switch} from "react-router-dom";
-import StartedPage from "./helpers/jsxHelpersPages/startedPage";
-import Page404 from "./helpers/jsxHelpersPages/page404";
-import Preloader from "./helpers/preloaders/preloader";
+import StartedPage from "./components/common/startPage/startedPage";
+import Page404 from "./components/common/errorPage/page404";
+import Preloader from "./components/common/preloaders/preloader";
 import { BiArrowToTop } from 'react-icons/bi';
 const Apod = lazy( () => import("./components/apod/apod"))
 const Neows = lazy( () => import("./components/neosw/neows" ))
