@@ -1,4 +1,4 @@
-# Project that shows EarthObs and space date built with [NASA public API](https://api.nasa.gov/)
+# Project that shows Earth and space data built with [NASA public API](https://api.nasa.gov/)
 
 ![image](https://github.com/Nickborovkov/Earth_Data/blob/master/src/assets/images/appScreenshot.png)
 ## [See deployment](https://nickborovkov.github.io/Earth_Data/#/)
